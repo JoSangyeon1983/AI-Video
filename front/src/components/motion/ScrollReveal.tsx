@@ -170,29 +170,6 @@ export function StaggerItem({
 }
 
 /* ─────────────────────────────────────────────
-   CountUp — 숫자 카운트업 애니메이션
-   ───────────────────────────────────────────── */
-
-interface CountUpProps {
-  value: string;
-  className?: string;
-}
-
-export function CountUp({ value, className = "" }: CountUpProps) {
-  return (
-    <motion.span
-      className={className}
-      initial={{ opacity: 0, scale: 0.5 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true, amount: 0.3 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
-    >
-      {value}
-    </motion.span>
-  );
-}
-
-/* ─────────────────────────────────────────────
    ScaleReveal — 스케일 인 효과
    ───────────────────────────────────────────── */
 

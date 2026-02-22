@@ -1,8 +1,9 @@
-"use client";
+﻿"use client";
 
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import InputField from "@/components/ui/InputField";
 import { useTranslation } from "@/i18n";
+import { useBodyScrollLock, useEscapeKey } from "@/hooks";
 
 /* ── 타입 ── */
 export type ContactTab = "service" | "solution";
@@ -39,23 +40,9 @@ export default function ContactModal({
     }
   }, [isOpen, defaultTab]);
 
-  /* ESC 닫기 */
-  const handleKeyDown = useCallback(
-    (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-    },
-    [onClose],
-  );
-
-  useEffect(() => {
-    if (!isOpen) return;
-    document.addEventListener("keydown", handleKeyDown);
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-      document.body.style.overflow = "";
-    };
-  }, [isOpen, handleKeyDown]);
+  /* ESC 닫기 + 스크롤 잠금 */
+  useEscapeKey(onClose, isOpen);
+  useBodyScrollLock(isOpen);
 
   /* 폼 제출 */
   const handleSubmit = async (e: React.FormEvent) => {
@@ -99,7 +86,7 @@ export default function ContactModal({
           </p>
           <button
             onClick={onClose}
-            className="mt-8 rounded-lg bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600"
+            className="mt-8 rounded-lg bg-brand-600 px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-700 dark:bg-brand-500 dark:hover:bg-brand-600"
           >
             {t.contactModal.close}
           </button>
@@ -141,7 +128,7 @@ export default function ContactModal({
               onClick={() => setTab(opt.value as ContactTab)}
               className={`flex-1 rounded-md px-4 py-2.5 text-sm font-medium transition-colors ${
                 tab === opt.value
-                  ? "bg-blue-600 text-white dark:bg-blue-500 dark:text-white"
+                  ? "bg-brand-600 text-white dark:bg-brand-500 dark:text-white"
                   : "text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
               }`}
             >
@@ -192,7 +179,7 @@ export default function ContactModal({
             <textarea
               name="message"
               rows={3}
-              className="mt-1 w-full rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 placeholder-slate-400 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:border-slate-700 dark:bg-slate-900 dark:text-white"
+              className="mt-1 w-full rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 placeholder-slate-400 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500 dark:border-slate-700 dark:bg-slate-900 dark:text-white"
               placeholder={t.contactModal.messagePlaceholder}
             />
           </div>
@@ -205,7 +192,7 @@ export default function ContactModal({
             <p className="mt-1 text-xs text-slate-400 dark:text-slate-500">
               {t.contactModal.fileHint}
             </p>
-            <label className="mt-2 flex cursor-pointer items-center justify-center gap-2 rounded-lg border-2 border-dashed border-slate-300 px-4 py-4 text-sm text-slate-500 transition-colors hover:border-blue-400 hover:text-blue-600 dark:border-slate-700 dark:text-slate-400 dark:hover:border-blue-500 dark:hover:text-blue-400">
+            <label className="mt-2 flex cursor-pointer items-center justify-center gap-2 rounded-lg border-2 border-dashed border-slate-300 px-4 py-4 text-sm text-slate-500 transition-colors hover:border-brand-400 hover:text-brand-600 dark:border-slate-700 dark:text-slate-400 dark:hover:border-brand-500 dark:hover:text-brand-400">
               <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5m-13.5-9L12 3m0 0 4.5 4.5M12 3v13.5" />
               </svg>
@@ -229,7 +216,7 @@ export default function ContactModal({
           type="submit"
           form="contact-modal-form"
           disabled={submitState === "submitting"}
-          className="inline-flex h-12 w-full items-center justify-center rounded-lg bg-blue-600 px-8 text-sm font-semibold text-white transition-colors hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-60 dark:bg-blue-500 dark:text-white dark:hover:bg-blue-600 sm:w-auto"
+          className="inline-flex h-12 w-full items-center justify-center rounded-lg bg-brand-600 px-8 text-sm font-semibold text-white transition-colors hover:bg-brand-700 disabled:cursor-not-allowed disabled:opacity-60 dark:bg-brand-500 dark:text-white dark:hover:bg-brand-600 sm:w-auto"
         >
           {submitState === "submitting" ? (
             <>

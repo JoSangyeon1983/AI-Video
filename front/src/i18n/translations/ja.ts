@@ -282,6 +282,7 @@ export const ja: Translation = {
       { name: "チョン・アーティスト", role: "Lead AI Artist", desc: "生成AIを活用したビジュアルクリエーション" },
       { name: "ハン・エディター", role: "Lead Editor", desc: "ハイエンド映像編集・ポストプロダクション" },
     ],
+    partnersHeading: "パートナー & クライアント",
     partners: ["OpenAI", "RunwayML", "ElevenLabs", "Stability AI", "Google Cloud", "AWS"],
   },
 

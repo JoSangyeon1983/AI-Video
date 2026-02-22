@@ -1,6 +1,5 @@
-"use client";
+﻿"use client";
 
-import Link from "next/link";
 import { works } from "@/data/work";
 import { useTranslation } from "@/i18n";
 import { motion } from "framer-motion";
@@ -20,9 +19,9 @@ export default function WorkDetailClient({ slug }: Props) {
         <div className="text-center">
           <h1 className="text-2xl font-bold text-slate-900 dark:text-white">404</h1>
           <p className="mt-2 text-slate-500">{t.work.noResults}</p>
-          <Link href="/work" className="mt-4 inline-block text-sm font-semibold text-blue-600 hover:text-blue-700">
+          <a href="/work/" className="mt-4 inline-block text-sm font-semibold text-brand-600 hover:text-brand-700">
             {t.work.detailBackToList}
-          </Link>
+          </a>
         </div>
       </div>
     );
@@ -55,12 +54,12 @@ export default function WorkDetailClient({ slug }: Props) {
       {/* ── 콘텐츠 ── */}
       <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
         {/* 뒤로 가기 */}
-        <Link href="/work" className="mb-6 inline-flex items-center gap-1 text-sm font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400">
+        <a href="/work/" className="mb-6 inline-flex items-center gap-1 text-sm font-medium text-brand-600 hover:text-brand-700 dark:text-brand-400">
           <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
           </svg>
           {t.work.detailBackToList}
-        </Link>
+        </a>
 
         {/* 제목 & 태그 */}
         <motion.h1
@@ -73,7 +72,7 @@ export default function WorkDetailClient({ slug }: Props) {
         </motion.h1>
         <div className="mt-4 flex flex-wrap items-center gap-2">
           {[work.industry, work.style, work.purpose].map((tag) => (
-            <span key={tag} className="rounded-full bg-blue-100 px-3 py-1 text-xs font-medium text-blue-700 dark:bg-blue-950/50 dark:text-blue-400">
+            <span key={tag} className="rounded-full bg-brand-100 px-3 py-1 text-xs font-medium text-brand-700 dark:bg-brand-950/50 dark:text-brand-400">
               {tag}
             </span>
           ))}
@@ -103,7 +102,7 @@ export default function WorkDetailClient({ slug }: Props) {
               transition={{ duration: 0.5, delay: 0.2 }}
             >
               <h2 className="flex items-center gap-2 text-lg font-bold text-slate-900 dark:text-white">
-                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-100 text-sm font-bold text-blue-600 dark:bg-blue-950/50 dark:text-blue-400">2</span>
+                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-brand-100 text-sm font-bold text-brand-600 dark:bg-brand-950/50 dark:text-brand-400">2</span>
                 {t.work.detailApproach}
               </h2>
               <p className="mt-3 leading-relaxed text-slate-600 dark:text-slate-300">{caseDetail.approach}</p>
@@ -127,16 +126,16 @@ export default function WorkDetailClient({ slug }: Props) {
         {/* ── CTA ── */}
         <div className="mt-14 rounded-2xl border border-slate-200 bg-slate-50 p-8 text-center dark:border-slate-800 dark:bg-slate-900">
           <h3 className="text-lg font-bold text-slate-900 dark:text-white">{t.work.detailCta}</h3>
-          <Link
-            href={`/contact?type=${ctaType}&ref=${work.slug}`}
+          <a
+            href={`/contact/?type=${ctaType}&ref=${work.slug}`}
             className={`mt-4 inline-flex h-12 items-center justify-center rounded-lg px-8 text-sm font-semibold text-white transition-colors ${
               ctaType === "solution"
-                ? "bg-violet-600 hover:bg-violet-700"
-                : "bg-blue-600 hover:bg-blue-700"
+                ? "bg-secondary-600 hover:bg-secondary-700"
+                : "bg-brand-600 hover:bg-brand-700"
             }`}
           >
             {ctaType === "solution" ? t.videoModal.ctaSolution : t.videoModal.ctaService}
-          </Link>
+          </a>
         </div>
       </div>
     </article>

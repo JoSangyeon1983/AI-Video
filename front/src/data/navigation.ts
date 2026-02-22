@@ -1,4 +1,5 @@
-import type { NavItem, FooterLinkGroup } from "@/types";
+import type { NavItem } from "@/types";
+import type { Translation } from "@/i18n/types";
 
 /* ── GNB 네비게이션 ── */
 export const navItems: NavItem[] = [
@@ -9,20 +10,13 @@ export const navItems: NavItem[] = [
   { label: "Story", href: "/story" },
 ];
 
-/* ── 푸터 링크 ── */
-export const footerLinks: FooterLinkGroup = {
-  서비스: [
-    { label: "Work", href: "/work" },
-    { label: "Service", href: "/service" },
-    { label: "Solution", href: "/solution" },
-  ],
-  회사: [
-    { label: "Story", href: "/story" },
-    { label: "Insights", href: "/insights" },
-    { label: "Contact", href: "/contact" },
-  ],
-  정책: [
-    { label: "이용약관", href: "#" },
-    { label: "개인정보처리방침", href: "#" },
-  ],
-};
+/** href → 번역된 라벨 맵 (Header, Footer 공용) */
+export function getNavLabelMap(t: Translation): Record<string, string> {
+  return {
+    "/work": t.nav.work,
+    "/service": t.nav.service,
+    "/solution": t.nav.solution,
+    "/insights": t.nav.insights,
+    "/story": t.nav.story,
+  };
+}

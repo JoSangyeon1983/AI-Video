@@ -1,12 +1,12 @@
-"use client";
+﻿"use client";
 
-import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
-import { navItems } from "@/data/navigation";
+import { navItems, getNavLabelMap } from "@/data/navigation";
 import { BRAND_NAME } from "@/data/brand";
 import { useTranslation } from "@/i18n";
+import { useBodyScrollLock } from "@/hooks";
 import LanguageSelector from "@/components/LanguageSelector";
 
 export default function Header() {
@@ -22,24 +22,13 @@ export default function Header() {
   }, []);
 
   // 모바일 메뉴 열림 시 스크롤 방지
-  useEffect(() => {
-    document.body.style.overflow = mobileMenuOpen ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [mobileMenuOpen]);
+  useBodyScrollLock(mobileMenuOpen);
 
   const isActive = (href: string) =>
     pathname === href || pathname.startsWith(href + "/");
 
   // Map href → translated label
-  const navLabelMap: Record<string, string> = {
-    "/work": t.nav.work,
-    "/service": t.nav.service,
-    "/solution": t.nav.solution,
-    "/insights": t.nav.insights,
-    "/story": t.nav.story,
-  };
+  const navLabelMap = getNavLabelMap(t);
 
   return (
     <header
@@ -51,7 +40,7 @@ export default function Header() {
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* 로고 */}
-        <Link href="/" className="flex items-center gap-2 shrink-0">
+        <a href="/" className="flex items-center gap-2 shrink-0">
           <Image
             src="/logo.png"
             alt={BRAND_NAME}
@@ -60,35 +49,35 @@ export default function Header() {
             className="h-8 w-auto dark:brightness-0 dark:invert"
             priority
           />
-        </Link>
+        </a>
 
         {/* 데스크톱 GNB */}
         <nav className="hidden lg:flex lg:items-center lg:gap-1" aria-label={t.nav.mainMenu}>
           {navItems.map((item) => (
-            <Link
+            <a
               key={item.href}
-              href={item.href}
+              href={item.href.endsWith("/") ? item.href : `${item.href}/`}
               className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
                 isActive(item.href)
-                  ? "bg-blue-600 text-white dark:bg-blue-500 dark:text-white"
+                  ? "bg-brand-600 text-white dark:bg-brand-500 dark:text-white"
                   : "text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white"
               }`}
             >
               {navLabelMap[item.href] || item.label}
-            </Link>
+            </a>
           ))}
 
           {/* 문의 텍스트 링크 */}
-          <Link
-            href="/contact"
-            className={`ml-4 text-sm font-medium transition-colors ${
-              pathname === "/contact"
-                ? "text-blue-600 dark:text-blue-400"
-                : "text-slate-500 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400"
+          <a
+            href="/contact/"
+            className={`ml-4 rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
+              pathname === "/contact" || pathname === "/contact/"
+                ? "bg-brand-600 text-white dark:bg-brand-500 dark:text-white"
+                : "text-slate-500 hover:bg-slate-100 hover:text-brand-600 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-brand-400"
             }`}
           >
             {t.nav.contact}
-          </Link>
+          </a>
 
           {/* 언어 선택 */}
           <LanguageSelector />
@@ -118,49 +107,49 @@ export default function Header() {
       {mobileMenuOpen && (
         <div className="fixed inset-0 top-16 z-40 bg-white dark:bg-slate-950 lg:hidden">
           <nav className="flex flex-col gap-2 px-6 py-8" aria-label={t.nav.mobileMenu}>
-            <Link
+            <a
               href="/"
               onClick={() => setMobileMenuOpen(false)}
               className={`rounded-lg px-4 py-3 text-lg font-medium transition-colors ${
                 pathname === "/"
-                  ? "bg-blue-600 text-white dark:bg-blue-500 dark:text-white"
+                  ? "bg-brand-600 text-white dark:bg-brand-500 dark:text-white"
                   : "text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800"
               }`}
             >
               {t.nav.home}
-            </Link>
+            </a>
 
             {navItems.map((item) => (
-              <Link
+              <a
                 key={item.href}
-                href={item.href}
+                href={item.href.endsWith("/") ? item.href : `${item.href}/`}
                 onClick={() => setMobileMenuOpen(false)}
                 className={`rounded-lg px-4 py-3 text-lg font-medium transition-colors ${
                   isActive(item.href)
-                    ? "bg-blue-600 text-white dark:bg-blue-500 dark:text-white"
+                    ? "bg-brand-600 text-white dark:bg-brand-500 dark:text-white"
                     : "text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800"
                 }`}
               >
                 {navLabelMap[item.href] || item.label}
-              </Link>
+              </a>
             ))}
 
             {/* 모바일 메뉴 하단 CTA */}
             <div className="mt-8 flex flex-col gap-3 border-t border-slate-200 pt-6 dark:border-slate-800">
-              <Link
-                href="/contact?type=service"
+              <a
+                href="/contact/?type=service"
                 onClick={() => setMobileMenuOpen(false)}
-                className="flex h-12 items-center justify-center rounded-lg bg-blue-600 text-sm font-semibold text-white transition-colors hover:bg-blue-700 dark:bg-blue-500 dark:text-white dark:hover:bg-blue-600"
+                className="flex h-12 items-center justify-center rounded-lg bg-brand-600 text-sm font-semibold text-white transition-colors hover:bg-brand-700 dark:bg-brand-500 dark:text-white dark:hover:bg-brand-600"
               >
                 {t.nav.serviceInquiry}
-              </Link>
-              <Link
-                href="/contact?type=solution"
+              </a>
+              <a
+                href="/contact/?type=solution"
                 onClick={() => setMobileMenuOpen(false)}
-                className="flex h-12 items-center justify-center rounded-lg border-2 border-violet-600 text-sm font-semibold text-violet-600 transition-colors hover:bg-violet-50 dark:border-violet-400 dark:text-violet-400 dark:hover:bg-violet-950"
+                className="flex h-12 items-center justify-center rounded-lg border-2 border-secondary-600 text-sm font-semibold text-secondary-600 transition-colors hover:bg-secondary-50 dark:border-secondary-400 dark:text-secondary-400 dark:hover:bg-secondary-950"
               >
                 {t.nav.solutionInquiry}
-              </Link>
+              </a>
             </div>
           </nav>
         </div>

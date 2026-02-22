@@ -1,10 +1,10 @@
-"use client";
+﻿"use client";
 
-import Link from "next/link";
-import { useState, useRef, useEffect } from "react";
-import { navItems } from "@/data/navigation";
+import { useState, useRef } from "react";
 import { BRAND_NAME } from "@/data/brand";
+import { getNavLabelMap } from "@/data/navigation";
 import { useTranslation } from "@/i18n";
+import { useClickOutside } from "@/hooks";
 
 const familySites = [
   { name: "CELLBIG", url: "https://cellbig.com/" },
@@ -17,23 +17,9 @@ export default function Footer() {
   const familyRef = useRef<HTMLDivElement>(null);
 
   // 외부 클릭 시 닫기
-  useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (familyRef.current && !familyRef.current.contains(e.target as Node)) {
-        setFamilyOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+  useClickOutside(familyRef, () => setFamilyOpen(false));
 
-  const navLabelMap: Record<string, string> = {
-    "/work": t.nav.work,
-    "/service": t.nav.service,
-    "/solution": t.nav.solution,
-    "/insights": t.nav.insights,
-    "/story": t.nav.story,
-  };
+  const navLabelMap = getNavLabelMap(t);
 
   const footerGroups = [
     {
@@ -67,9 +53,9 @@ export default function Footer() {
         <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
           {/* 회사 정보 */}
           <div className="col-span-2 md:col-span-1">
-            <Link href="/" className="text-xl font-bold text-slate-900 dark:text-white">
+            <a href="/" className="text-xl font-bold text-slate-900 dark:text-white">
               {BRAND_NAME}
-            </Link>
+            </a>
             <p className="mt-3 text-sm leading-relaxed text-slate-500 dark:text-slate-400">
               {t.footer.desc1}
               <br />{t.footer.desc2}
@@ -90,12 +76,12 @@ export default function Footer() {
               <ul className="mt-3 space-y-2">
                 {group.links.map((link) => (
                   <li key={link.href + link.label}>
-                    <Link
-                      href={link.href}
-                      className="text-sm text-slate-500 transition-colors hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400"
+                    <a
+                      href={link.href.endsWith("/") ? link.href : `${link.href}/`}
+                      className="text-sm text-slate-500 transition-colors hover:text-brand-600 dark:text-slate-400 dark:hover:text-brand-400"
                     >
                       {link.label}
-                    </Link>
+                    </a>
                   </li>
                 ))}
               </ul>
@@ -106,14 +92,14 @@ export default function Footer() {
         {/* 하단 */}
         <div className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-slate-200 pt-6 dark:border-slate-800 sm:flex-row">
           <p className="text-xs text-slate-400 dark:text-slate-500">
-            &copy; {new Date().getFullYear()} {BRAND_NAME}. All rights reserved.
+            &copy; {new Date().getFullYear()} CELLBIG. All rights reserved.
           </p>
           <div className="flex items-center gap-4">
             {/* Family Site 드롭다운 */}
             <div ref={familyRef} className="relative">
               <button
                 onClick={() => setFamilyOpen(!familyOpen)}
-                className="flex items-center gap-1 text-xs text-slate-400 transition-colors hover:text-blue-600 dark:text-slate-500 dark:hover:text-blue-400"
+                className="flex items-center gap-1 text-xs text-slate-400 transition-colors hover:text-brand-600 dark:text-slate-500 dark:hover:text-brand-400"
               >
                 Family Site
                 <svg
@@ -134,7 +120,7 @@ export default function Footer() {
                       href={site.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="block px-4 py-2 text-sm text-slate-600 transition-colors hover:bg-slate-50 hover:text-blue-600 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-blue-400"
+                      className="block px-4 py-2 text-sm text-slate-600 transition-colors hover:bg-slate-50 hover:text-brand-600 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-brand-400"
                       onClick={() => setFamilyOpen(false)}
                     >
                       {site.name}
@@ -148,7 +134,7 @@ export default function Footer() {
               <a
                 key={sns}
                 href="#"
-                className="text-xs text-slate-400 transition-colors hover:text-blue-600 dark:text-slate-500 dark:hover:text-blue-400"
+                className="text-xs text-slate-400 transition-colors hover:text-brand-600 dark:text-slate-500 dark:hover:text-brand-400"
                 aria-label={sns}
               >
                 {sns}

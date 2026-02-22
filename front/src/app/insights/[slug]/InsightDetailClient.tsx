@@ -1,6 +1,6 @@
-"use client";
+﻿"use client";
 
-import Link from "next/link";
+import { useState, useEffect } from "react";
 import { articles } from "@/data/insights";
 import { useTranslation } from "@/i18n";
 import { motion } from "framer-motion";
@@ -15,15 +15,19 @@ export default function InsightDetailClient({ slug }: Props) {
   const article = articles.find((a) => a.slug === slug);
   const detail = t.insights.articleDetails?.[slug];
 
+  // SSR 시에는 opacity:1로 렌더, 클라이언트 마운트 후에만 애니메이션 적용
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => { setMounted(true); }, []);
+
   if (!article || !detail) {
     return (
       <div className="flex min-h-[60vh] items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold text-slate-900 dark:text-white">404</h1>
           <p className="mt-2 text-slate-500">{t.insights.noResults}</p>
-          <Link href="/insights" className="mt-4 inline-block text-sm font-semibold text-blue-600 hover:text-blue-700">
+          <a href="/insights/" className="mt-4 inline-block text-sm font-semibold text-brand-600 hover:text-brand-700">
             {t.insights.detailBackToList}
-          </Link>
+          </a>
         </div>
       </div>
     );
@@ -42,24 +46,24 @@ export default function InsightDetailClient({ slug }: Props) {
   return (
     <article className="bg-white dark:bg-slate-950">
       {/* ── 히어로 영역 ── */}
-      <div className="bg-gradient-to-b from-blue-50 to-white pt-24 pb-12 dark:from-slate-900 dark:to-slate-950">
+      <div className="bg-gradient-to-b from-brand-50 to-white pt-24 pb-12 dark:from-slate-900 dark:to-slate-950">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           {/* 뒤로 가기 */}
-          <Link href="/insights" className="mb-6 inline-flex items-center gap-1 text-sm font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400">
+          <a href="/insights/" className="mb-6 inline-flex items-center gap-1 text-sm font-medium text-brand-600 hover:text-brand-700 dark:text-brand-400">
             <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
             </svg>
             {t.insights.detailBackToList}
-          </Link>
+          </a>
 
           {/* 태그 & 날짜 */}
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
+            initial={mounted ? { opacity: 0, y: 10 } : false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
             className="flex items-center gap-3"
           >
-            <span className="rounded-full bg-blue-100 px-3 py-1 text-xs font-medium text-blue-700 dark:bg-blue-900/30 dark:text-blue-400">
+            <span className="rounded-full bg-brand-100 px-3 py-1 text-xs font-medium text-brand-700 dark:bg-brand-900/30 dark:text-brand-400">
               {displayTag}
             </span>
             <span className="text-sm text-slate-400 dark:text-slate-500">{displayDate}</span>
@@ -67,7 +71,7 @@ export default function InsightDetailClient({ slug }: Props) {
 
           {/* 제목 */}
           <motion.h1
-            initial={{ opacity: 0, y: 20 }}
+            initial={mounted ? { opacity: 0, y: 20 } : false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
             className="mt-4 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white"
@@ -77,7 +81,7 @@ export default function InsightDetailClient({ slug }: Props) {
 
           {/* 요약 */}
           <motion.p
-            initial={{ opacity: 0, y: 15 }}
+            initial={mounted ? { opacity: 0, y: 15 } : false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             className="mt-4 text-lg leading-relaxed text-slate-600 dark:text-slate-300"
@@ -91,7 +95,7 @@ export default function InsightDetailClient({ slug }: Props) {
       <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
         {/* 목차 */}
         <motion.nav
-          initial={{ opacity: 0, y: 10 }}
+          initial={mounted ? { opacity: 0, y: 10 } : false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.3 }}
           className="mb-12 rounded-xl border border-slate-200 bg-slate-50 p-6 dark:border-slate-800 dark:bg-slate-900"
@@ -104,7 +108,7 @@ export default function InsightDetailClient({ slug }: Props) {
               <li key={i}>
                 <a
                   href={`#section-${i}`}
-                  className="text-sm font-medium text-blue-600 hover:text-blue-700 hover:underline dark:text-blue-400 dark:hover:text-blue-300"
+                  className="text-sm font-medium text-brand-600 hover:text-brand-700 hover:underline dark:text-brand-400 dark:hover:text-brand-300"
                 >
                   {section.heading}
                 </a>
@@ -119,7 +123,7 @@ export default function InsightDetailClient({ slug }: Props) {
             <motion.section
               key={i}
               id={`section-${i}`}
-              initial={{ opacity: 0, y: 15 }}
+              initial={mounted ? { opacity: 0, y: 15 } : false}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 + i * 0.1 }}
             >
@@ -132,16 +136,16 @@ export default function InsightDetailClient({ slug }: Props) {
         {/* ── CTA ── */}
         <div className="mt-16 rounded-2xl border border-slate-200 bg-slate-50 p-8 text-center dark:border-slate-800 dark:bg-slate-900">
           <h3 className="text-lg font-bold text-slate-900 dark:text-white">{t.insights.detailCta}</h3>
-          <Link
-            href={`/contact?type=${article.ctaType}&ref=${slug}`}
+          <a
+            href={`/contact/?type=${article.ctaType}&ref=${slug}`}
             className={`mt-4 inline-flex h-12 items-center justify-center rounded-lg px-8 text-sm font-semibold text-white transition-colors ${
               article.ctaType === "solution"
-                ? "bg-violet-600 hover:bg-violet-700"
-                : "bg-blue-600 hover:bg-blue-700"
+                ? "bg-secondary-600 hover:bg-secondary-700"
+                : "bg-brand-600 hover:bg-brand-700"
             }`}
           >
             {article.ctaType === "solution" ? t.videoModal.ctaSolution : t.videoModal.ctaService}
-          </Link>
+          </a>
         </div>
 
         {/* ── 관련 아티클 ── */}
@@ -154,18 +158,18 @@ export default function InsightDetailClient({ slug }: Props) {
                 const rTitle = t.insights.articles[rIdx]?.title ?? r.title;
                 const rTag = t.insights.articles[rIdx]?.tag ?? r.tag;
                 return (
-                  <Link
+                  <a
                     key={r.slug}
-                    href={`/insights/${r.slug}`}
-                    className="group rounded-xl border border-slate-200 bg-white p-5 transition-all hover:shadow-md dark:border-slate-800 dark:bg-slate-900"
+                    href={`/insights/${r.slug}/`}
+                    className="block group rounded-xl border border-slate-200 bg-white p-5 transition-all hover:shadow-md dark:border-slate-800 dark:bg-slate-900"
                   >
                     <span className="rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-medium text-slate-600 dark:bg-slate-800 dark:text-slate-400">
                       {rTag}
                     </span>
-                    <h4 className="mt-3 font-semibold text-slate-900 group-hover:text-blue-600 dark:text-white dark:group-hover:text-blue-400">
+                    <h4 className="mt-3 font-semibold text-slate-900 group-hover:text-brand-600 dark:text-white dark:group-hover:text-brand-400">
                       {rTitle}
                     </h4>
-                  </Link>
+                  </a>
                 );
               })}
             </div>

@@ -1,4 +1,4 @@
-interface CheckListItemProps {
+﻿interface CheckListItemProps {
   text: string;
   /** 체크 아이콘 색상 — green(기본), violet, blue */
   color?: "green" | "violet" | "blue" | "indigo";
@@ -8,9 +8,9 @@ interface CheckListItemProps {
 export default function CheckListItem({ text, color = "green" }: CheckListItemProps) {
   const colorMap: Record<string, string> = {
     green: "text-emerald-500",
-    violet: "text-violet-500",
-    blue: "text-blue-500",
-    indigo: "text-violet-500",
+    violet: "text-secondary-500",
+    blue: "text-brand-500",
+    indigo: "text-secondary-500",
   };
   const iconColor = colorMap[color] ?? "text-emerald-500";
 

@@ -282,6 +282,7 @@ export const en: Translation = {
       { name: "Mr. Jung", role: "Lead AI Artist", desc: "Generative AI-based visual creation" },
       { name: "Mr. Han", role: "Lead Editor", desc: "High-end video editing & post-production" },
     ],
+    partnersHeading: "Partners & Clients",
     partners: ["OpenAI", "RunwayML", "ElevenLabs", "Stability AI", "Google Cloud", "AWS"],
   },
 

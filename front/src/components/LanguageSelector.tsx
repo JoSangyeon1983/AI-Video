@@ -1,8 +1,9 @@
-"use client";
+﻿"use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import { useTranslation } from "@/i18n";
 import type { Locale } from "@/i18n";
+import { useClickOutside } from "@/hooks";
 
 const localeLabels: Record<Locale, string> = {
   ko: "한국어",
@@ -18,13 +19,7 @@ export default function LanguageSelector() {
   const ref = useRef<HTMLDivElement>(null);
 
   // 외부 클릭 시 닫기
-  useEffect(() => {
-    const handler = (e: MouseEvent) => {
-      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
-    };
-    document.addEventListener("mousedown", handler);
-    return () => document.removeEventListener("mousedown", handler);
-  }, []);
+  useClickOutside(ref, () => setOpen(false));
 
   return (
     <div ref={ref} className="relative">
@@ -58,7 +53,7 @@ export default function LanguageSelector() {
                 onClick={() => { setLocale(l); setOpen(false); }}
                 className={`flex w-full items-center px-4 py-2 text-sm transition-colors ${
                   locale === l
-                    ? "bg-blue-50 font-semibold text-blue-600 dark:bg-blue-950 dark:text-blue-400"
+                    ? "bg-brand-50 font-semibold text-brand-600 dark:bg-brand-950 dark:text-brand-400"
                     : "text-slate-600 hover:bg-slate-50 dark:text-slate-300 dark:hover:bg-slate-800"
                 }`}
               >

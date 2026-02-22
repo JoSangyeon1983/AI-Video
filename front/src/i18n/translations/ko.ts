@@ -282,6 +282,7 @@ export const ko: Translation = {
       { name: "정아티스트", role: "Lead AI Artist", desc: "생성형 AI 활용 비주얼 크리에이션" },
       { name: "한에디터", role: "Lead Editor", desc: "하이엔드 영상 편집 및 후반 작업" },
     ],
+    partnersHeading: "Partners & Clients",
     partners: ["OpenAI", "RunwayML", "ElevenLabs", "Stability AI", "Google Cloud", "AWS"],
   },
 

@@ -1,7 +1,6 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 interface VideoCardProps {
@@ -55,13 +54,13 @@ export default function VideoCard({ title, tags, duration, thumbnailUrl, videoUr
 
   const infoBgStyles =
     variant === "solution"
-      ? "bg-violet-100 dark:bg-violet-950/40"
-      : "bg-blue-100 dark:bg-blue-950/40";
+      ? "bg-secondary-100 dark:bg-secondary-950/40"
+      : "bg-brand-100 dark:bg-brand-950/40";
 
   const cardContent = (
     <>
       {/* 썸네일 / 프리뷰 영역 */}
-      <div className="relative aspect-video bg-gradient-to-br from-slate-200 to-blue-100 dark:from-slate-700 dark:to-blue-950">
+      <div className="relative aspect-video bg-gradient-to-br from-slate-200 to-brand-100 dark:from-slate-700 dark:to-brand-950">
         {/* 항상 썸네일 렌더 — 프리뷰 비디오 아래에 배치 */}
         {thumbnailUrl ? (
           <Image
@@ -145,15 +144,16 @@ export default function VideoCard({ title, tags, duration, thumbnailUrl, videoUr
   const sharedClassName = "group cursor-pointer overflow-hidden rounded-xl border border-slate-200 bg-slate-50 transition-all hover:shadow-lg dark:border-slate-800 dark:bg-slate-900";
 
   if (href) {
+    const finalHref = href.endsWith("/") ? href : `${href}/`;
     return (
-      <Link
-        href={href}
+      <a
+        href={finalHref}
         className={`block ${sharedClassName}`}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
         {cardContent}
-      </Link>
+      </a>
     );
   }
 

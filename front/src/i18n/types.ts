@@ -170,6 +170,7 @@ export interface Translation {
     teamHeading: string;
     timeline: { year: string; title: string; desc: string }[];
     team: { name: string; role: string; desc: string }[];
+    partnersHeading: string;
     partners: string[];
   };
 

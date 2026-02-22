@@ -11,9 +11,9 @@ export default function FloatingCTA() {
   const [modalTab, setModalTab] = useState<ContactTab>("service");
   const { t } = useTranslation();
 
-  // Contact 페이지 및 케이스 상세 모달(Intercepting Route) 표시 중에는 숨김
-  if (pathname === "/contact") return null;
-  if (pathname.startsWith("/work/") && pathname !== "/work") return null;
+  // Contact 페이지 및 케이스 상세 페이지에서는 숨김
+  if (pathname === "/contact" || pathname === "/contact/") return null;
+  if (pathname.startsWith("/work/") && pathname !== "/work" && pathname !== "/work/") return null;
 
   const openModal = (tab: ContactTab) => {
     setModalTab(tab);
@@ -21,34 +21,12 @@ export default function FloatingCTA() {
   };
 
   // 현재 페이지에 따른 active 표시
-  const isServiceActive = pathname === "/service";
-  const isSolutionActive = pathname === "/solution";
+  const isServiceActive = pathname === "/service" || pathname === "/service/";
+  const isSolutionActive = pathname === "/solution" || pathname === "/solution/";
 
   return (
     <>
-      <style jsx>{`
-        .btn-shine {
-          position: relative;
-          overflow: hidden;
-        }
-        .btn-shine::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: -100%;
-          width: 50%;
-          height: 100%;
-          background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-          animation: shine 3s infinite;
-          transform: skewX(-15deg);
-          z-index: 10;
-          pointer-events: none;
-        }
-        @keyframes shine {
-          0% { left: -100%; }
-          100% { left: 150%; }
-        }
-      `}</style>
+      {/* btn-shine 애니메이션은 globals.css에 전역 정의됨 */}
       <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3">
         <button
           onClick={() => openModal("service")}

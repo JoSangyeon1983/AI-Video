@@ -1,4 +1,4 @@
-interface InputFieldProps {
+﻿interface InputFieldProps {
   label: string;
   name: string;
   type?: string;
@@ -24,7 +24,7 @@ export default function InputField({
         name={name}
         required={required}
         placeholder={placeholder}
-        className="mt-1 w-full rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 placeholder-slate-400 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:border-slate-700 dark:bg-slate-900 dark:text-white"
+        className="mt-1 w-full rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 placeholder-slate-400 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500 dark:border-slate-700 dark:bg-slate-900 dark:text-white"
       />
     </div>
   );
