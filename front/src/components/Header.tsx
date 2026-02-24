@@ -8,6 +8,8 @@ import { BRAND_NAME } from "@/data/brand";
 import { useTranslation } from "@/i18n";
 import { useBodyScrollLock } from "@/hooks";
 import LanguageSelector from "@/components/LanguageSelector";
+import { IconClose, IconMenu } from "@/components/ui/Icon";
+import { ensureTrailingSlash, isActivePath } from "@/lib/utils";
 
 export default function Header() {
   const pathname = usePathname();
@@ -23,9 +25,6 @@ export default function Header() {
 
   // 모바일 메뉴 열림 시 스크롤 방지
   useBodyScrollLock(mobileMenuOpen);
-
-  const isActive = (href: string) =>
-    pathname === href || pathname.startsWith(href + "/");
 
   // Map href → translated label
   const navLabelMap = getNavLabelMap(t);
@@ -56,9 +55,9 @@ export default function Header() {
           {navItems.map((item) => (
             <a
               key={item.href}
-              href={item.href.endsWith("/") ? item.href : `${item.href}/`}
+              href={ensureTrailingSlash(item.href)}
               className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
-                isActive(item.href)
+                isActivePath(pathname, item.href)
                   ? "bg-brand-600 text-white dark:bg-brand-500 dark:text-white"
                   : "text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white"
               }`}
@@ -71,7 +70,7 @@ export default function Header() {
           <a
             href="/contact/"
             className={`ml-4 rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
-              pathname === "/contact" || pathname === "/contact/"
+              isActivePath(pathname, "/contact")
                 ? "bg-brand-600 text-white dark:bg-brand-500 dark:text-white"
                 : "text-slate-500 hover:bg-slate-100 hover:text-brand-600 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-brand-400"
             }`}
@@ -92,13 +91,9 @@ export default function Header() {
           aria-expanded={mobileMenuOpen}
         >
           {mobileMenuOpen ? (
-            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-            </svg>
+            <IconClose className="h-6 w-6" strokeWidth={1.5} />
           ) : (
-            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-            </svg>
+            <IconMenu className="h-6 w-6" />
           )}
         </button>
       </div>
@@ -122,10 +117,10 @@ export default function Header() {
             {navItems.map((item) => (
               <a
                 key={item.href}
-                href={item.href.endsWith("/") ? item.href : `${item.href}/`}
+                href={ensureTrailingSlash(item.href)}
                 onClick={() => setMobileMenuOpen(false)}
                 className={`rounded-lg px-4 py-3 text-lg font-medium transition-colors ${
-                  isActive(item.href)
+                  isActivePath(pathname, item.href)
                     ? "bg-brand-600 text-white dark:bg-brand-500 dark:text-white"
                     : "text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800"
                 }`}

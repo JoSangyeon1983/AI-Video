@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { works } from "@/data/work";
 import { BRAND_NAME } from "@/data/brand";
+import JsonLd from "@/components/JsonLd";
 import WorkDetailClient from "./WorkDetailClient";
 
 /* ── SSG: 빌드 시 모든 slug에 대해 정적 페이지 생성 ── */
@@ -51,12 +52,7 @@ export default async function WorkDetailPage({ params }: { params: Promise<{ slu
 
   return (
     <>
-      {jsonLd && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-      )}
+      {jsonLd && <JsonLd data={jsonLd} />}
       <WorkDetailClient slug={slug} />
     </>
   );

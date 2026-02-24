@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { articles } from "@/data/insights";
 import { useTranslation } from "@/i18n";
 import { motion } from "framer-motion";
+import { IconArrowLeft } from "@/components/ui/Icon";
 
 interface Props {
   slug: string;
@@ -50,9 +51,7 @@ export default function InsightDetailClient({ slug }: Props) {
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           {/* 뒤로 가기 */}
           <a href="/insights/" className="mb-6 inline-flex items-center gap-1 text-sm font-medium text-brand-600 hover:text-brand-700 dark:text-brand-400">
-            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
-            </svg>
+            <IconArrowLeft />
             {t.insights.detailBackToList}
           </a>
 

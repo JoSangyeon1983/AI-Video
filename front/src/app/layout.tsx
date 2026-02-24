@@ -68,7 +68,7 @@ export default function RootLayout({
           <Header />
           <main>{children}</main>
           <Footer />
-          {/* <FloatingCTA /> */}
+          <FloatingCTA />
         </I18nProvider>
         {/* Google Analytics — non-blocking */}
         <Script

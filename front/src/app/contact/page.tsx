@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { BRAND_NAME } from "@/data/brand";
+import JsonLd from "@/components/JsonLd";
 import ContactClient from "./ContactClient";
 
 export const metadata: Metadata = {
@@ -24,7 +25,7 @@ const jsonLd = {
 export default function ContactPage() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <JsonLd data={jsonLd} />
       <ContactClient />
     </>
   );

@@ -5,6 +5,8 @@ import { BRAND_NAME } from "@/data/brand";
 import { getNavLabelMap } from "@/data/navigation";
 import { useTranslation } from "@/i18n";
 import { useClickOutside } from "@/hooks";
+import { IconChevronDown } from "@/components/ui/Icon";
+import { ensureTrailingSlash } from "@/lib/utils";
 
 const familySites = [
   { name: "CELLBIG", url: "https://cellbig.com/" },
@@ -43,6 +45,7 @@ export default function Footer() {
       links: [
         { label: t.footer.linkTerms, href: "/terms" },
         { label: t.footer.linkPrivacy, href: "/privacy" },
+        { label: t.footer.linkFaq, href: "/faq" },
       ],
     },
   ];
@@ -77,7 +80,7 @@ export default function Footer() {
                 {group.links.map((link) => (
                   <li key={link.href + link.label}>
                     <a
-                      href={link.href.endsWith("/") ? link.href : `${link.href}/`}
+                      href={ensureTrailingSlash(link.href)}
                       className="text-sm text-slate-500 transition-colors hover:text-brand-600 dark:text-slate-400 dark:hover:text-brand-400"
                     >
                       {link.label}

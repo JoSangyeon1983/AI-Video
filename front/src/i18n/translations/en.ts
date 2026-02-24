@@ -35,6 +35,7 @@ export const en: Translation = {
     linkContact: "Contact Us",
     linkTerms: "Terms of Service",
     linkPrivacy: "Privacy Policy",
+    linkFaq: "FAQ",
   },
 
   home: {
@@ -146,7 +147,7 @@ export const en: Translation = {
   solution: {
     metaDesc: "Enterprise AI video generation solution for marketing teams. Mass-produce campaign videos quickly and efficiently.",
     heading: "Enterprise AI Video Generation Solution",
-    headingSub: "Innovation tool for marketing teams",
+    headingSub: "An innovative tool for video production",
     desc1: "Produce campaign videos quickly and independently with your team.",
     desc2: "Create professional-quality videos without complex technical skills.",
     cta: "Contact Us / Request Demo",
@@ -484,5 +485,24 @@ export const en: Translation = {
           "This Privacy Policy may be updated due to changes in laws, policies, or security technologies. Any changes will be announced on the website at least 7 days prior to the effective date.",
       },
     ],
+  },
+
+  faq: {
+    heading: "Frequently Asked Questions",
+    description: "Have a question? Find answers below.",
+    faqs: [
+      { q: "How long does it take to get a response?", a: "A representative will contact you within 1 business day." },
+      { q: "What's the difference between production request and solution adoption?", a: "Production request is a full-service offering where our experts handle everything from planning to delivery. Solution adoption is a SaaS tool your team uses directly to create AI videos." },
+      { q: "Can I inquire without a set budget?", a: "Yes, we'll assess your project scope and requirements, then provide a tailored quote." },
+      { q: "How long does video production typically take?", a: "It varies by project scope, but our AI pipeline enables delivery 3–5x faster than traditional methods. Most projects are completed within 1–2 weeks." },
+      { q: "How many revision rounds are included?", a: "Two rounds of revisions are included by default. Additional revisions can be arranged based on your project agreement." },
+      { q: "Is a free trial available for the solution?", a: "Yes, we offer a demo and limited-feature trial before adoption. You can request one through our contact form." },
+      { q: "Is onboarding training provided with the solution?", a: "Yes, we provide onboarding training and user guides upon adoption, along with ongoing technical support channels." },
+      { q: "What industries do you produce videos for?", a: "We create promotional, advertising, and corporate videos across diverse industries including beauty, fashion, finance, IT, F&B, and real estate." },
+      { q: "Can you produce AI avatar videos?", a: "Yes, we use our proprietary AI avatar technology to create presenter videos, training content, and multilingual dubbed videos." },
+      { q: "Can I view your portfolio before signing a contract?", a: "Absolutely. You can browse our portfolio by industry and style on the Work page." },
+    ],
+    contactPrompt: "Can't find the answer you're looking for?",
+    contactLink: (brandName: string) => `Contact ${brandName} directly →`,
   },
 };

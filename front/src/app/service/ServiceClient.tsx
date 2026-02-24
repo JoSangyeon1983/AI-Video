@@ -2,6 +2,9 @@
 
 import SectionContainer from "@/components/ui/SectionContainer";
 import VideoCard from "@/components/ui/VideoCard";
+import PageHero from "@/components/ui/PageHero";
+import Button from "@/components/ui/Button";
+import { IconArrowRight } from "@/components/ui/Icon";
 import { works } from "@/data/work";
 import { useTranslation } from "@/i18n";
 import ScrollReveal, { StaggerContainer, StaggerItem } from "@/components/motion/ScrollReveal";
@@ -16,43 +19,15 @@ export default function ServiceClient() {
   return (
     <>
       {/* ════════ SECTION 1: VALUE PROPOSITION ════════ */}
-      <SectionContainer className="relative overflow-hidden bg-white pt-24 pb-20 dark:bg-slate-950">
-          <div className="max-w-3xl">
-            <motion.h1
-              initial={{ opacity: 0, y: 25 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
-              className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl dark:text-white"
-            >
-              {t.service.heading}
-              <span className="mt-2 block text-xl font-normal text-slate-500 sm:text-2xl dark:text-slate-400">
-                {t.service.headingSub}
-              </span>
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
-              className="mt-6 text-lg leading-relaxed text-slate-600 dark:text-slate-300"
-            >
-              {t.service.desc1}
-              {" "}{t.service.desc2}
-            </motion.p>
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
-              className="mt-8"
-            >
-              <a
-                href="/contact/?type=service"
-                className="inline-flex h-12 items-center justify-center rounded-lg bg-brand-600 px-8 text-sm font-semibold text-white transition-colors hover:bg-brand-700 dark:bg-brand-500 dark:hover:bg-brand-600"
-              >
-                {t.service.projectInquiry}
-              </a>
-            </motion.div>
-          </div>
-      </SectionContainer>
+      <PageHero
+        heading={t.service.heading}
+        headingSub={t.service.headingSub}
+        description={<>{t.service.desc1} {t.service.desc2}</>}
+      >
+        <Button as="a" href="/contact/?type=service">
+          {t.service.projectInquiry}
+        </Button>
+      </PageHero>
 
       {/* ════════ SECTION 2: PARADIGM SHIFT (비교) ════════ */}
       <SectionContainer className="bg-slate-50 py-24 dark:bg-slate-900">
@@ -125,9 +100,7 @@ export default function ServiceClient() {
           <div className="mt-10 text-center">
             <a href="/work/?style=agency" className="inline-flex items-center gap-2 text-sm font-semibold text-brand-600 transition-colors hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300">
               {t.service.featuredWorksCta}
-              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-              </svg>
+              <IconArrowRight />
             </a>
           </div>
           </ScrollReveal>

@@ -40,6 +40,7 @@ export interface Translation {
     linkContact: string;
     linkTerms: string;
     linkPrivacy: string;
+    linkFaq: string;
   };
 
   /* ── 홈 ── */
@@ -292,5 +293,14 @@ export interface Translation {
     serviceAria: string;
     solutionLabel: string;
     solutionAria: string;
+  };
+
+  /* ── FAQ ── */
+  faq: {
+    heading: string;
+    description: string;
+    faqs: { q: string; a: string }[];
+    contactPrompt: string;
+    contactLink: (brandName: string) => string;
   };
 }

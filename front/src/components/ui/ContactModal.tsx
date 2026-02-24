@@ -2,6 +2,8 @@
 
 import { useState, useEffect, useRef } from "react";
 import InputField from "@/components/ui/InputField";
+import TabSelector from "@/components/ui/TabSelector";
+import { IconCheck, IconClose, IconSpinner, IconUpload } from "@/components/ui/Icon";
 import { useTranslation } from "@/i18n";
 import { useBodyScrollLock, useEscapeKey } from "@/hooks";
 
@@ -68,15 +70,7 @@ export default function ContactModal({
       <Overlay onClose={onClose} ariaLabel={t.contactModal.ariaLabel}>
         <div className="flex flex-col items-center justify-center px-6 py-16 text-center">
           <div className="flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-900/30">
-            <svg
-              className="h-8 w-8 text-emerald-600 dark:text-emerald-400"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={2}
-              stroke="currentColor"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
-            </svg>
+            <IconCheck className="h-8 w-8 text-emerald-600 dark:text-emerald-400" />
           </div>
           <h2 className="mt-6 text-2xl font-bold text-slate-900 dark:text-white">
             {t.contactModal.successHeading}
@@ -108,34 +102,21 @@ export default function ContactModal({
           className="flex h-8 w-8 items-center justify-center rounded-full text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-600 dark:hover:bg-slate-800 dark:hover:text-slate-300"
           aria-label={t.contactModal.close}
         >
-          <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-          </svg>
+          <IconClose />
         </button>
       </div>
 
       {/* Scrollable Body */}
       <div className="max-h-[calc(90vh-140px)] overflow-y-auto px-6 py-5">
         {/* Tab Selector */}
-        <div className="flex rounded-lg border border-slate-200 p-1 dark:border-slate-700">
-          {([
-            { value: "service", label: t.contactModal.tabService },
-            { value: "solution", label: t.contactModal.tabSolution },
-          ] as const).map((opt) => (
-            <button
-              key={opt.value}
-              type="button"
-              onClick={() => setTab(opt.value as ContactTab)}
-              className={`flex-1 rounded-md px-4 py-2.5 text-sm font-medium transition-colors ${
-                tab === opt.value
-                  ? "bg-brand-600 text-white dark:bg-brand-500 dark:text-white"
-                  : "text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
-              }`}
-            >
-              {opt.label}
-            </button>
-          ))}
-        </div>
+        <TabSelector
+          options={[
+            { value: "service" as ContactTab, label: t.contactModal.tabService },
+            { value: "solution" as ContactTab, label: t.contactModal.tabSolution },
+          ]}
+          selected={tab}
+          onChange={(v) => setTab(v as ContactTab)}
+        />
 
         {/* Form */}
         <form ref={formRef} onSubmit={handleSubmit} id="contact-modal-form" className="mt-6 space-y-5">
@@ -193,9 +174,7 @@ export default function ContactModal({
               {t.contactModal.fileHint}
             </p>
             <label className="mt-2 flex cursor-pointer items-center justify-center gap-2 rounded-lg border-2 border-dashed border-slate-300 px-4 py-4 text-sm text-slate-500 transition-colors hover:border-brand-400 hover:text-brand-600 dark:border-slate-700 dark:text-slate-400 dark:hover:border-brand-500 dark:hover:text-brand-400">
-              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5m-13.5-9L12 3m0 0 4.5 4.5M12 3v13.5" />
-              </svg>
+              <IconUpload />
               <span>{t.contactModal.fileDrop}</span>
               <input type="file" name="attachment" className="hidden" accept=".pdf,.doc,.docx,.ppt,.pptx,.png,.jpg,.jpeg,.zip" />
             </label>
@@ -220,10 +199,7 @@ export default function ContactModal({
         >
           {submitState === "submitting" ? (
             <>
-              <svg className="mr-2 h-4 w-4 animate-spin" fill="none" viewBox="0 0 24 24">
-                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-              </svg>
+              <IconSpinner className="mr-2 h-4 w-4 animate-spin" />
               {t.contactModal.submitting}
             </>
           ) : (

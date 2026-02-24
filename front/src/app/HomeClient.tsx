@@ -6,8 +6,11 @@ import { works } from "@/data/work";
 import VideoCard from "@/components/ui/VideoCard";
 import SectionContainer from "@/components/ui/SectionContainer";
 import CheckListItem from "@/components/ui/CheckListItem";
+import Button from "@/components/ui/Button";
+import { IconArrowRight, IconVideoCamera, IconFlask } from "@/components/ui/Icon";
 import ScrollReveal, { StaggerContainer, StaggerItem } from "@/components/motion/ScrollReveal";
 import { useTranslation } from "@/i18n";
+import { EASE_OUT } from "@/lib/motion";
 
 export default function HomeClient() {
   const { t } = useTranslation();
@@ -65,7 +68,7 @@ export default function HomeClient() {
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+              transition={{ duration: 0.8, ease: EASE_OUT }}
               className="text-4xl font-bold leading-tight tracking-tight text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)] sm:text-5xl lg:text-6xl"
             >
               {t.brand.name}
@@ -76,7 +79,7 @@ export default function HomeClient() {
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
+              transition={{ duration: 0.8, delay: 0.2, ease: EASE_OUT }}
               className="mt-6 max-w-xl text-lg leading-relaxed text-slate-200 drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]"
             >
               {t.brand.slogan}
@@ -85,7 +88,7 @@ export default function HomeClient() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+              transition={{ duration: 0.7, delay: 0.4, ease: EASE_OUT }}
               className="mt-10 flex flex-col gap-4 sm:flex-row"
             >
               <a
@@ -157,9 +160,7 @@ export default function HomeClient() {
             <div className="mt-10 text-center">
               <a href="/work/" className="inline-flex items-center gap-2 text-sm font-semibold text-brand-600 transition-colors hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300">
                 {t.home.viewAllPortfolio}
-                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-                </svg>
+                <IconArrowRight />
               </a>
             </div>
           </ScrollReveal>
@@ -183,9 +184,7 @@ export default function HomeClient() {
             <ScrollReveal direction="left" delay={0.1}>
             <div className="rounded-2xl border border-slate-200 bg-white p-8 transition-all hover:shadow-xl dark:border-slate-700 dark:bg-slate-800 lg:p-10">
               <div className="mb-6 inline-flex rounded-xl bg-brand-600 p-3 text-white dark:bg-brand-500 dark:text-white">
-                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="m15.75 10.5 4.72-4.72a.75.75 0 0 1 1.28.53v11.38a.75.75 0 0 1-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25h-9A2.25 2.25 0 0 0 2.25 7.5v9a2.25 2.25 0 0 0 2.25 2.25Z" />
-                </svg>
+                <IconVideoCamera className="h-6 w-6" />
               </div>
               <h3 className="text-2xl font-bold text-slate-900 dark:text-white">{t.home.cardServiceTitle}</h3>
               <p className="mt-2 text-slate-500 dark:text-slate-400">{t.home.cardServiceDesc}</p>
@@ -194,9 +193,9 @@ export default function HomeClient() {
                   <CheckListItem key={txt} text={txt} color="green" />
                 ))}
               </ul>
-              <a href="/service/" className="mt-8 inline-flex h-11 items-center justify-center rounded-lg bg-brand-600 px-6 text-sm font-semibold text-white transition-colors hover:bg-brand-700 dark:bg-brand-500 dark:text-white dark:hover:bg-brand-600">
+              <Button as="a" href="/service/" variant="brand" size="md" className="mt-8">
                 {t.home.cardServiceCta}
-              </a>
+              </Button>
             </div>
             </ScrollReveal>
 
@@ -204,9 +203,7 @@ export default function HomeClient() {
             <ScrollReveal direction="right" delay={0.2}>
             <div className="rounded-2xl border border-slate-200 bg-white p-8 transition-all hover:shadow-xl dark:border-slate-700 dark:bg-slate-800 lg:p-10">
               <div className="mb-6 inline-flex rounded-xl bg-secondary-600 p-3 text-white">
-                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 0 1-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 0 1 4.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0 1 12 15a9.065 9.065 0 0 0-6.23.693L5 14.5m14.8.8 1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0 1 12 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5" />
-                </svg>
+                <IconFlask className="h-6 w-6" />
               </div>
               <h3 className="text-2xl font-bold text-slate-900 dark:text-white">{t.home.cardSolutionTitle}</h3>
               <p className="mt-2 text-slate-500 dark:text-slate-400">{t.home.cardSolutionDesc}</p>
@@ -215,9 +212,9 @@ export default function HomeClient() {
                   <CheckListItem key={txt} text={txt} color="violet" />
                 ))}
               </ul>
-              <a href="/solution/" className="mt-8 inline-flex h-11 items-center justify-center rounded-lg bg-secondary-600 px-6 text-sm font-semibold text-white transition-colors hover:bg-secondary-700">
+              <Button as="a" href="/solution/" variant="secondary" size="md" className="mt-8">
                 {t.home.cardSolutionCta}
-              </a>
+              </Button>
             </div>
             </ScrollReveal>
           </div>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { articles } from "@/data/insights";
 import { BRAND_NAME } from "@/data/brand";
+import JsonLd from "@/components/JsonLd";
 import InsightDetailClient from "./InsightDetailClient";
 
 /* ── SSG: 빌드 시 모든 slug에 대해 정적 페이지 생성 ── */
@@ -45,12 +46,7 @@ export default async function InsightDetailPage({ params }: { params: Promise<{ 
 
   return (
     <>
-      {jsonLd && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-      )}
+      {jsonLd && <JsonLd data={jsonLd} />}
       <InsightDetailClient slug={slug} />
     </>
   );

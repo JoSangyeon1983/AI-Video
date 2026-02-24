@@ -3,6 +3,8 @@
 import { works } from "@/data/work";
 import { useTranslation } from "@/i18n";
 import { motion } from "framer-motion";
+import { IconArrowLeft } from "@/components/ui/Icon";
+import Button from "@/components/ui/Button";
 
 interface Props {
   slug: string;
@@ -55,9 +57,7 @@ export default function WorkDetailClient({ slug }: Props) {
       <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
         {/* 뒤로 가기 */}
         <a href="/work/" className="mb-6 inline-flex items-center gap-1 text-sm font-medium text-brand-600 hover:text-brand-700 dark:text-brand-400">
-          <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
-          </svg>
+          <IconArrowLeft />
           {t.work.detailBackToList}
         </a>
 
@@ -126,16 +126,14 @@ export default function WorkDetailClient({ slug }: Props) {
         {/* ── CTA ── */}
         <div className="mt-14 rounded-2xl border border-slate-200 bg-slate-50 p-8 text-center dark:border-slate-800 dark:bg-slate-900">
           <h3 className="text-lg font-bold text-slate-900 dark:text-white">{t.work.detailCta}</h3>
-          <a
+          <Button
+            as="a"
             href={`/contact/?type=${ctaType}&ref=${work.slug}`}
-            className={`mt-4 inline-flex h-12 items-center justify-center rounded-lg px-8 text-sm font-semibold text-white transition-colors ${
-              ctaType === "solution"
-                ? "bg-secondary-600 hover:bg-secondary-700"
-                : "bg-brand-600 hover:bg-brand-700"
-            }`}
+            variant={ctaType === "solution" ? "secondary" : "brand"}
+            className="mt-4"
           >
             {ctaType === "solution" ? t.videoModal.ctaSolution : t.videoModal.ctaService}
-          </a>
+          </Button>
         </div>
       </div>
     </article>

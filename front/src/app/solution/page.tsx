@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { BRAND_NAME } from "@/data/brand";
+import JsonLd from "@/components/JsonLd";
 import SolutionClient from "./SolutionClient";
 
 export const metadata: Metadata = {
@@ -25,7 +26,7 @@ const jsonLd = {
 export default function SolutionPage() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <JsonLd data={jsonLd} />
       <SolutionClient />
     </>
   );

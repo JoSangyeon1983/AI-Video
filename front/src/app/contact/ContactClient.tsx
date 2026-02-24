@@ -4,6 +4,9 @@ import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import InputField from "@/components/ui/InputField";
 import InfoItem from "@/components/ui/InfoItem";
+import TabSelector from "@/components/ui/TabSelector";
+import Button from "@/components/ui/Button";
+import { IconCheck, IconUpload, IconChevronRight } from "@/components/ui/Icon";
 import { useTranslation } from "@/i18n";
 
 export default function ContactClient() {
@@ -63,25 +66,15 @@ function ContactContent() {
               </h1>
 
               {/* 목적 선택 (탭) */}
-              <div className="mt-8 flex rounded-lg border border-slate-200 p-1 dark:border-slate-700">
-                {[
-                  { value: "service", label: t.contact.tabService },
-                  { value: "solution", label: t.contact.tabSolution },
-                ].map((opt) => (
-                  <button
-                    key={opt.value}
-                    type="button"
-                    onClick={() => setPurpose(opt.value)}
-                    className={`flex-1 rounded-md px-4 py-2.5 text-sm font-medium transition-colors ${
-                      purpose === opt.value
-                        ? "bg-brand-600 text-white dark:bg-brand-500 dark:text-white"
-                        : "text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
-                    }`}
-                  >
-                    {opt.label}
-                  </button>
-                ))}
-              </div>
+              <TabSelector
+                options={[
+                  { value: "service" as const, label: t.contact.tabService },
+                  { value: "solution" as const, label: t.contact.tabSolution },
+                ]}
+                selected={purpose}
+                onChange={setPurpose}
+                className="mt-8"
+              />
 
               {/* 폼 */}
               <form onSubmit={handleSubmit} className="mt-8 space-y-5">
@@ -137,20 +130,15 @@ function ContactContent() {
                     {t.contact.fileHelp}
                   </p>
                   <label className="mt-2 flex cursor-pointer items-center justify-center gap-2 rounded-lg border-2 border-dashed border-slate-300 px-4 py-4 text-sm text-slate-500 transition-colors hover:border-brand-400 hover:text-brand-600 dark:border-slate-700 dark:text-slate-400 dark:hover:border-brand-500 dark:hover:text-brand-400">
-                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5m-13.5-9L12 3m0 0 4.5 4.5M12 3v13.5" />
-                    </svg>
+                    <IconUpload className="h-5 w-5" />
                     <span>{t.contact.fileAction}</span>
                     <input type="file" name="attachment" className="hidden" accept=".pdf,.doc,.docx,.ppt,.pptx,.png,.jpg,.jpeg,.zip" />
                   </label>
                 </div>
 
-                <button
-                  type="submit"
-                  className="inline-flex h-12 w-full items-center justify-center rounded-lg bg-brand-600 px-8 text-sm font-semibold text-white transition-colors hover:bg-brand-700 dark:bg-brand-500 dark:text-white dark:hover:bg-brand-600 sm:w-auto"
-                >
+                <Button type="submit" variant="brand" fullWidth className="sm:w-auto">
                   {t.contact.submit}
-                </button>
+                </Button>
               </form>
             </div>
 
@@ -159,6 +147,25 @@ function ContactContent() {
               <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
                 {t.contact.ctaHeading(t.brand.name)}
               </h2>
+
+              {/* FAQ */}
+              <a
+                href="/faq/"
+                className="mt-6 flex items-center justify-between gap-4 rounded-xl border border-slate-200 bg-slate-50 px-5 py-4 transition-colors hover:border-brand-300 hover:bg-brand-50 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-brand-700 dark:hover:bg-slate-800"
+              >
+                <div className="flex items-center gap-3">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brand-100 text-lg dark:bg-brand-900/40">
+                    💬
+                  </span>
+                  <div>
+                    <p className="text-sm font-semibold text-slate-900 dark:text-white">{t.contact.faqHeading}</p>
+                    <p className="text-xs text-slate-500 dark:text-slate-400">자주 묻는 질문에서 빠르게 답변을 찾아보세요</p>
+                  </div>
+                </div>
+                <svg className="h-5 w-5 shrink-0 text-slate-400 dark:text-slate-500" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                </svg>
+              </a>
 
               <div className="mt-8 space-y-6">
                 {[
@@ -183,19 +190,6 @@ function ContactContent() {
                   referrerPolicy="no-referrer-when-downgrade"
                   title={t.contact.officeAddressValue}
                 />
-              </div>
-
-              {/* FAQ */}
-              <div className="mt-10">
-                <h3 className="font-semibold text-slate-900 dark:text-white">{t.contact.faqHeading}</h3>
-                <div className="mt-4 space-y-4">
-                  {t.contact.faqs.map((faq) => (
-                    <div key={faq.q} className="rounded-lg border border-slate-200 p-4 dark:border-slate-800">
-                      <p className="text-sm font-semibold text-slate-900 dark:text-white">{faq.q}</p>
-                      <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">{faq.a}</p>
-                    </div>
-                  ))}
-                </div>
               </div>
             </div>
           </div>

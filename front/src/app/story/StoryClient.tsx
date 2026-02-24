@@ -1,8 +1,8 @@
 ﻿"use client";
 
 import SectionContainer from "@/components/ui/SectionContainer";
+import PageHero from "@/components/ui/PageHero";
 import ScrollReveal, { StaggerContainer, StaggerItem } from "@/components/motion/ScrollReveal";
-import { motion } from "framer-motion";
 import { useTranslation } from "@/i18n";
 
 export default function StoryClient() {
@@ -10,31 +10,11 @@ export default function StoryClient() {
   return (
     <>
       {/* ════════ SECTION 1: BRAND MANIFESTO ════════ */}
-      <SectionContainer className="bg-white pt-24 pb-20 dark:bg-slate-950">
-          <div className="max-w-3xl">
-            <motion.h1
-              initial={{ opacity: 0, y: 25 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
-              className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl dark:text-white"
-            >
-              {t.story.heading(t.brand.name)}
-              <span className="mt-2 block text-xl font-normal text-slate-500 sm:text-2xl dark:text-slate-400">
-                {t.story.headingSub}
-              </span>
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
-              className="mt-6 text-lg leading-relaxed text-slate-600 dark:text-slate-300"
-            >
-              {t.story.desc1}
-              <br />
-              {t.story.desc2}
-            </motion.p>
-          </div>
-      </SectionContainer>
+      <PageHero
+        heading={t.story.heading(t.brand.name)}
+        headingSub={t.story.headingSub}
+        description={<>{t.story.desc1}<br />{t.story.desc2}</>}
+      />
 
       {/* ════════ SECTION 2: TIMELINE ════════ */}
       <SectionContainer className="bg-slate-50 py-24 dark:bg-slate-900">
