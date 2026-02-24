@@ -159,7 +159,7 @@ function ContactContent() {
                   </span>
                   <div>
                     <p className="text-sm font-semibold text-slate-900 dark:text-white">{t.contact.faqHeading}</p>
-                    <p className="text-xs text-slate-500 dark:text-slate-400">자주 묻는 질문에서 빠르게 답변을 찾아보세요</p>
+                    <p className="text-xs text-slate-500 dark:text-slate-400">{t.contact.faqSub}</p>
                   </div>
                 </div>
                 <svg className="h-5 w-5 shrink-0 text-slate-400 dark:text-slate-500" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">

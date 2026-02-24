@@ -325,6 +325,7 @@ export const en: Translation = {
     ctaHeading: (brand) => `Ready to transform your business with ${brand}?`,
     mapPlaceholder: "Map API Area",
     faqHeading: "Frequently Asked Questions",
+    faqSub: "Find quick answers in our FAQ",
     officeAddress: "Address",
     officeAddressValue: "#903, 24, Gasan digital 2-ro, Geumcheon-gu, Seoul, Republic of Korea",
     officeHours: "Business Hours",

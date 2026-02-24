@@ -70,7 +70,7 @@ export default function Button(props: ButtonProps) {
     .join(" ");
 
   if (props.as === "a") {
-    const { as: _as, variant: _v, size: _s, fullWidth: _fw, ...linkRest } = props;
+    const { as: _as, variant: _v, size: _s, fullWidth: _fw, className: _c, children: _ch, ...linkRest } = props;
     return (
       <a className={classes} {...(linkRest as AnchorHTMLAttributes<HTMLAnchorElement>)}>
         {children}
@@ -78,7 +78,7 @@ export default function Button(props: ButtonProps) {
     );
   }
 
-  const { as: _as, variant: _v, size: _s, fullWidth: _fw, ...btnRest } = props;
+  const { as: _as, variant: _v, size: _s, fullWidth: _fw, className: _c, children: _ch, ...btnRest } = props;
   return (
     <button className={classes} {...(btnRest as ButtonHTMLAttributes<HTMLButtonElement>)}>
       {children}

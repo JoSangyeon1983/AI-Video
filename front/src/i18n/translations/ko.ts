@@ -325,6 +325,7 @@ export const ko: Translation = {
     ctaHeading: (brand) => `${brand}와 함께 비즈니스를 혁신할 준비가 되셨나요?`,
     mapPlaceholder: "지도 API 영역",
     faqHeading: "자주 묻는 질문",
+    faqSub: "자주 묻는 질문에서 빠르게 답변을 찾아보세요",
     officeAddress: "주소",
     officeAddressValue: "서울특별시 금천구 가산디지털2로 24 가산YPP아르센타워 903호",
     officeHours: "운영시간",

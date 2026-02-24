@@ -214,6 +214,7 @@ export interface Translation {
     ctaHeading: (brand: string) => string;
     mapPlaceholder: string;
     faqHeading: string;
+    faqSub: string;
     officeAddress: string;
     officeAddressValue: string;
     officeHours: string;

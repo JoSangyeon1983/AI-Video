@@ -325,6 +325,7 @@ export const ja: Translation = {
     ctaHeading: (brand) => `${brand}と共にビジネスを革新する準備はできていますか？`,
     mapPlaceholder: "マップAPIエリア",
     faqHeading: "よくあるご質問",
+    faqSub: "よくあるご質問で素早く回答を見つけましょう",
     officeAddress: "住所",
     officeAddressValue: "ソウル特別市衿川区加山デジタル2路24 加山YPPアルセンタワー903号",
     officeHours: "営業時間",
