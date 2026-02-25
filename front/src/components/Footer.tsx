@@ -25,19 +25,19 @@ export default function Footer() {
 
   const footerGroups = [
     {
-      title: t.footer.groupService,
+      title: t.footer.groupOfferings,
       links: [
+        { label: navLabelMap["/production"], href: "/production" },
+        { label: navLabelMap["/studio"], href: "/studio" },
         { label: navLabelMap["/work"], href: "/work" },
-        { label: navLabelMap["/service"], href: "/service" },
-        { label: navLabelMap["/solution"], href: "/solution" },
+        { label: t.footer.linkContact, href: "/contact" },
       ],
     },
     {
       title: t.footer.groupCompany,
       links: [
-        { label: navLabelMap["/story"], href: "/story" },
         { label: navLabelMap["/insights"], href: "/insights" },
-        { label: t.footer.linkContact, href: "/contact" },
+        { label: navLabelMap["/story"], href: "/story" },
       ],
     },
     {
@@ -105,15 +105,7 @@ export default function Footer() {
                 className="flex items-center gap-1 text-xs text-slate-400 transition-colors hover:text-brand-600 dark:text-slate-500 dark:hover:text-brand-400"
               >
                 Family Site
-                <svg
-                  className={`h-3 w-3 transition-transform ${familyOpen ? "rotate-180" : ""}`}
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={2}
-                  stroke="currentColor"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-                </svg>
+                <IconChevronDown className={`h-3 w-3 transition-transform ${familyOpen ? "rotate-180" : ""}`} />
               </button>
               {familyOpen && (
                 <div className="absolute bottom-full right-0 mb-2 w-36 overflow-hidden rounded-lg border border-slate-200 bg-white py-1 shadow-lg dark:border-slate-700 dark:bg-slate-900">

@@ -1,14 +1,14 @@
 ﻿"use client";
 
 import { useState, useEffect, useRef } from "react";
-import InputField from "@/components/ui/InputField";
 import TabSelector from "@/components/ui/TabSelector";
-import { IconCheck, IconClose, IconSpinner, IconUpload } from "@/components/ui/Icon";
+import ContactFormFields, { type ContactTab } from "@/components/ui/ContactFormFields";
+import { IconCheck, IconClose, IconSpinner } from "@/components/ui/Icon";
 import { useTranslation } from "@/i18n";
 import { useBodyScrollLock, useEscapeKey } from "@/hooks";
 
 /* ── 타입 ── */
-export type ContactTab = "service" | "solution";
+export type { ContactTab };
 
 interface ContactModalProps {
   isOpen: boolean;
@@ -23,7 +23,7 @@ type SubmitState = "idle" | "submitting" | "success" | "error";
    ════════════════════════════════════════════ */
 export default function ContactModal({
   isOpen,
-  defaultTab = "service",
+  defaultTab = "production",
   onClose,
 }: ContactModalProps) {
   const [tab, setTab] = useState<ContactTab>(defaultTab);
@@ -111,8 +111,8 @@ export default function ContactModal({
         {/* Tab Selector */}
         <TabSelector
           options={[
-            { value: "service" as ContactTab, label: t.contactModal.tabService },
-            { value: "solution" as ContactTab, label: t.contactModal.tabSolution },
+            { value: "production" as ContactTab, label: t.contactModal.tabProduction },
+            { value: "studio" as ContactTab, label: t.contactModal.tabStudio },
           ]}
           selected={tab}
           onChange={(v) => setTab(v as ContactTab)}
@@ -120,65 +120,36 @@ export default function ContactModal({
 
         {/* Form */}
         <form ref={formRef} onSubmit={handleSubmit} id="contact-modal-form" className="mt-6 space-y-5">
-          {/* 공통 필드 (2열 그리드) */}
-          <div className="grid gap-5 sm:grid-cols-2">
-            <InputField label={t.contactModal.company} name="company" required />
-            <InputField label={t.contactModal.name} name="name" required />
-            <InputField label={t.contactModal.email} name="email" type="email" required />
-            <InputField label={t.contactModal.phone} name="phone" type="tel" />
-          </div>
-
-          {/* 제작 의뢰 탭 추가 필드 */}
-          {tab === "service" && (
-            <div className="space-y-5 border-t border-slate-200 pt-5 dark:border-slate-800">
-              <InputField label={t.contactModal.goal} name="goal" />
-              <div className="grid gap-5 sm:grid-cols-2">
-                <InputField label={t.contactModal.deadline} name="deadline" placeholder={t.contactModal.deadlinePlaceholder} />
-                <InputField label={t.contactModal.budget} name="budget" placeholder={t.contactModal.budgetPlaceholder} />
-              </div>
-              <InputField label={t.contactModal.reference} name="reference" placeholder={t.contactModal.referencePlaceholder} />
-            </div>
-          )}
-
-          {/* 솔루션 도입 탭 추가 필드 */}
-          {tab === "solution" && (
-            <div className="space-y-5 border-t border-slate-200 pt-5 dark:border-slate-800">
-              <div className="grid gap-5 sm:grid-cols-2">
-                <InputField label={t.contactModal.teamSize} name="teamSize" placeholder={t.contactModal.teamSizePlaceholder} />
-                <InputField label={t.contactModal.monthly} name="monthly" placeholder={t.contactModal.monthlyPlaceholder} />
-              </div>
-              <InputField label={t.contactModal.usePurpose} name="usePurpose" placeholder={t.contactModal.usePurposePlaceholder} />
-              <InputField label={t.contactModal.features} name="features" placeholder={t.contactModal.featuresPlaceholder} />
-            </div>
-          )}
-
-          {/* 문의 내용 (공통) */}
-          <div>
-            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300">
-              {t.contactModal.message}
-            </label>
-            <textarea
-              name="message"
-              rows={3}
-              className="mt-1 w-full rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 placeholder-slate-400 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500 dark:border-slate-700 dark:bg-slate-900 dark:text-white"
-              placeholder={t.contactModal.messagePlaceholder}
-            />
-          </div>
-
-          {/* 파일 업로드 (공통, 선택) */}
-          <div>
-            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300">
-              {t.contactModal.fileLabel} <span className="font-normal text-slate-400">{t.contactModal.fileOptional}</span>
-            </label>
-            <p className="mt-1 text-xs text-slate-400 dark:text-slate-500">
-              {t.contactModal.fileHint}
-            </p>
-            <label className="mt-2 flex cursor-pointer items-center justify-center gap-2 rounded-lg border-2 border-dashed border-slate-300 px-4 py-4 text-sm text-slate-500 transition-colors hover:border-brand-400 hover:text-brand-600 dark:border-slate-700 dark:text-slate-400 dark:hover:border-brand-500 dark:hover:text-brand-400">
-              <IconUpload />
-              <span>{t.contactModal.fileDrop}</span>
-              <input type="file" name="attachment" className="hidden" accept=".pdf,.doc,.docx,.ppt,.pptx,.png,.jpg,.jpeg,.zip" />
-            </label>
-          </div>
+          <ContactFormFields
+            tab={tab}
+            labels={{
+              company: t.contactModal.company,
+              name: t.contactModal.name,
+              email: t.contactModal.email,
+              phone: t.contactModal.phone,
+              goal: t.contactModal.goal,
+              deadline: t.contactModal.deadline,
+              deadlinePh: t.contactModal.deadlinePlaceholder,
+              budget: t.contactModal.budget,
+              budgetPh: t.contactModal.budgetPlaceholder,
+              reference: t.contactModal.reference,
+              referencePh: t.contactModal.referencePlaceholder,
+              teamSize: t.contactModal.teamSize,
+              teamSizePh: t.contactModal.teamSizePlaceholder,
+              monthly: t.contactModal.monthly,
+              monthlyPh: t.contactModal.monthlyPlaceholder,
+              usePurpose: t.contactModal.usePurpose,
+              usePurposePh: t.contactModal.usePurposePlaceholder,
+              features: t.contactModal.features,
+              featuresPh: t.contactModal.featuresPlaceholder,
+              message: t.contactModal.message,
+              messagePh: t.contactModal.messagePlaceholder,
+              fileLabel: t.contactModal.fileLabel,
+              fileOptional: t.contactModal.fileOptional,
+              fileHint: t.contactModal.fileHint,
+              fileAction: t.contactModal.fileDrop,
+            }}
+          />
 
           {/* 에러 메시지 */}
           {submitState === "error" && (

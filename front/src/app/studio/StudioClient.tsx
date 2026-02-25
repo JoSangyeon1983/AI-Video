@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import SectionContainer from "@/components/ui/SectionContainer";
 import VideoCard from "@/components/ui/VideoCard";
@@ -8,9 +8,8 @@ import { IconArrowRight, IconImage } from "@/components/ui/Icon";
 import { works } from "@/data/work";
 import { useTranslation } from "@/i18n";
 import ScrollReveal, { StaggerContainer, StaggerItem, ScaleReveal } from "@/components/motion/ScrollReveal";
-import { motion } from "framer-motion";
 
-export default function SolutionClient() {
+export default function StudioClient() {
   const { t } = useTranslation();
 
   // AI 아바타/솔루션 작업만 필터링
@@ -20,13 +19,13 @@ export default function SolutionClient() {
     <>
       {/* ════════ SECTION 1: PRODUCT HERO ════════ */}
       <PageHero
-        heading={t.solution.heading}
-        headingSub={t.solution.headingSub}
-        description={<>{t.solution.desc1} {t.solution.desc2}</>}
+        heading={t.studio.heading}
+        headingSub={t.studio.headingSub}
+        description={<>{t.studio.desc1} {t.studio.desc2}</>}
       >
         <div className="flex flex-col gap-3 sm:flex-row">
-          <Button as="a" href="/contact/?type=solution" variant="secondary">
-            {t.solution.cta}
+          <Button as="a" href="/contact/?type=studio" variant="secondary">
+            {t.studio.cta}
           </Button>
         </div>
       </PageHero>
@@ -51,7 +50,7 @@ export default function SolutionClient() {
                   <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-secondary-100 dark:bg-secondary-900/50">
                     <IconImage className="h-8 w-8 text-secondary-500" />
                   </div>
-                  <span className="text-sm text-slate-400 dark:text-slate-500">{t.solution.placeholder}</span>
+                  <span className="text-sm text-slate-400 dark:text-slate-500">{t.studio.placeholder}</span>
                 </div>
               </div>
             </div>
@@ -63,12 +62,12 @@ export default function SolutionClient() {
       <SectionContainer className="bg-slate-50 py-24 dark:bg-slate-900">
           <ScrollReveal>
             <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
-              {t.solution.featuresHeading}
+              {t.studio.featuresHeading}
             </h2>
           </ScrollReveal>
 
           <StaggerContainer stagger={0.08} className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {t.solution.features.map((f) => (
+            {t.studio.features.map((f) => (
               <StaggerItem key={f.title}>
               <div className="group rounded-xl border border-slate-200 bg-white p-6 transition-all hover:shadow-lg dark:border-slate-700 dark:bg-slate-800">
                 <span className="text-3xl">{f.icon}</span>
@@ -84,7 +83,7 @@ export default function SolutionClient() {
       <SectionContainer className="bg-white py-24 dark:bg-slate-950">
           <ScrollReveal>
             <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
-              {t.solution.useCasesHeading}
+              {t.studio.useCasesHeading}
             </h2>
           </ScrollReveal>
 
@@ -97,7 +96,7 @@ export default function SolutionClient() {
                 duration={work.duration}
                 thumbnailUrl={work.thumbnailUrl}
                 videoUrl={work.videoUrl}
-                variant="solution"
+                variant="studio"
                 href={`/work/${work.slug}`}
               />
               </StaggerItem>
@@ -107,7 +106,7 @@ export default function SolutionClient() {
           <ScrollReveal delay={0.2}>
           <div className="mt-10 text-center">
             <a href="/work/?style=ai-avatar" className="inline-flex items-center gap-2 text-sm font-semibold text-secondary-600 transition-colors hover:text-secondary-700 dark:text-secondary-400 dark:hover:text-secondary-300">
-              {t.solution.useCasesCta}
+              {t.studio.useCasesCta}
               <IconArrowRight />
             </a>
           </div>
@@ -118,12 +117,12 @@ export default function SolutionClient() {
       <SectionContainer className="bg-white py-24 dark:bg-slate-950">
           <ScrollReveal>
             <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
-              {t.solution.impactHeading}
+              {t.studio.impactHeading}
             </h2>
           </ScrollReveal>
 
           <StaggerContainer stagger={0.12} className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {t.solution.impacts.map((item) => (
+            {t.studio.impacts.map((item) => (
               <StaggerItem key={item.label}>
               <div className="rounded-xl border border-slate-200 bg-slate-50 p-6 text-center dark:border-slate-800 dark:bg-slate-900">
                 <p className="text-4xl font-bold text-secondary-600 dark:text-secondary-400">{item.value}</p>
@@ -136,8 +135,8 @@ export default function SolutionClient() {
 
           <ScrollReveal delay={0.3}>
           <div className="mt-12 text-center">
-            <Button as="a" href="/contact/?type=solution" variant="secondary">
-              {t.solution.impactCta}
+            <Button as="a" href="/contact/?type=studio" variant="secondary">
+              {t.studio.impactCta}
             </Button>
           </div>
           </ScrollReveal>

@@ -2,6 +2,7 @@
 
 import { ReactNode } from "react";
 import { motion, type Variants } from "framer-motion";
+import { EASE_OUT } from "@/lib/motion";
 
 /* ─────────────────────────────────────────────
    ScrollReveal — 뷰포트 진입 시 요소를 애니메이션
@@ -63,7 +64,7 @@ export default function ScrollReveal({
       transition: {
         duration,
         delay,
-        ease: [0.25, 0.1, 0.25, 1], // cubic-bezier easeOut
+        ease: EASE_OUT,
       },
     },
   };
@@ -157,7 +158,7 @@ export function StaggerItem({
       y: 0,
       transition: {
         duration,
-        ease: [0.25, 0.1, 0.25, 1],
+        ease: EASE_OUT,
       },
     },
   };
@@ -191,7 +192,7 @@ export function ScaleReveal({
       initial={{ opacity: 0, scale: 0.9 }}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true, amount: 0.15 }}
-      transition={{ duration, delay, ease: [0.25, 0.1, 0.25, 1] }}
+      transition={{ duration, delay, ease: EASE_OUT }}
       className={className}
     >
       {children}

@@ -132,18 +132,18 @@ export default function Header() {
             {/* 모바일 메뉴 하단 CTA */}
             <div className="mt-8 flex flex-col gap-3 border-t border-slate-200 pt-6 dark:border-slate-800">
               <a
-                href="/contact/?type=service"
+                href="/contact/?type=production"
                 onClick={() => setMobileMenuOpen(false)}
                 className="flex h-12 items-center justify-center rounded-lg bg-brand-600 text-sm font-semibold text-white transition-colors hover:bg-brand-700 dark:bg-brand-500 dark:text-white dark:hover:bg-brand-600"
               >
-                {t.nav.serviceInquiry}
+                {t.nav.productionInquiry}
               </a>
               <a
-                href="/contact/?type=solution"
+                href="/contact/?type=studio"
                 onClick={() => setMobileMenuOpen(false)}
                 className="flex h-12 items-center justify-center rounded-lg border-2 border-secondary-600 text-sm font-semibold text-secondary-600 transition-colors hover:bg-secondary-50 dark:border-secondary-400 dark:text-secondary-400 dark:hover:bg-secondary-950"
               >
-                {t.nav.solutionInquiry}
+                {t.nav.studioInquiry}
               </a>
             </div>
           </nav>

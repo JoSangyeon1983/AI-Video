@@ -11,13 +11,13 @@ interface VideoCardProps {
   duration: string;
   thumbnailUrl?: string;
   videoUrl?: string;
-  variant?: "service" | "solution";
+  variant?: "production" | "studio";
   href?: string;
   onClick?: () => void;
 }
 
 /** 포트폴리오 비디오 카드 — Home/Work 공용 */
-export default function VideoCard({ title, tags, duration, thumbnailUrl, videoUrl, variant = "service", href, onClick }: VideoCardProps) {
+export default function VideoCard({ title, tags, duration, thumbnailUrl, videoUrl, variant = "production", href, onClick }: VideoCardProps) {
   const {
     videoRef,
     isHovering,
@@ -28,7 +28,7 @@ export default function VideoCard({ title, tags, duration, thumbnailUrl, videoUr
   } = useVideoPreview({ videoUrl });
 
   const infoBgStyles =
-    variant === "solution"
+    variant === "studio"
       ? "bg-secondary-100 dark:bg-secondary-950/40"
       : "bg-brand-100 dark:bg-brand-950/40";
 

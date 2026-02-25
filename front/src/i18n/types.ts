@@ -14,8 +14,8 @@ export interface Translation {
   nav: {
     home: string;
     work: string;
-    service: string;
-    solution: string;
+    production: string;
+    studio: string;
     insights: string;
     story: string;
     contact: string;
@@ -23,8 +23,8 @@ export interface Translation {
     menuClose: string;
     mainMenu: string;
     mobileMenu: string;
-    serviceInquiry: string;
-    solutionInquiry: string;
+    productionInquiry: string;
+    studioInquiry: string;
   };
 
   /* ── 푸터 ── */
@@ -34,7 +34,7 @@ export interface Translation {
     address: string;
     bizNumber: string;
     ceo: string;
-    groupService: string;
+    groupOfferings: string;
     groupCompany: string;
     groupPolicy: string;
     linkContact: string;
@@ -52,18 +52,18 @@ export interface Translation {
     viewAllPortfolio: string;
     section3Heading: string;
     section3Sub: string;
-    cardServiceTitle: string;
-    cardServiceDesc: string;
-    cardServiceCheck1: string;
-    cardServiceCheck2: string;
-    cardServiceCheck3: string;
-    cardServiceCta: string;
-    cardSolutionTitle: string;
-    cardSolutionDesc: string;
-    cardSolutionCheck1: string;
-    cardSolutionCheck2: string;
-    cardSolutionCheck3: string;
-    cardSolutionCta: string;
+    cardProductionTitle: string;
+    cardProductionDesc: string;
+    cardProductionCheck1: string;
+    cardProductionCheck2: string;
+    cardProductionCheck3: string;
+    cardProductionCta: string;
+    cardStudioTitle: string;
+    cardStudioDesc: string;
+    cardStudioCheck1: string;
+    cardStudioCheck2: string;
+    cardStudioCheck3: string;
+    cardStudioCta: string;
     notSure: string;
     contactUs: string;
     trustProjectsDone: string;
@@ -77,10 +77,10 @@ export interface Translation {
     sub: string;
     srHeading: string;
     categoryAll: string;
-    categoryService: string;
-    categorySolution: string;
-    categoryServiceDesc: string;
-    categorySolutionDesc: string;
+    categoryProduction: string;
+    categoryStudio: string;
+    categoryProductionDesc: string;
+    categoryStudioDesc: string;
     filterIndustry: string;
     filterStyle: string;
     filterPurpose: string;
@@ -100,8 +100,8 @@ export interface Translation {
     caseDetails: Record<string, { challenge: string; approach: string; result: string }>;
   };
 
-  /* ── Service ── */
-  service: {
+  /* ── Production ── */
+  production: {
     metaDesc: string;
     heading: string;
     headingSub: string;
@@ -121,8 +121,8 @@ export interface Translation {
     featuredWorksCta: string;
   };
 
-  /* ── Solution ── */
-  solution: {
+  /* ── Studio ── */
+  studio: {
     metaDesc: string;
     heading: string;
     headingSub: string;
@@ -181,8 +181,8 @@ export interface Translation {
     successHeading: string;
     successSub: string;
     formTitle: string;
-    tabService: string;
-    tabSolution: string;
+    tabProduction: string;
+    tabStudio: string;
     company: string;
     managerName: string;
     email: string;
@@ -231,8 +231,8 @@ export interface Translation {
     close: string;
     videoNotSupported: string;
     videoNotReady: string;
-    ctaService: string;
-    ctaSolution: string;
+    ctaProduction: string;
+    ctaStudio: string;
   };
 
   /* ── ContactModal ── */
@@ -242,8 +242,8 @@ export interface Translation {
     close: string;
     successHeading: string;
     successSub: string;
-    tabService: string;
-    tabSolution: string;
+    tabProduction: string;
+    tabStudio: string;
     company: string;
     name: string;
     email: string;
@@ -290,10 +290,10 @@ export interface Translation {
 
   /* ── Floating CTA ── */
   floatingCta: {
-    serviceLabel: string;
-    serviceAria: string;
-    solutionLabel: string;
-    solutionAria: string;
+    productionLabel: string;
+    productionAria: string;
+    studioLabel: string;
+    studioAria: string;
   };
 
   /* ── FAQ ── */

@@ -149,7 +149,7 @@ export default function HomeClient() {
                   duration={work.duration}
                   thumbnailUrl={work.thumbnailUrl}
                   videoUrl={work.videoUrl}
-                  variant={work.style === "AI 아바타" ? "solution" : "service"}
+                  variant={work.style === "AI 아바타" ? "studio" : "production"}
                   href={`/work/${work.slug}`}
                 />
               </StaggerItem>
@@ -180,43 +180,52 @@ export default function HomeClient() {
           </ScrollReveal>
 
           <div className="mt-14 grid gap-8 lg:grid-cols-2">
-            {/* Card A: Agency */}
-            <ScrollReveal direction="left" delay={0.1}>
-            <div className="rounded-2xl border border-slate-200 bg-white p-8 transition-all hover:shadow-xl dark:border-slate-700 dark:bg-slate-800 lg:p-10">
-              <div className="mb-6 inline-flex rounded-xl bg-brand-600 p-3 text-white dark:bg-brand-500 dark:text-white">
-                <IconVideoCamera className="h-6 w-6" />
-              </div>
-              <h3 className="text-2xl font-bold text-slate-900 dark:text-white">{t.home.cardServiceTitle}</h3>
-              <p className="mt-2 text-slate-500 dark:text-slate-400">{t.home.cardServiceDesc}</p>
-              <ul className="mt-6 space-y-3 text-sm text-slate-600 dark:text-slate-300">
-                {[t.home.cardServiceCheck1, t.home.cardServiceCheck2, t.home.cardServiceCheck3].map((txt) => (
-                  <CheckListItem key={txt} text={txt} color="green" />
-                ))}
-              </ul>
-              <Button as="a" href="/service/" variant="brand" size="md" className="mt-8">
-                {t.home.cardServiceCta}
-              </Button>
-            </div>
-            </ScrollReveal>
-
-            {/* Card B: SaaS */}
-            <ScrollReveal direction="right" delay={0.2}>
-            <div className="rounded-2xl border border-slate-200 bg-white p-8 transition-all hover:shadow-xl dark:border-slate-700 dark:bg-slate-800 lg:p-10">
-              <div className="mb-6 inline-flex rounded-xl bg-secondary-600 p-3 text-white">
-                <IconFlask className="h-6 w-6" />
-              </div>
-              <h3 className="text-2xl font-bold text-slate-900 dark:text-white">{t.home.cardSolutionTitle}</h3>
-              <p className="mt-2 text-slate-500 dark:text-slate-400">{t.home.cardSolutionDesc}</p>
-              <ul className="mt-6 space-y-3 text-sm text-slate-600 dark:text-slate-300">
-                {[t.home.cardSolutionCheck1, t.home.cardSolutionCheck2, t.home.cardSolutionCheck3].map((txt) => (
-                  <CheckListItem key={txt} text={txt} color="violet" />
-                ))}
-              </ul>
-              <Button as="a" href="/solution/" variant="secondary" size="md" className="mt-8">
-                {t.home.cardSolutionCta}
-              </Button>
-            </div>
-            </ScrollReveal>
+            {([
+              {
+                icon: <IconVideoCamera className="h-6 w-6" />,
+                iconBg: "bg-brand-600 dark:bg-brand-500 dark:text-white",
+                title: t.home.cardProductionTitle,
+                desc: t.home.cardProductionDesc,
+                checks: [t.home.cardProductionCheck1, t.home.cardProductionCheck2, t.home.cardProductionCheck3],
+                checkColor: "green" as const,
+                cta: t.home.cardProductionCta,
+                href: "/production/",
+                variant: "brand" as const,
+                direction: "left" as const,
+                delay: 0.1,
+              },
+              {
+                icon: <IconFlask className="h-6 w-6" />,
+                iconBg: "bg-secondary-600",
+                title: t.home.cardStudioTitle,
+                desc: t.home.cardStudioDesc,
+                checks: [t.home.cardStudioCheck1, t.home.cardStudioCheck2, t.home.cardStudioCheck3],
+                checkColor: "violet" as const,
+                cta: t.home.cardStudioCta,
+                href: "/studio/",
+                variant: "secondary" as const,
+                direction: "right" as const,
+                delay: 0.2,
+              },
+            ]).map((card) => (
+              <ScrollReveal key={card.href} direction={card.direction} delay={card.delay}>
+                <div className="rounded-2xl border border-slate-200 bg-white p-8 transition-all hover:shadow-xl dark:border-slate-700 dark:bg-slate-800 lg:p-10">
+                  <div className={`mb-6 inline-flex rounded-xl p-3 text-white ${card.iconBg}`}>
+                    {card.icon}
+                  </div>
+                  <h3 className="text-2xl font-bold text-slate-900 dark:text-white">{card.title}</h3>
+                  <p className="mt-2 text-slate-500 dark:text-slate-400">{card.desc}</p>
+                  <ul className="mt-6 space-y-3 text-sm text-slate-600 dark:text-slate-300">
+                    {card.checks.map((txt) => (
+                      <CheckListItem key={txt} text={txt} color={card.checkColor} />
+                    ))}
+                  </ul>
+                  <Button as="a" href={card.href} variant={card.variant} size="md" className="mt-8">
+                    {card.cta}
+                  </Button>
+                </div>
+              </ScrollReveal>
+            ))}
           </div>
 
           <ScrollReveal delay={0.3}>

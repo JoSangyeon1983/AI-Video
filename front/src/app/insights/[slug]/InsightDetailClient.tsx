@@ -5,6 +5,7 @@ import { articles } from "@/data/insights";
 import { useTranslation } from "@/i18n";
 import { motion } from "framer-motion";
 import { IconArrowLeft } from "@/components/ui/Icon";
+import { NotFound, DetailCTA } from "@/components/ui/DetailShared";
 
 interface Props {
   slug: string;
@@ -21,17 +22,7 @@ export default function InsightDetailClient({ slug }: Props) {
   useEffect(() => { setMounted(true); }, []);
 
   if (!article || !detail) {
-    return (
-      <div className="flex min-h-[60vh] items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold text-slate-900 dark:text-white">404</h1>
-          <p className="mt-2 text-slate-500">{t.insights.noResults}</p>
-          <a href="/insights/" className="mt-4 inline-block text-sm font-semibold text-brand-600 hover:text-brand-700">
-            {t.insights.detailBackToList}
-          </a>
-        </div>
-      </div>
-    );
+    return <NotFound message={t.insights.noResults} backLabel={t.insights.detailBackToList} backHref="/insights/" />;
   }
 
   // 동일 태그 관련 아티클 (자기 자신 제외, 최대 3개)
@@ -133,19 +124,12 @@ export default function InsightDetailClient({ slug }: Props) {
         </div>
 
         {/* ── CTA ── */}
-        <div className="mt-16 rounded-2xl border border-slate-200 bg-slate-50 p-8 text-center dark:border-slate-800 dark:bg-slate-900">
-          <h3 className="text-lg font-bold text-slate-900 dark:text-white">{t.insights.detailCta}</h3>
-          <a
-            href={`/contact/?type=${article.ctaType}&ref=${slug}`}
-            className={`mt-4 inline-flex h-12 items-center justify-center rounded-lg px-8 text-sm font-semibold text-white transition-colors ${
-              article.ctaType === "solution"
-                ? "bg-secondary-600 hover:bg-secondary-700"
-                : "bg-brand-600 hover:bg-brand-700"
-            }`}
-          >
-            {article.ctaType === "solution" ? t.videoModal.ctaSolution : t.videoModal.ctaService}
-          </a>
-        </div>
+        <DetailCTA
+          heading={t.insights.detailCta}
+          href={`/contact/?type=${article.ctaType}&ref=${slug}`}
+          label={article.ctaType === "studio" ? t.videoModal.ctaStudio : t.videoModal.ctaProduction}
+          variant={article.ctaType === "studio" ? "secondary" : "brand"}
+        />
 
         {/* ── 관련 아티클 ── */}
         {related.length > 0 && (

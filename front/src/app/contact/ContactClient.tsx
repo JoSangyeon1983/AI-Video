@@ -2,11 +2,11 @@
 
 import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
-import InputField from "@/components/ui/InputField";
 import InfoItem from "@/components/ui/InfoItem";
 import TabSelector from "@/components/ui/TabSelector";
 import Button from "@/components/ui/Button";
-import { IconCheck, IconUpload, IconChevronRight } from "@/components/ui/Icon";
+import { IconCheck, IconChevronRight } from "@/components/ui/Icon";
+import ContactFormFields, { type ContactTab } from "@/components/ui/ContactFormFields";
 import { useTranslation } from "@/i18n";
 
 export default function ContactClient() {
@@ -20,12 +20,12 @@ export default function ContactClient() {
 function ContactContent() {
   const searchParams = useSearchParams();
   const { t } = useTranslation();
-  const [purpose, setPurpose] = useState("service");
+  const [purpose, setPurpose] = useState<ContactTab>("production");
   const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
     const type = searchParams.get("type");
-    if (type === "solution" || type === "service") {
+    if (type === "studio" || type === "production") {
       setPurpose(type);
     }
   }, [searchParams]);
@@ -40,9 +40,7 @@ function ContactContent() {
       <section className="flex min-h-[70vh] items-center justify-center bg-white dark:bg-slate-950">
         <div className="text-center">
           <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-900/30">
-            <svg className="h-8 w-8 text-emerald-600 dark:text-emerald-400" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
-            </svg>
+            <IconCheck className="h-8 w-8 text-emerald-600 dark:text-emerald-400" />
           </div>
           <h2 className="mt-6 text-2xl font-bold text-slate-900 dark:text-white">{t.contact.successHeading}</h2>
           <p className="mt-3 text-slate-500 dark:text-slate-400">
@@ -68,8 +66,8 @@ function ContactContent() {
               {/* 목적 선택 (탭) */}
               <TabSelector
                 options={[
-                  { value: "service" as const, label: t.contact.tabService },
-                  { value: "solution" as const, label: t.contact.tabSolution },
+                  { value: "production" as const, label: t.contact.tabProduction },
+                  { value: "studio" as const, label: t.contact.tabStudio },
                 ]}
                 selected={purpose}
                 onChange={setPurpose}
@@ -78,63 +76,37 @@ function ContactContent() {
 
               {/* 폼 */}
               <form onSubmit={handleSubmit} className="mt-8 space-y-5">
-                {/* 공통 필드 */}
-                <div className="grid gap-5 sm:grid-cols-2">
-                  <InputField label={t.contact.company} name="company" required />
-                  <InputField label={t.contact.managerName} name="name" required />
-                  <InputField label={t.contact.email} name="email" type="email" required />
-                  <InputField label={t.contact.phone} name="phone" type="tel" />
-                </div>
-
-                {/* 제작 의뢰 추가 필드 */}
-                {purpose === "service" && (
-                  <div className="space-y-5 border-t border-slate-200 pt-5 dark:border-slate-800">
-                    <InputField label={t.contact.goal} name="goal" />
-                    <div className="grid gap-5 sm:grid-cols-2">
-                      <InputField label={t.contact.deadline} name="deadline" placeholder={t.contact.deadlinePh} />
-                      <InputField label={t.contact.budget} name="budget" placeholder={t.contact.budgetPh} />
-                    </div>
-                    <InputField label={t.contact.reference} name="reference" placeholder={t.contact.referencePh} />
-                  </div>
-                )}
-
-                {/* 솔루션 도입 추가 필드 */}
-                {purpose === "solution" && (
-                  <div className="space-y-5 border-t border-slate-200 pt-5 dark:border-slate-800">
-                    <div className="grid gap-5 sm:grid-cols-2">
-                      <InputField label={t.contact.teamSize} name="teamSize" placeholder={t.contact.teamSizePh} />
-                      <InputField label={t.contact.monthly} name="monthly" placeholder={t.contact.monthlyPh} />
-                    </div>
-                    <InputField label={t.contact.usePurpose} name="usePurpose" placeholder={t.contact.usePurposePh} />
-                    <InputField label={t.contact.features} name="features" placeholder={t.contact.featuresPh} />
-                  </div>
-                )}
-
-                {/* 문의 내용 */}
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300">{t.contact.message}</label>
-                  <textarea
-                    name="message"
-                    rows={4}
-                    className="mt-1 w-full rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 placeholder-slate-400 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500 dark:border-slate-700 dark:bg-slate-900 dark:text-white"
-                    placeholder={t.contact.messagePh}
-                  />
-                </div>
-
-                {/* 파일 첨부 (공통, 선택) */}
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300">
-                    {t.contact.fileAttach} <span className="font-normal text-slate-400">{t.contact.fileOptional}</span>
-                  </label>
-                  <p className="mt-1 text-xs text-slate-400 dark:text-slate-500">
-                    {t.contact.fileHelp}
-                  </p>
-                  <label className="mt-2 flex cursor-pointer items-center justify-center gap-2 rounded-lg border-2 border-dashed border-slate-300 px-4 py-4 text-sm text-slate-500 transition-colors hover:border-brand-400 hover:text-brand-600 dark:border-slate-700 dark:text-slate-400 dark:hover:border-brand-500 dark:hover:text-brand-400">
-                    <IconUpload className="h-5 w-5" />
-                    <span>{t.contact.fileAction}</span>
-                    <input type="file" name="attachment" className="hidden" accept=".pdf,.doc,.docx,.ppt,.pptx,.png,.jpg,.jpeg,.zip" />
-                  </label>
-                </div>
+                <ContactFormFields
+                  tab={purpose}
+                  labels={{
+                    company: t.contact.company,
+                    name: t.contact.managerName,
+                    email: t.contact.email,
+                    phone: t.contact.phone,
+                    goal: t.contact.goal,
+                    deadline: t.contact.deadline,
+                    deadlinePh: t.contact.deadlinePh,
+                    budget: t.contact.budget,
+                    budgetPh: t.contact.budgetPh,
+                    reference: t.contact.reference,
+                    referencePh: t.contact.referencePh,
+                    teamSize: t.contact.teamSize,
+                    teamSizePh: t.contact.teamSizePh,
+                    monthly: t.contact.monthly,
+                    monthlyPh: t.contact.monthlyPh,
+                    usePurpose: t.contact.usePurpose,
+                    usePurposePh: t.contact.usePurposePh,
+                    features: t.contact.features,
+                    featuresPh: t.contact.featuresPh,
+                    message: t.contact.message,
+                    messagePh: t.contact.messagePh,
+                    fileLabel: t.contact.fileAttach,
+                    fileOptional: t.contact.fileOptional,
+                    fileHint: t.contact.fileHelp,
+                    fileAction: t.contact.fileAction,
+                  }}
+                  rows={4}
+                />
 
                 <Button type="submit" variant="brand" fullWidth className="sm:w-auto">
                   {t.contact.submit}
@@ -162,9 +134,7 @@ function ContactContent() {
                     <p className="text-xs text-slate-500 dark:text-slate-400">{t.contact.faqSub}</p>
                   </div>
                 </div>
-                <svg className="h-5 w-5 shrink-0 text-slate-400 dark:text-slate-500" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                </svg>
+                <IconChevronRight className="h-5 w-5 shrink-0 text-slate-400 dark:text-slate-500" />
               </a>
 
               <div className="mt-8 space-y-6">

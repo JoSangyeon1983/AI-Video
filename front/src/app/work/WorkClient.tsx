@@ -7,7 +7,7 @@ import FilterGroup from "@/components/ui/FilterGroup";
 import { useTranslation } from "@/i18n";
 import { motion, AnimatePresence } from "framer-motion";
 
-type CategoryType = "all" | "service" | "solution";
+type CategoryType = "all" | "production" | "studio";
 
 export default function WorkClient() {
   const { t } = useTranslation();
@@ -44,14 +44,14 @@ export default function WorkClient() {
   // Category filter options
   const categoryOptions: { key: CategoryType; label: string; desc: string }[] = [
     { key: "all", label: t.work.categoryAll, desc: "" },
-    { key: "service", label: t.work.categoryService, desc: t.work.categoryServiceDesc },
-    { key: "solution", label: t.work.categorySolution, desc: t.work.categorySolutionDesc },
+    { key: "production", label: t.work.categoryProduction, desc: t.work.categoryProductionDesc },
+    { key: "studio", label: t.work.categoryStudio, desc: t.work.categoryStudioDesc },
   ];
 
   const filteredWorks = works.filter((w) => {
     // 1단계: 카테고리 필터 (Service = AI 아바타 제외, Solution = AI 아바타만)
-    if (selectedCategory === "service" && w.style === "AI 아바타") return false;
-    if (selectedCategory === "solution" && w.style !== "AI 아바타") return false;
+    if (selectedCategory === "production" && w.style === "AI 아바타") return false;
+    if (selectedCategory === "studio" && w.style !== "AI 아바타") return false;
 
     // 2단계: 기존 필터
     if (selectedIndustry !== koIndustries[0] && w.industry !== selectedIndustry) return false;
@@ -149,7 +149,7 @@ export default function WorkClient() {
                   duration={work.duration}
                   thumbnailUrl={work.thumbnailUrl}
                   videoUrl={work.videoUrl}
-                  variant={work.style === "AI 아바타" ? "solution" : "service"}
+                  variant={work.style === "AI 아바타" ? "studio" : "production"}
                   href={`/work/${work.slug}`}
                 />
                 </motion.div>

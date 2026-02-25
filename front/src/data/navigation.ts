@@ -3,8 +3,8 @@ import type { Translation } from "@/i18n/types";
 
 /* ── GNB 네비게이션 ── */
 export const navItems: NavItem[] = [
-  { label: "Service", href: "/service" },
-  { label: "Solution", href: "/solution" },
+  { label: "Production", href: "/production" },
+  { label: "Studio", href: "/studio" },
   { label: "Work", href: "/work" },
   { label: "Insights", href: "/insights" },
   { label: "Story", href: "/story" },
@@ -14,8 +14,8 @@ export const navItems: NavItem[] = [
 export function getNavLabelMap(t: Translation): Record<string, string> {
   return {
     "/work": t.nav.work,
-    "/service": t.nav.service,
-    "/solution": t.nav.solution,
+    "/production": t.nav.production,
+    "/studio": t.nav.studio,
     "/insights": t.nav.insights,
     "/story": t.nav.story,
   };

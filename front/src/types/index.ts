@@ -36,5 +36,5 @@ export interface Article {
   date: string;
   featured: boolean;
   /** CTA 유형 — CMS에서 아티클 등록 시 결정 */
-  ctaType: "service" | "solution";
+  ctaType: "production" | "studio";
 }
