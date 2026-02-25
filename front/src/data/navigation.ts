@@ -3,9 +3,9 @@ import type { Translation } from "@/i18n/types";
 
 /* ── GNB 네비게이션 ── */
 export const navItems: NavItem[] = [
-  { label: "Work", href: "/work" },
   { label: "Service", href: "/service" },
   { label: "Solution", href: "/solution" },
+  { label: "Work", href: "/work" },
   { label: "Insights", href: "/insights" },
   { label: "Story", href: "/story" },
 ];

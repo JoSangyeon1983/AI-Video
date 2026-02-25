@@ -54,7 +54,7 @@ export default function HomeClient() {
           loop
           muted
           playsInline
-          poster="/thumbnails/hero-bg.webp"
+          poster="/images/thumbnails/hero-bg.webp"
           className="absolute inset-0 h-full w-full object-cover"
         >
           <source src="/video/hero-bg.webm" type="video/webm" />

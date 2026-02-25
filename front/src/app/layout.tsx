@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   description:
     "AI를 이용한 하이엔드 영상 제작 에이전시 서비스와 기업용 AI 영상 생성 SaaS 솔루션을 제공합니다.",
   icons: {
-    icon: "/favicon.ico",
+    icon: "/images/favicon.ico",
   },
   alternates: {
     canonical: "https://loomix.ai",
