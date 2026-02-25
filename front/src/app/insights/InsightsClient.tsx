@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from "react";
 import { articles as rawArticles, tags as koTags } from "@/data/insights";
+import Button from "@/components/ui/Button";
 import { useTranslation } from "@/i18n";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -181,6 +182,14 @@ export default function InsightsClient() {
               </button>
             </div>
           )}
+
+          {/* Closing CTA */}
+          <div className="mt-16 rounded-2xl border border-slate-200 bg-slate-50 p-8 text-center dark:border-slate-800 dark:bg-slate-900">
+            <h3 className="text-lg font-bold text-slate-900 dark:text-white">{t.insights.closingCtaHeading}</h3>
+            <Button as="a" href="/contact/" variant="white" className="mt-4">
+              {t.insights.closingCtaLabel}
+            </Button>
+          </div>
         </div>
       </section>
     </>

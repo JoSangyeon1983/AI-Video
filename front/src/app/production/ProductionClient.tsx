@@ -5,6 +5,7 @@ import VideoCard from "@/components/ui/VideoCard";
 import PageHero from "@/components/ui/PageHero";
 import Button from "@/components/ui/Button";
 import { IconArrowRight } from "@/components/ui/Icon";
+import { DetailCTA } from "@/components/ui/DetailShared";
 import { works } from "@/data/work";
 import { useTranslation } from "@/i18n";
 import ScrollReveal, { StaggerContainer, StaggerItem } from "@/components/motion/ScrollReveal";
@@ -28,7 +29,41 @@ export default function ProductionClient() {
         </Button>
       </PageHero>
 
-      {/* ════════ SECTION 2: PARADIGM SHIFT (비교) ════════ */}
+      {/* ════════ SECTION 2: FEATURED WORKS ════════ */}
+      <SectionContainer className="bg-white py-24 dark:bg-slate-950">
+          <ScrollReveal>
+            <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
+              {t.production.featuredWorksHeading}
+            </h2>
+          </ScrollReveal>
+
+          <StaggerContainer stagger={0.1} className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {featuredWorks.map((work) => (
+              <StaggerItem key={work.id}>
+              <VideoCard
+                title={t.work.titles[work.slug] || work.title}
+                tags={[work.industry, work.style, work.purpose]}
+                duration={work.duration}
+                thumbnailUrl={work.thumbnailUrl}
+                videoUrl={work.videoUrl}
+                variant="production"
+                href={`/work/${work.slug}`}
+              />
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+
+          <ScrollReveal delay={0.2}>
+          <div className="mt-10 text-center">
+            <a href="/work/?style=agency" className="inline-flex items-center gap-2 text-sm font-semibold text-brand-600 transition-colors hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300">
+              {t.production.featuredWorksCta}
+              <IconArrowRight />
+            </a>
+          </div>
+          </ScrollReveal>
+      </SectionContainer>
+
+      {/* ════════ SECTION 3: PARADIGM SHIFT (비교) ════════ */}
       <SectionContainer className="bg-slate-50 py-24 dark:bg-slate-900">
           <ScrollReveal>
             <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
@@ -69,40 +104,6 @@ export default function ProductionClient() {
             </div>
             </ScrollReveal>
           </div>
-      </SectionContainer>
-
-      {/* ════════ SECTION 2.5: FEATURED WORKS ════════ */}
-      <SectionContainer className="bg-white py-24 dark:bg-slate-950">
-          <ScrollReveal>
-            <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
-              {t.production.featuredWorksHeading}
-            </h2>
-          </ScrollReveal>
-
-          <StaggerContainer stagger={0.1} className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {featuredWorks.map((work) => (
-              <StaggerItem key={work.id}>
-              <VideoCard
-                title={t.work.titles[work.slug] || work.title}
-                tags={[work.industry, work.style, work.purpose]}
-                duration={work.duration}
-                thumbnailUrl={work.thumbnailUrl}
-                videoUrl={work.videoUrl}
-                variant="production"
-                href={`/work/${work.slug}`}
-              />
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
-
-          <ScrollReveal delay={0.2}>
-          <div className="mt-10 text-center">
-            <a href="/work/?style=agency" className="inline-flex items-center gap-2 text-sm font-semibold text-brand-600 transition-colors hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300">
-              {t.production.featuredWorksCta}
-              <IconArrowRight />
-            </a>
-          </div>
-          </ScrollReveal>
       </SectionContainer>
 
       {/* ════════ SECTION 3: PROCESS & EXPERTS ════════ */}
@@ -147,6 +148,15 @@ export default function ProductionClient() {
           </div>
       </SectionContainer>
 
+      {/* ════════ SECTION 5: CLOSING CTA ════════ */}
+      <SectionContainer className="bg-white py-16 dark:bg-slate-950">
+        <DetailCTA
+          heading={t.production.closingCtaHeading}
+          href="/contact/?type=production"
+          label={t.production.closingCtaLabel}
+          variant="brand"
+        />
+      </SectionContainer>
     </>
   );
 }

@@ -2,6 +2,7 @@
 
 import SectionContainer from "@/components/ui/SectionContainer";
 import PageHero from "@/components/ui/PageHero";
+import Button from "@/components/ui/Button";
 import ScrollReveal, { StaggerContainer, StaggerItem } from "@/components/motion/ScrollReveal";
 import { useTranslation } from "@/i18n";
 
@@ -84,15 +85,28 @@ export default function StoryClient() {
             </h3>
             <StaggerContainer stagger={0.06} className="mt-8 flex flex-wrap items-center justify-center gap-8">
               {t.story.partners.map((p) => (
-                <StaggerItem key={p} direction="none">
-                <div className="flex h-12 w-32 items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-800">
-                  <span className="text-sm font-medium text-slate-400 dark:text-slate-500">{p}</span>
+                <StaggerItem key={p.name} direction="none">
+                <div className="flex h-16 w-36 flex-col items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-800">
+                  <span className="text-sm font-medium text-slate-400 dark:text-slate-500">{p.name}</span>
+                  <span className="mt-0.5 text-xs text-slate-300 dark:text-slate-600">{p.type}</span>
                 </div>
                 </StaggerItem>
               ))}
             </StaggerContainer>
           </div>
           </ScrollReveal>
+      </SectionContainer>
+
+      {/* ════════ SECTION 4: CLOSING CTA ════════ */}
+      <SectionContainer className="bg-slate-50 py-20 dark:bg-slate-900">
+        <ScrollReveal>
+          <div className="rounded-2xl border border-slate-200 bg-white p-8 text-center dark:border-slate-800 dark:bg-slate-800">
+            <h3 className="text-lg font-bold text-slate-900 dark:text-white">{t.story.closingCtaHeading}</h3>
+            <Button as="a" href="/contact/" variant="white" className="mt-4">
+              {t.story.closingCtaLabel}
+            </Button>
+          </div>
+        </ScrollReveal>
       </SectionContainer>
     </>
   );

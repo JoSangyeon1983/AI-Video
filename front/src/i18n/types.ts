@@ -69,6 +69,18 @@ export interface Translation {
     trustProjectsDone: string;
     trustSatisfaction: string;
     trustSpeedUp: string;
+    /* AI 기술 차별화 섹션 */
+    techEdgeHeading: string;
+    techEdgeSub: string;
+    techEdgeItems: { icon: string; title: string; stat: string; desc: string }[];
+    /* 인사이트 프리뷰 */
+    insightsPreviewHeading: string;
+    insightsPreviewSub: string;
+    insightsPreviewCta: string;
+    /* 하단 CTA */
+    closingCtaHeading: string;
+    closingCtaSub: string;
+    closingCtaLabel: string;
   };
 
   /* ── Work ── */
@@ -98,6 +110,9 @@ export interface Translation {
     detailCta: string;
     detailBackToList: string;
     caseDetails: Record<string, { challenge: string; approach: string; result: string }>;
+    /* 하단 CTA */
+    closingCtaHeading: string;
+    closingCtaLabel: string;
   };
 
   /* ── Production ── */
@@ -119,6 +134,9 @@ export interface Translation {
     experts: { role: string; desc: string }[];
     featuredWorksHeading: string;
     featuredWorksCta: string;
+    /* 하단 CTA */
+    closingCtaHeading: string;
+    closingCtaLabel: string;
   };
 
   /* ── Studio ── */
@@ -153,6 +171,9 @@ export interface Translation {
     detailToc: string;
     detailRelated: string;
     detailCta: string;
+    /* 하단 CTA */
+    closingCtaHeading: string;
+    closingCtaLabel: string;
     articleDetails: Record<string, {
       title: string;
       summary: string;
@@ -172,7 +193,10 @@ export interface Translation {
     timeline: { year: string; title: string; desc: string }[];
     team: { name: string; role: string; desc: string }[];
     partnersHeading: string;
-    partners: string[];
+    partners: { name: string; type: string }[];
+    /* 하단 CTA */
+    closingCtaHeading: string;
+    closingCtaLabel: string;
   };
 
   /* ── Contact ── */

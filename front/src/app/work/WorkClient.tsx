@@ -4,6 +4,7 @@ import { useState, useMemo } from "react";
 import { works, industries as koIndustries, styles as koStyles, purposes as koPurposes } from "@/data/work";
 import VideoCard from "@/components/ui/VideoCard";
 import FilterGroup from "@/components/ui/FilterGroup";
+import Button from "@/components/ui/Button";
 import { useTranslation } from "@/i18n";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -170,6 +171,17 @@ export default function WorkClient() {
         </div>
       </section>
 
+      {/* ════════ CLOSING CTA ════════ */}
+      <section className="bg-white pb-20 dark:bg-slate-950">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="rounded-2xl border border-slate-200 bg-slate-50 p-8 text-center dark:border-slate-800 dark:bg-slate-900">
+            <h3 className="text-lg font-bold text-slate-900 dark:text-white">{t.work.closingCtaHeading}</h3>
+            <Button as="a" href="/contact/" variant="white" className="mt-4">
+              {t.work.closingCtaLabel}
+            </Button>
+          </div>
+        </div>
+      </section>
     </>
   );
 }
