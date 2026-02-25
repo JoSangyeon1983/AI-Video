@@ -5,7 +5,7 @@ import { type ReactNode, type AnchorHTMLAttributes, type ButtonHTMLAttributes } 
    ─ brand / secondary / outline 버전을 단일 API로 관리
    ============================================ */
 
-type Variant = "brand" | "secondary" | "outline";
+type Variant = "brand" | "secondary" | "outline" | "white";
 type Size = "sm" | "md" | "lg";
 
 interface ButtonBaseProps {
@@ -38,7 +38,9 @@ const variantStyles: Record<Variant, string> = {
   secondary:
     "bg-secondary-600 text-white hover:bg-secondary-700 dark:bg-secondary-500 dark:text-white dark:hover:bg-secondary-600",
   outline:
-    "border-2 border-brand-400/40 text-white hover:border-brand-300 hover:bg-brand-500/10",
+    "border-2 border-slate-600 text-white hover:border-slate-400 hover:bg-white/5",
+  white:
+    "bg-white text-slate-900 hover:bg-slate-200",
 };
 
 const sizeStyles: Record<Size, string> = {

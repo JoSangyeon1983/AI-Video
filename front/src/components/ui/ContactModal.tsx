@@ -80,7 +80,7 @@ export default function ContactModal({
           </p>
           <button
             onClick={onClose}
-            className="mt-8 rounded-lg bg-brand-600 px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-700 dark:bg-brand-500 dark:hover:bg-brand-600"
+            className="mt-8 rounded-lg bg-white px-6 py-2.5 text-sm font-semibold text-slate-900 transition-colors hover:bg-slate-200"
           >
             {t.contactModal.close}
           </button>
@@ -166,7 +166,7 @@ export default function ContactModal({
           type="submit"
           form="contact-modal-form"
           disabled={submitState === "submitting"}
-          className="inline-flex h-12 w-full items-center justify-center rounded-lg bg-brand-600 px-8 text-sm font-semibold text-white transition-colors hover:bg-brand-700 disabled:cursor-not-allowed disabled:opacity-60 dark:bg-brand-500 dark:text-white dark:hover:bg-brand-600 sm:w-auto"
+          className="inline-flex h-12 w-full items-center justify-center rounded-lg bg-white px-8 text-sm font-semibold text-slate-900 transition-colors hover:bg-slate-200 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
         >
           {submitState === "submitting" ? (
             <>

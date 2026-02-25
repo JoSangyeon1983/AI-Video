@@ -46,7 +46,7 @@ export default function WorkDetailClient({ slug }: Props) {
       {/* ── 콘텐츠 ── */}
       <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
         {/* 뒤로 가기 */}
-        <a href="/work/" className="mb-6 inline-flex items-center gap-1 text-sm font-medium text-brand-600 hover:text-brand-700 dark:text-brand-400">
+        <a href="/work/" className="mb-6 inline-flex items-center gap-1 text-sm font-medium text-slate-400 hover:text-white">
           <IconArrowLeft />
           {t.work.detailBackToList}
         </a>
@@ -62,7 +62,7 @@ export default function WorkDetailClient({ slug }: Props) {
         </motion.h1>
         <div className="mt-4 flex flex-wrap items-center gap-2">
           {[work.industry, work.style, work.purpose].map((tag) => (
-            <span key={tag} className="rounded-full bg-brand-100 px-3 py-1 text-xs font-medium text-brand-700 dark:bg-brand-950/50 dark:text-brand-400">
+            <span key={tag} className="rounded-full bg-slate-800 px-3 py-1 text-xs font-medium text-slate-300">
               {tag}
             </span>
           ))}
@@ -73,9 +73,9 @@ export default function WorkDetailClient({ slug }: Props) {
         {caseDetail && (
           <div className="mt-12 space-y-10">
             {[
-              { color: "red", number: "1", label: t.work.detailChallenge, content: caseDetail.challenge, delay: 0.1 },
-              { color: "brand", number: "2", label: t.work.detailApproach, content: caseDetail.approach, delay: 0.2 },
-              { color: "green", number: "3", label: t.work.detailResult, content: caseDetail.result, delay: 0.3 },
+              { badgeCls: "bg-red-100 text-red-600 dark:bg-red-950/50 dark:text-red-400", number: "1", label: t.work.detailChallenge, content: caseDetail.challenge, delay: 0.1 },
+              { badgeCls: "bg-blue-100 text-blue-600 dark:bg-blue-950/50 dark:text-blue-400", number: "2", label: t.work.detailApproach, content: caseDetail.approach, delay: 0.2 },
+              { badgeCls: "bg-emerald-100 text-emerald-600 dark:bg-emerald-950/50 dark:text-emerald-400", number: "3", label: t.work.detailResult, content: caseDetail.result, delay: 0.3 },
             ].map((item) => (
               <motion.section
                 key={item.number}
@@ -84,7 +84,7 @@ export default function WorkDetailClient({ slug }: Props) {
                 transition={{ duration: 0.5, delay: item.delay }}
               >
                 <h2 className="flex items-center gap-2 text-lg font-bold text-slate-900 dark:text-white">
-                  <span className={`flex h-8 w-8 items-center justify-center rounded-full bg-${item.color}-100 text-sm font-bold text-${item.color}-600 dark:bg-${item.color}-950/50 dark:text-${item.color}-400`}>
+                  <span className={`flex h-8 w-8 items-center justify-center rounded-full text-sm font-bold ${item.badgeCls}`}>
                     {item.number}
                   </span>
                   {item.label}

@@ -31,25 +31,15 @@
   --color-violet-900: #4c1d95;
   --color-violet-950: #2e1065;
 
-  /* ── 배경 / 전경 ── */
-  --color-bg: #ffffff;
-  --color-bg-secondary: #f8fafc;
-  --color-fg: #0f172a;
-  --color-fg-secondary: #64748b;
+  /* ── 배경 / 전경 (상시 다크) ── */
+  --color-bg: #09090b;
+  --color-bg-secondary: #111827;
+  --color-fg: #ededed;
+  --color-fg-secondary: #a3a3a3;
 
   /* ── 폰트 ── */
   --font-sans: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-mono: "JetBrains Mono", "Fira Code", Consolas, monospace;
-}
-
-/* ── 다크모드 ── */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-bg: #0a0a0a;
-    --color-bg-secondary: #1a1a1a;
-    --color-fg: #ededed;
-    --color-fg-secondary: #a3a3a3;
-  }
 }
 

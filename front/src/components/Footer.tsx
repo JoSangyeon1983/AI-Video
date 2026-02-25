@@ -81,7 +81,7 @@ export default function Footer() {
                   <li key={link.href + link.label}>
                     <a
                       href={ensureTrailingSlash(link.href)}
-                      className="text-sm text-slate-500 transition-colors hover:text-brand-600 dark:text-slate-400 dark:hover:text-brand-400"
+                      className="text-sm text-slate-500 transition-colors hover:text-white dark:text-slate-400 dark:hover:text-white"
                     >
                       {link.label}
                     </a>
@@ -102,7 +102,7 @@ export default function Footer() {
             <div ref={familyRef} className="relative">
               <button
                 onClick={() => setFamilyOpen(!familyOpen)}
-                className="flex items-center gap-1 text-xs text-slate-400 transition-colors hover:text-brand-600 dark:text-slate-500 dark:hover:text-brand-400"
+                className="flex items-center gap-1 text-xs text-slate-400 transition-colors hover:text-white dark:text-slate-500 dark:hover:text-white"
               >
                 Family Site
                 <IconChevronDown className={`h-3 w-3 transition-transform ${familyOpen ? "rotate-180" : ""}`} />
@@ -115,7 +115,7 @@ export default function Footer() {
                       href={site.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="block px-4 py-2 text-sm text-slate-600 transition-colors hover:bg-slate-50 hover:text-brand-600 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-brand-400"
+                      className="block px-4 py-2 text-sm text-slate-600 transition-colors hover:bg-slate-50 hover:text-white dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white"
                       onClick={() => setFamilyOpen(false)}
                     >
                       {site.name}
@@ -129,7 +129,7 @@ export default function Footer() {
               <a
                 key={sns}
                 href="#"
-                className="text-xs text-slate-400 transition-colors hover:text-brand-600 dark:text-slate-500 dark:hover:text-brand-400"
+                className="text-xs text-slate-400 transition-colors hover:text-white dark:text-slate-500 dark:hover:text-white"
                 aria-label={sns}
               >
                 {sns}

@@ -69,7 +69,7 @@ export default function InsightsClient() {
               placeholder={t.insights.searchPlaceholder}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full max-w-md rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 placeholder-slate-400 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500 dark:border-slate-700 dark:bg-slate-900 dark:text-white dark:placeholder-slate-500"
+              className="w-full max-w-md rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 placeholder-slate-400 focus:border-slate-500 focus:outline-none focus:ring-1 focus:ring-slate-500 dark:border-slate-700 dark:bg-slate-900 dark:text-white dark:placeholder-slate-500"
             />
           </motion.div>
 
@@ -86,7 +86,7 @@ export default function InsightsClient() {
                 onClick={() => setSelectedTag(tagKoMap[tag] ?? koTags[0])}
                 className={`rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${
                   displayTag === tag
-                    ? "bg-brand-600 text-white dark:bg-brand-500 dark:text-white"
+                    ? "bg-white text-slate-900"
                     : "bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-400 dark:hover:bg-slate-700"
                 }`}
               >
@@ -121,10 +121,10 @@ export default function InsightsClient() {
                   transition={{ duration: 0.4, delay: idx * 0.12, ease: [0.25, 0.1, 0.25, 1] }}
                 >
                 <a href={`/insights/${article.slug}/`} className="block group cursor-pointer overflow-hidden rounded-xl border border-slate-200 bg-slate-50 transition-all hover:shadow-lg dark:border-slate-800 dark:bg-slate-900">
-                  <div className="aspect-video bg-gradient-to-br from-brand-100 to-secondary-100 dark:from-brand-950/30 dark:to-secondary-950/20" />
+                  <div className="aspect-video bg-gradient-to-br from-slate-800 to-slate-700" />
                   <div className="p-6">
-                    <span className="rounded-full bg-brand-100 px-2.5 py-0.5 text-xs font-medium text-brand-700 dark:bg-brand-900/30 dark:text-brand-400">{article.displayTag}</span>
-                    <h3 className="mt-3 text-xl font-bold text-slate-900 group-hover:text-brand-600 dark:text-white dark:group-hover:text-brand-400">{article.title}</h3>
+                    <span className="rounded-full bg-slate-800 px-2.5 py-0.5 text-xs font-medium text-slate-300">{article.displayTag}</span>
+                    <h3 className="mt-3 text-xl font-bold text-slate-900 group-hover:text-white dark:text-white">{article.title}</h3>
                     <p className="mt-2 text-sm leading-relaxed text-slate-500 dark:text-slate-400">{article.summary}</p>
                     <p className="mt-3 text-xs text-slate-400 dark:text-slate-500">{article.date}</p>
                   </div>
@@ -154,13 +154,13 @@ export default function InsightsClient() {
                   transition={{ duration: 0.4, delay: idx * 0.06, ease: [0.25, 0.1, 0.25, 1] }}
                 >
                 <a href={`/insights/${article.slug}/`} className="block group flex cursor-pointer gap-6 rounded-xl border border-slate-200 bg-white p-6 transition-all hover:shadow-md dark:border-slate-800 dark:bg-slate-900">
-                  <div className="hidden h-24 w-36 shrink-0 rounded-lg bg-gradient-to-br from-slate-200 to-brand-100 sm:block dark:from-slate-700 dark:to-brand-950" />
+                  <div className="hidden h-24 w-36 shrink-0 rounded-lg bg-gradient-to-br from-slate-700 to-slate-800 sm:block" />
                   <div className="flex-1">
                     <div className="flex items-center gap-2">
                       <span className="rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-medium text-slate-600 dark:bg-slate-800 dark:text-slate-400">{article.displayTag}</span>
                       <span className="text-xs text-slate-400 dark:text-slate-500">{article.date}</span>
                     </div>
-                    <h3 className="mt-2 font-semibold text-slate-900 group-hover:text-brand-600 dark:text-white dark:group-hover:text-brand-400">{article.title}</h3>
+                    <h3 className="mt-2 font-semibold text-slate-900 group-hover:text-white dark:text-white">{article.title}</h3>
                     <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">{article.summary}</p>
                   </div>
                 </a>
@@ -175,7 +175,7 @@ export default function InsightsClient() {
               <p className="text-slate-500 dark:text-slate-400">{t.insights.noResults}</p>
               <button
                 onClick={() => { setSelectedTag(koTags[0]); setSearchQuery(""); }}
-                className="mt-4 text-sm font-semibold text-brand-600 underline underline-offset-4 dark:text-brand-400"
+                className="mt-4 text-sm font-semibold text-slate-400 underline underline-offset-4 hover:text-white"
               >
                 {t.insights.resetFilter}
               </button>

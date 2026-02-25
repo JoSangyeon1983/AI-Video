@@ -50,7 +50,7 @@ export default function LanguageSelector() {
                 onClick={() => { setLocale(l); setOpen(false); }}
                 className={`flex w-full items-center px-4 py-2 text-sm transition-colors ${
                   locale === l
-                    ? "bg-brand-50 font-semibold text-brand-600 dark:bg-brand-950 dark:text-brand-400"
+                    ? "bg-white/10 font-semibold text-white"
                     : "text-slate-600 hover:bg-slate-50 dark:text-slate-300 dark:hover:bg-slate-800"
                 }`}
               >

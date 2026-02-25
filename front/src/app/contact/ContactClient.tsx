@@ -108,7 +108,7 @@ function ContactContent() {
                   rows={4}
                 />
 
-                <Button type="submit" variant="brand" fullWidth className="sm:w-auto">
+                <Button type="submit" variant="white" fullWidth className="sm:w-auto">
                   {t.contact.submit}
                 </Button>
               </form>
@@ -123,10 +123,10 @@ function ContactContent() {
               {/* FAQ */}
               <a
                 href="/faq/"
-                className="mt-6 flex items-center justify-between gap-4 rounded-xl border border-slate-200 bg-slate-50 px-5 py-4 transition-colors hover:border-brand-300 hover:bg-brand-50 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-brand-700 dark:hover:bg-slate-800"
+                className="mt-6 flex items-center justify-between gap-4 rounded-xl border border-slate-200 bg-slate-50 px-5 py-4 transition-colors hover:border-slate-500 hover:bg-slate-800 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-600 dark:hover:bg-slate-800"
               >
                 <div className="flex items-center gap-3">
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brand-100 text-lg dark:bg-brand-900/40">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-slate-800 text-lg">
                     💬
                   </span>
                   <div>

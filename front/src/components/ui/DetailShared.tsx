@@ -16,7 +16,7 @@ export function NotFound({ message, backLabel, backHref }: NotFoundProps) {
       <div className="text-center">
         <h1 className="text-2xl font-bold text-slate-900 dark:text-white">404</h1>
         <p className="mt-2 text-slate-500">{message}</p>
-        <a href={backHref} className="mt-4 inline-block text-sm font-semibold text-brand-600 hover:text-brand-700">
+        <a href={backHref} className="mt-4 inline-block text-sm font-semibold text-slate-400 hover:text-white">
           {backLabel}
         </a>
       </div>

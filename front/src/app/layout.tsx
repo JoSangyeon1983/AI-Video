@@ -53,7 +53,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko">
+    <html lang="ko" className="dark">
       <head>
         {/* hreflang for i18n — 향후 URL 기반 로케일 라우팅 도입 시 href 동적 생성 필요 */}
         <link rel="alternate" hrefLang="ko" href="https://loomix.ai/" />

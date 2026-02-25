@@ -5,7 +5,7 @@ import { IconUpload } from "@/components/ui/Icon";
 
 /* ── 공유 스타일 상수 ── */
 export const TEXTAREA_CLASS =
-  "mt-1 w-full rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 placeholder-slate-400 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500 dark:border-slate-700 dark:bg-slate-900 dark:text-white";
+  "mt-1 w-full rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 placeholder-slate-400 focus:border-slate-500 focus:outline-none focus:ring-1 focus:ring-slate-500 dark:border-slate-700 dark:bg-slate-900 dark:text-white";
 
 /* ── 타입 ── */
 export type ContactTab = "production" | "studio";
@@ -103,7 +103,7 @@ export default function ContactFormFields({ tab, labels, rows = 3 }: ContactForm
         <p className="mt-1 text-xs text-slate-400 dark:text-slate-500">
           {labels.fileHint}
         </p>
-        <label className="mt-2 flex cursor-pointer items-center justify-center gap-2 rounded-lg border-2 border-dashed border-slate-300 px-4 py-4 text-sm text-slate-500 transition-colors hover:border-brand-400 hover:text-brand-600 dark:border-slate-700 dark:text-slate-400 dark:hover:border-brand-500 dark:hover:text-brand-400">
+        <label className="mt-2 flex cursor-pointer items-center justify-center gap-2 rounded-lg border-2 border-dashed border-slate-300 px-4 py-4 text-sm text-slate-500 transition-colors hover:border-slate-500 hover:text-slate-300 dark:border-slate-700 dark:text-slate-400 dark:hover:border-slate-500 dark:hover:text-slate-300">
           <IconUpload className="h-5 w-5" />
           <span>{labels.fileAction}</span>
           <input type="file" name="attachment" className="hidden" accept=".pdf,.doc,.docx,.ppt,.pptx,.png,.jpg,.jpeg,.zip" />

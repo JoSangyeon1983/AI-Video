@@ -74,7 +74,7 @@ export default function FaqClient() {
             {t.faq.contactPrompt}{" "}
             <a
               href="/contact/"
-              className="font-medium text-brand-600 hover:underline dark:text-brand-400"
+              className="font-medium text-slate-400 hover:text-white hover:underline"
             >
               {t.faq.contactLink(t.brand.name)}
             </a>

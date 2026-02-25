@@ -72,7 +72,7 @@ export default function HomeClient() {
               className="text-4xl font-bold leading-tight tracking-tight text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)] sm:text-5xl lg:text-6xl"
             >
               {t.brand.name}
-              <span className="mt-2 block text-brand-100">
+              <span className="mt-2 block text-slate-200">
                 {t.brand.description}
               </span>
             </motion.h1>
@@ -94,14 +94,14 @@ export default function HomeClient() {
               <a
                 ref={btnARef}
                 href="/work/"
-                className="inline-flex h-12 items-center justify-center rounded-lg bg-brand-600 px-8 text-sm font-semibold text-white transition-colors hover:bg-brand-700"
+                className="inline-flex h-12 items-center justify-center rounded-lg bg-white px-8 text-sm font-semibold text-slate-900 transition-colors hover:bg-slate-200"
               >
                 {t.home.viewPortfolio}
               </a>
               <a
                 ref={btnBRef}
                 href="/contact/"
-                className="inline-flex h-12 items-center justify-center rounded-lg border-2 border-brand-400/40 px-8 text-sm font-semibold text-white transition-colors hover:border-brand-300 hover:bg-brand-500/10"
+                className="inline-flex h-12 items-center justify-center rounded-lg border-2 border-slate-500/40 px-8 text-sm font-semibold text-white transition-colors hover:border-slate-300 hover:bg-white/10"
               >
                 {t.home.projectInquiry}
               </a>
@@ -121,7 +121,7 @@ export default function HomeClient() {
                   transition={{ duration: 0.5, delay: 0.8 + i * 0.15 }}
                 >
                   <p className="text-3xl font-bold text-white">{item.value}</p>
-                  <p className="mt-1 text-sm text-brand-200/60">{item.label}</p>
+                  <p className="mt-1 text-sm text-slate-400">{item.label}</p>
                 </motion.div>
               ))}
             </motion.div>
@@ -158,7 +158,7 @@ export default function HomeClient() {
 
           <ScrollReveal delay={0.3}>
             <div className="mt-10 text-center">
-              <a href="/work/" className="inline-flex items-center gap-2 text-sm font-semibold text-brand-600 transition-colors hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300">
+              <a href="/work/" className="inline-flex items-center gap-2 text-sm font-semibold text-slate-400 transition-colors hover:text-white">
                 {t.home.viewAllPortfolio}
                 <IconArrowRight />
               </a>
@@ -231,7 +231,7 @@ export default function HomeClient() {
           <ScrollReveal delay={0.3}>
           <p className="mt-8 text-center text-sm text-slate-500 dark:text-slate-400">
             {t.home.notSure}{" "}
-            <a href="/contact/" className="font-semibold text-brand-600 underline decoration-brand-300 underline-offset-4 hover:decoration-brand-600 dark:text-brand-400">
+            <a href="/contact/" className="font-semibold text-slate-400 underline decoration-slate-600 underline-offset-4 hover:text-white hover:decoration-white">
               {t.home.contactUs}
             </a>
           </p>

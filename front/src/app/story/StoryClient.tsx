@@ -25,7 +25,7 @@ export default function StoryClient() {
           </ScrollReveal>
 
           <div className="relative mt-12">
-            <div className="absolute left-4 top-0 h-full w-0.5 bg-brand-200 dark:bg-brand-800 sm:left-1/2 sm:-translate-x-px" />
+            <div className="absolute left-4 top-0 h-full w-0.5 bg-slate-700 sm:left-1/2 sm:-translate-x-px" />
 
             <div className="space-y-8">
               {t.story.timeline.map((item, i) => (
@@ -40,10 +40,10 @@ export default function StoryClient() {
                     i % 2 === 0 ? "sm:flex-row" : "sm:flex-row-reverse"
                   }`}
                 >
-                  <div className="absolute left-4 top-2 z-10 h-3 w-3 -translate-x-1/2 rounded-full border-2 border-brand-600 bg-white dark:border-brand-400 dark:bg-slate-900 sm:left-1/2" />
+                  <div className="absolute left-4 top-2 z-10 h-3 w-3 -translate-x-1/2 rounded-full border-2 border-slate-400 bg-white dark:bg-slate-900 sm:left-1/2" />
 
                   <div className={`ml-10 sm:ml-0 sm:w-1/2 ${i % 2 === 0 ? "sm:pr-12 sm:text-right" : "sm:pl-12"}`}>
-                    <span className="text-sm font-bold text-brand-600 dark:text-brand-400">{item.year}</span>
+                    <span className="text-sm font-bold text-slate-300">{item.year}</span>
                     <h3 className="mt-1 font-semibold text-slate-900 dark:text-white">{item.title}</h3>
                     <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">{item.desc}</p>
                   </div>
@@ -66,11 +66,11 @@ export default function StoryClient() {
             {t.story.team.map((member) => (
               <StaggerItem key={member.name}>
               <div className="rounded-xl border border-slate-200 bg-slate-50 p-6 dark:border-slate-800 dark:bg-slate-900">
-                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-brand-50 dark:bg-brand-950">
-                  <span className="text-xl font-bold text-brand-500 dark:text-brand-400">{member.name[0]}</span>
+                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-slate-800">
+                  <span className="text-xl font-bold text-slate-300">{member.name[0]}</span>
                 </div>
                 <h3 className="mt-4 font-semibold text-slate-900 dark:text-white">{member.name}</h3>
-                <p className="text-sm font-medium text-brand-600 dark:text-brand-400">{member.role}</p>
+                <p className="text-sm font-medium text-slate-400">{member.role}</p>
                 <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">{member.desc}</p>
               </div>
               </StaggerItem>

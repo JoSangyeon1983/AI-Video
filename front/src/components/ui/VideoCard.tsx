@@ -35,7 +35,7 @@ export default function VideoCard({ title, tags, duration, thumbnailUrl, videoUr
   const cardContent = (
     <>
       {/* 썸네일 / 프리뷰 영역 */}
-      <div className="relative aspect-video bg-gradient-to-br from-slate-200 to-brand-100 dark:from-slate-700 dark:to-brand-950">
+      <div className="relative aspect-video bg-gradient-to-br from-slate-700 to-slate-800">
         {/* 항상 썸네일 렌더 — 프리뷰 비디오 아래에 배치 */}
         {thumbnailUrl ? (
           <Image

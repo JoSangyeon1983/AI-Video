@@ -38,10 +38,10 @@ export default function InsightDetailClient({ slug }: Props) {
   return (
     <article className="bg-white dark:bg-slate-950">
       {/* ── 히어로 영역 ── */}
-      <div className="bg-gradient-to-b from-brand-50 to-white pt-24 pb-12 dark:from-slate-900 dark:to-slate-950">
+      <div className="bg-gradient-to-b from-slate-900 to-slate-950 pt-24 pb-12">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           {/* 뒤로 가기 */}
-          <a href="/insights/" className="mb-6 inline-flex items-center gap-1 text-sm font-medium text-brand-600 hover:text-brand-700 dark:text-brand-400">
+          <a href="/insights/" className="mb-6 inline-flex items-center gap-1 text-sm font-medium text-slate-400 hover:text-white">
             <IconArrowLeft />
             {t.insights.detailBackToList}
           </a>
@@ -53,7 +53,7 @@ export default function InsightDetailClient({ slug }: Props) {
             transition={{ duration: 0.4 }}
             className="flex items-center gap-3"
           >
-            <span className="rounded-full bg-brand-100 px-3 py-1 text-xs font-medium text-brand-700 dark:bg-brand-900/30 dark:text-brand-400">
+            <span className="rounded-full bg-slate-800 px-3 py-1 text-xs font-medium text-slate-300">
               {displayTag}
             </span>
             <span className="text-sm text-slate-400 dark:text-slate-500">{displayDate}</span>
@@ -98,7 +98,7 @@ export default function InsightDetailClient({ slug }: Props) {
               <li key={i}>
                 <a
                   href={`#section-${i}`}
-                  className="text-sm font-medium text-brand-600 hover:text-brand-700 hover:underline dark:text-brand-400 dark:hover:text-brand-300"
+                  className="text-sm font-medium text-slate-400 hover:text-white hover:underline"
                 >
                   {section.heading}
                 </a>
@@ -149,7 +149,7 @@ export default function InsightDetailClient({ slug }: Props) {
                     <span className="rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-medium text-slate-600 dark:bg-slate-800 dark:text-slate-400">
                       {rTag}
                     </span>
-                    <h4 className="mt-3 font-semibold text-slate-900 group-hover:text-brand-600 dark:text-white dark:group-hover:text-brand-400">
+                    <h4 className="mt-3 font-semibold text-slate-900 group-hover:text-white dark:text-white">
                       {rTitle}
                     </h4>
                   </a>

@@ -1,6 +1,9 @@
 @import "tailwindcss";
 @import "../styles/tokens.css";
 
+/* 상시 다크 모드 — class="dark" 기반 */
+@variant dark (&:where(.dark, .dark *));
+
 :root {
   --background: var(--color-bg);
   --foreground: var(--color-fg);
@@ -39,12 +42,7 @@
   --color-secondary-950: var(--color-violet-950);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: var(--color-bg);
-    --foreground: var(--color-fg);
-  }
-}
+
 
 body {
   background: var(--background);
