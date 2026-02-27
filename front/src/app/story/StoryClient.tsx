@@ -55,7 +55,43 @@ export default function StoryClient() {
           </div>
       </SectionContainer>
 
-      {/* ════════ SECTION 3: TEAM & PARTNERS ════════ */}
+      {/* ════════ SECTION 3: TECH CAPABILITIES ════════ */}
+      <SectionContainer className="bg-white py-24 dark:bg-slate-950">
+          <ScrollReveal>
+            <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
+              {t.story.techCapHeading}
+            </h2>
+          </ScrollReveal>
+
+          {/* Stats */}
+          <StaggerContainer stagger={0.08} className="mt-12 grid grid-cols-2 gap-6 sm:grid-cols-4">
+            {t.story.techCapStats.map((stat) => (
+              <StaggerItem key={stat.label}>
+                <div className="rounded-xl border border-slate-200 bg-slate-50 p-6 text-center dark:border-slate-800 dark:bg-slate-900">
+                  <span className="text-3xl font-bold text-brand-600 dark:text-brand-400 sm:text-4xl">{stat.value}</span>
+                  <p className="mt-2 text-sm font-medium text-slate-500 dark:text-slate-400">{stat.label}</p>
+                </div>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+
+          {/* Tech Items */}
+          <StaggerContainer stagger={0.1} className="mt-10 grid gap-5 sm:grid-cols-2">
+            {t.story.techCapItems.map((item) => (
+              <StaggerItem key={item.title}>
+                <div className="flex gap-4 rounded-xl border border-slate-200 bg-slate-50 p-5 dark:border-slate-800 dark:bg-slate-900">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brand-100 text-lg dark:bg-brand-950/40">{item.icon}</span>
+                  <div>
+                    <h3 className="font-semibold text-slate-900 dark:text-white">{item.title}</h3>
+                    <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">{item.desc}</p>
+                  </div>
+                </div>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+      </SectionContainer>
+
+      {/* ════════ SECTION 4: TEAM & PARTNERS ════════ */}
       <SectionContainer className="bg-white py-24 dark:bg-slate-950">
           <ScrollReveal>
             <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
@@ -97,7 +133,7 @@ export default function StoryClient() {
           </ScrollReveal>
       </SectionContainer>
 
-      {/* ════════ SECTION 4: CLOSING CTA ════════ */}
+      {/* ════════ SECTION 5: CLOSING CTA ════════ */}
       <SectionContainer className="bg-slate-50 py-20 dark:bg-slate-900">
         <ScrollReveal>
           <div className="rounded-2xl border border-slate-200 bg-white p-8 text-center dark:border-slate-800 dark:bg-slate-800">

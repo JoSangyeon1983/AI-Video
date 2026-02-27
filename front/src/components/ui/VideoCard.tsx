@@ -8,6 +8,7 @@ import { ensureTrailingSlash } from "@/lib/utils";
 interface VideoCardProps {
   title: string;
   tags: string[];
+  techTags?: string[];
   duration: string;
   thumbnailUrl?: string;
   videoUrl?: string;
@@ -17,7 +18,7 @@ interface VideoCardProps {
 }
 
 /** 포트폴리오 비디오 카드 — Home/Work 공용 */
-export default function VideoCard({ title, tags, duration, thumbnailUrl, videoUrl, variant = "production", href, onClick }: VideoCardProps) {
+export default function VideoCard({ title, tags, techTags, duration, thumbnailUrl, videoUrl, variant = "production", href, onClick }: VideoCardProps) {
   const {
     videoRef,
     isHovering,
@@ -91,6 +92,22 @@ export default function VideoCard({ title, tags, duration, thumbnailUrl, videoUr
             </span>
           ))}
         </div>
+        {techTags && techTags.length > 0 && (
+          <div className="mt-1.5 flex flex-wrap gap-1.5">
+            {techTags.map((tag) => (
+              <span
+                key={tag}
+                className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${
+                  variant === "studio"
+                    ? "bg-secondary-100 text-secondary-700 dark:bg-secondary-950/60 dark:text-secondary-300"
+                    : "bg-brand-100 text-brand-700 dark:bg-brand-950/60 dark:text-brand-300"
+                }`}
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
       </div>
     </>
   );

@@ -153,7 +153,7 @@ export default function HomeClient() {
           </StaggerContainer>
       </SectionContainer>
 
-      {/* ════════ SECTION 3: FEATURED WORK — AI 기술 결과물 쇼케이스 ════════ */}
+      {/* ════════ SECTION 3: FEATURED WORK — AI 기술로 완성한 결과물 ════════ */}
       <SectionContainer className="bg-white py-24 dark:bg-slate-950">
           <ScrollReveal>
             <div className="text-center">
@@ -183,14 +183,9 @@ export default function HomeClient() {
           </StaggerContainer>
 
           <ScrollReveal delay={0.3}>
-            <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+            <div className="mt-10 text-center">
               <a href="/work/" className="inline-flex items-center gap-2 text-sm font-semibold text-slate-400 transition-colors hover:text-white">
                 {t.home.viewAllPortfolio}
-                <IconArrowRight />
-              </a>
-              <span className="hidden text-slate-600 sm:inline">|</span>
-              <a href="/contact/" className="inline-flex items-center gap-2 text-sm font-semibold text-brand-400 transition-colors hover:text-brand-300">
-                {t.home.projectInquiry}
                 <IconArrowRight />
               </a>
             </div>

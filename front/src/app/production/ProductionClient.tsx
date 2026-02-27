@@ -29,38 +29,31 @@ export default function ProductionClient() {
         </Button>
       </PageHero>
 
-      {/* ════════ SECTION 2: FEATURED WORKS ════════ */}
+      {/* ════════ SECTION 2: AI TECH APPLIED ════════ */}
       <SectionContainer className="bg-white py-24 dark:bg-slate-950">
           <ScrollReveal>
             <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
-              {t.production.featuredWorksHeading}
+              {t.production.aiTechHeading}
             </h2>
+            <p className="mt-2 text-lg text-slate-500 dark:text-slate-400">
+              {t.production.aiTechSub}
+            </p>
           </ScrollReveal>
 
-          <StaggerContainer stagger={0.1} className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {featuredWorks.map((work) => (
-              <StaggerItem key={work.id}>
-              <VideoCard
-                title={t.work.titles[work.slug] || work.title}
-                tags={[work.industry, work.style, work.purpose]}
-                duration={work.duration}
-                thumbnailUrl={work.thumbnailUrl}
-                videoUrl={work.videoUrl}
-                variant="production"
-                href={`/work/${work.slug}`}
-              />
+          <StaggerContainer stagger={0.1} className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {t.production.aiTechItems.map((item) => (
+              <StaggerItem key={item.title}>
+                <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6 dark:border-slate-700 dark:bg-slate-900">
+                  <span className="text-3xl">{item.icon}</span>
+                  <h3 className="mt-3 font-semibold text-slate-900 dark:text-white">{item.title}</h3>
+                  <span className="mt-1 inline-block rounded-full bg-brand-50 px-3 py-0.5 text-xs font-bold text-brand-600 dark:bg-brand-950 dark:text-brand-400">
+                    {item.stat}
+                  </span>
+                  <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">{item.desc}</p>
+                </div>
               </StaggerItem>
             ))}
           </StaggerContainer>
-
-          <ScrollReveal delay={0.2}>
-          <div className="mt-10 text-center">
-            <a href="/work/?style=agency" className="inline-flex items-center gap-2 text-sm font-semibold text-brand-600 transition-colors hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300">
-              {t.production.featuredWorksCta}
-              <IconArrowRight />
-            </a>
-          </div>
-          </ScrollReveal>
       </SectionContainer>
 
       {/* ════════ SECTION 3: PARADIGM SHIFT (비교) ════════ */}
@@ -106,8 +99,42 @@ export default function ProductionClient() {
           </div>
       </SectionContainer>
 
-      {/* ════════ SECTION 3: PROCESS & EXPERTS ════════ */}
+      {/* ════ SECTION 4: FEATURED WORKS ════ */}
       <SectionContainer className="bg-white py-24 dark:bg-slate-950">
+          <ScrollReveal>
+            <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
+              {t.production.featuredWorksHeading}
+            </h2>
+          </ScrollReveal>
+
+          <StaggerContainer stagger={0.1} className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {featuredWorks.map((work) => (
+              <StaggerItem key={work.id}>
+              <VideoCard
+                title={t.work.titles[work.slug] || work.title}
+                tags={[work.industry, work.style, work.purpose]}
+                duration={work.duration}
+                thumbnailUrl={work.thumbnailUrl}
+                videoUrl={work.videoUrl}
+                variant="production"
+                href={`/work/${work.slug}`}
+              />
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+
+          <ScrollReveal delay={0.2}>
+          <div className="mt-10 text-center">
+            <a href="/work/?style=agency" className="inline-flex items-center gap-2 text-sm font-semibold text-brand-600 transition-colors hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300">
+              {t.production.featuredWorksCta}
+              <IconArrowRight />
+            </a>
+          </div>
+          </ScrollReveal>
+      </SectionContainer>
+
+      {/* ════ SECTION 5: PROCESS ════ */}
+      <SectionContainer className="bg-slate-50 py-24 dark:bg-slate-900">
           <ScrollReveal>
             <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
               {t.production.processHeading}
@@ -118,7 +145,7 @@ export default function ProductionClient() {
           <StaggerContainer stagger={0.1} className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
             {t.production.steps.map((s) => (
               <StaggerItem key={s.step}>
-              <div className="rounded-xl border border-slate-200 bg-slate-50 p-6 dark:border-slate-800 dark:bg-slate-900">
+              <div className="rounded-xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-slate-900">
                 <span className="text-2xl font-bold text-brand-300 dark:text-brand-600">{s.step}</span>
                 <h3 className="mt-2 font-semibold text-slate-900 dark:text-white">{s.title}</h3>
                 <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">{s.desc}</p>
@@ -126,29 +153,29 @@ export default function ProductionClient() {
               </StaggerItem>
             ))}
           </StaggerContainer>
-
-          {/* Experts */}
-          <div className="mt-20">
-            <ScrollReveal>
-              <h3 className="text-xl font-bold text-slate-900 dark:text-white">{t.production.expertHeading}</h3>
-            </ScrollReveal>
-            <StaggerContainer stagger={0.08} className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
-              {t.production.experts.map((e) => (
-                <StaggerItem key={e.role}>
-                <div className="rounded-xl border border-slate-200 bg-white p-6 text-center dark:border-slate-800 dark:bg-slate-900">
-                  <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-brand-50 dark:bg-brand-950">
-                    <span className="text-lg font-bold text-brand-500 dark:text-brand-400">{e.role[0]}</span>
-                  </div>
-                  <h4 className="mt-3 font-semibold text-slate-900 dark:text-white">{e.role}</h4>
-                  <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">{e.desc}</p>
-                </div>
-                </StaggerItem>
-              ))}
-            </StaggerContainer>
-          </div>
       </SectionContainer>
 
-      {/* ════════ SECTION 5: CLOSING CTA ════════ */}
+      {/* ════ SECTION 6: EXPERTS ════ */}
+      <SectionContainer className="bg-white py-24 dark:bg-slate-950">
+          <ScrollReveal>
+            <h2 className="text-xl font-bold text-slate-900 dark:text-white">{t.production.expertHeading}</h2>
+          </ScrollReveal>
+          <StaggerContainer stagger={0.08} className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
+            {t.production.experts.map((e) => (
+              <StaggerItem key={e.role}>
+              <div className="rounded-xl border border-slate-200 bg-white p-6 text-center dark:border-slate-800 dark:bg-slate-900">
+                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-brand-50 dark:bg-brand-950">
+                  <span className="text-lg font-bold text-brand-500 dark:text-brand-400">{e.role[0]}</span>
+                </div>
+                <h4 className="mt-3 font-semibold text-slate-900 dark:text-white">{e.role}</h4>
+                <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">{e.desc}</p>
+              </div>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+      </SectionContainer>
+
+      {/* ════ SECTION 7: CLOSING CTA ════ */}
       <SectionContainer className="bg-white py-16 dark:bg-slate-950">
         <DetailCTA
           heading={t.production.closingCtaHeading}

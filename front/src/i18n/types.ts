@@ -103,6 +103,8 @@ export interface Translation {
     styles: string[];
     purposes: string[];
     titles: Record<string, string>;
+    /* 적용 기술 */
+    detailTechApplied: string;
     /* 케이스 상세 */
     detailChallenge: string;
     detailApproach: string;
@@ -127,6 +129,10 @@ export interface Translation {
     whyChooseSub: string;
     legacyLabel: string;
     brandLabel: (brand: string) => string;
+    /* AI 기술 적용 섹션 */
+    aiTechHeading: string;
+    aiTechSub: string;
+    aiTechItems: { icon: string; title: string; stat: string; desc: string }[];
     processHeading: string;
     expertHeading: string;
     steps: { step: string; title: string; desc: string }[];
@@ -148,6 +154,10 @@ export interface Translation {
     desc2: string;
     cta: string;
     placeholder: string;
+    /* Engine Advantage 섹션 */
+    engineHeading: string;
+    engineSub: string;
+    engineItems: { icon: string; title: string; desc: string }[];
     featuresHeading: string;
     impactHeading: string;
     impactCta: string;
@@ -155,17 +165,23 @@ export interface Translation {
     impacts: { value: string; label: string; desc: string }[];
     useCasesHeading: string;
     useCasesCta: string;
+    /* 하단 CTA */
+    closingCtaHeading: string;
+    closingCtaLabel: string;
   };
 
   /* ── Insights ── */
   insights: {
     heading: string;
+    sub: string;
     searchPlaceholder: string;
     srHeading: string;
     noResults: string;
     resetFilter: string;
     all: string;
     tags: string[];
+    techHighlightHeading: string;
+    techHighlightItems: { value: string; label: string }[];
     articles: { title: string; summary: string; tag: string; date: string }[];
     detailBackToList: string;
     detailToc: string;
@@ -189,6 +205,9 @@ export interface Translation {
     desc1: string;
     desc2: string;
     timelineHeading: string;
+    techCapHeading: string;
+    techCapStats: { value: string; label: string }[];
+    techCapItems: { icon: string; title: string; desc: string }[];
     teamHeading: string;
     timeline: { year: string; title: string; desc: string }[];
     team: { name: string; role: string; desc: string }[];
@@ -201,6 +220,15 @@ export interface Translation {
 
   /* ── Contact ── */
   contact: {
+    heroHeading: string;
+    heroSub: string;
+    trustStats: { value: string; label: string }[];
+    tabBenefitProduction: string;
+    tabBenefitStudio: string;
+    whyHeading: string;
+    whyItems: string[];
+    processHeading: string;
+    processSteps: { step: string; desc: string }[];
     loading: string;
     successHeading: string;
     successSub: string;

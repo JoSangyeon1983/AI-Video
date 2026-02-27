@@ -19,6 +19,7 @@ export interface WorkItem {
   duration: string;
   videoUrl?: string;
   thumbnailUrl?: string;
+  techTags?: string[];
   caseDetail?: {
     challenge: string;
     approach: string;
@@ -37,4 +38,6 @@ export interface Article {
   featured: boolean;
   /** CTA 유형 — CMS에서 아티클 등록 시 결정 */
   ctaType: "production" | "studio";
+  /** LX Engine 기술 관련 뱃지 — 기술 차별화 강조용 */
+  techBadge?: string;
 }

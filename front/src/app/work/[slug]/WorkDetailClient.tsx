@@ -69,6 +69,34 @@ export default function WorkDetailClient({ slug }: Props) {
           <span className="ml-auto text-sm text-slate-400">{work.duration}</span>
         </div>
 
+        {/* ── 적용된 AI 기술 ── */}
+        {work.techTags && work.techTags.length > 0 && (
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.15 }}
+            className="mt-8 rounded-xl border border-slate-200 bg-slate-50 p-6 dark:border-slate-800 dark:bg-slate-900"
+          >
+            <h2 className="text-sm font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+              {t.work.detailTechApplied}
+            </h2>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {work.techTags.map((tag) => (
+                <span
+                  key={tag}
+                  className={`rounded-full px-3 py-1 text-xs font-semibold ${
+                    ctaType === "studio"
+                      ? "bg-secondary-100 text-secondary-700 dark:bg-secondary-950/40 dark:text-secondary-300"
+                      : "bg-brand-100 text-brand-700 dark:bg-brand-950/40 dark:text-brand-300"
+                  }`}
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </motion.div>
+        )}
+
         {/* ── 케이스 상세 (Challenge → Approach → Result) ── */}
         {caseDetail && (
           <div className="mt-12 space-y-10">

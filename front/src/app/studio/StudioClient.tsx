@@ -5,6 +5,7 @@ import VideoCard from "@/components/ui/VideoCard";
 import PageHero from "@/components/ui/PageHero";
 import Button from "@/components/ui/Button";
 import { IconArrowRight, IconImage } from "@/components/ui/Icon";
+import { DetailCTA } from "@/components/ui/DetailShared";
 import { works } from "@/data/work";
 import { useTranslation } from "@/i18n";
 import ScrollReveal, { StaggerContainer, StaggerItem, ScaleReveal } from "@/components/motion/ScrollReveal";
@@ -58,8 +59,32 @@ export default function StudioClient() {
           </ScaleReveal>
       </SectionContainer>
 
-      {/* ════════ SECTION 2: CORE FEATURES ════════ */}
+      {/* ════════ SECTION 2: ENGINE ADVANTAGE ════════ */}
       <SectionContainer className="bg-slate-50 py-24 dark:bg-slate-900">
+          <ScrollReveal>
+            <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
+              {t.studio.engineHeading}
+            </h2>
+            <p className="mt-2 text-lg text-slate-500 dark:text-slate-400">
+              {t.studio.engineSub}
+            </p>
+          </ScrollReveal>
+
+          <StaggerContainer stagger={0.1} className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {t.studio.engineItems.map((item) => (
+              <StaggerItem key={item.title}>
+                <div className="rounded-2xl border border-slate-200 bg-white p-6 dark:border-slate-700 dark:bg-slate-800">
+                  <span className="text-3xl">{item.icon}</span>
+                  <h3 className="mt-3 font-semibold text-slate-900 dark:text-white">{item.title}</h3>
+                  <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">{item.desc}</p>
+                </div>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+      </SectionContainer>
+
+      {/* ════════ SECTION 3: CORE FEATURES ════════ */}
+      <SectionContainer className="bg-white py-24 dark:bg-slate-950">
           <ScrollReveal>
             <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
               {t.studio.featuresHeading}
@@ -79,8 +104,29 @@ export default function StudioClient() {
           </StaggerContainer>
       </SectionContainer>
 
-      {/* ════════ SECTION 2.5: USE CASES ════════ */}
-      <SectionContainer className="bg-white py-24 dark:bg-slate-950">
+      {/* ════════ SECTION 4: BUSINESS IMPACT ════════ */}
+      <SectionContainer className="bg-slate-50 py-24 dark:bg-slate-900">
+          <ScrollReveal>
+            <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
+              {t.studio.impactHeading}
+            </h2>
+          </ScrollReveal>
+
+          <StaggerContainer stagger={0.12} className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {t.studio.impacts.map((item) => (
+              <StaggerItem key={item.label}>
+              <div className="rounded-xl border border-slate-200 bg-white p-6 text-center dark:border-slate-800 dark:bg-slate-900">
+                <p className="text-4xl font-bold text-secondary-600 dark:text-secondary-400">{item.value}</p>
+                <h3 className="mt-2 font-semibold text-slate-900 dark:text-white">{item.label}</h3>
+                <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">{item.desc}</p>
+              </div>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+      </SectionContainer>
+
+      {/* ════════ SECTION 5: USE CASES ════════ */}
+      <SectionContainer className="bg-slate-50 py-24 dark:bg-slate-900">
           <ScrollReveal>
             <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
               {t.studio.useCasesHeading}
@@ -113,33 +159,14 @@ export default function StudioClient() {
           </ScrollReveal>
       </SectionContainer>
 
-      {/* ════════ SECTION 3: BUSINESS IMPACT ════════ */}
-      <SectionContainer className="bg-white py-24 dark:bg-slate-950">
-          <ScrollReveal>
-            <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
-              {t.studio.impactHeading}
-            </h2>
-          </ScrollReveal>
-
-          <StaggerContainer stagger={0.12} className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {t.studio.impacts.map((item) => (
-              <StaggerItem key={item.label}>
-              <div className="rounded-xl border border-slate-200 bg-slate-50 p-6 text-center dark:border-slate-800 dark:bg-slate-900">
-                <p className="text-4xl font-bold text-secondary-600 dark:text-secondary-400">{item.value}</p>
-                <h3 className="mt-2 font-semibold text-slate-900 dark:text-white">{item.label}</h3>
-                <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">{item.desc}</p>
-              </div>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
-
-          <ScrollReveal delay={0.3}>
-          <div className="mt-12 text-center">
-            <Button as="a" href="/contact/?type=studio" variant="secondary">
-              {t.studio.impactCta}
-            </Button>
-          </div>
-          </ScrollReveal>
+      {/* ════════ SECTION 6: CLOSING CTA ════════ */}
+      <SectionContainer className="bg-white py-16 dark:bg-slate-950">
+        <DetailCTA
+          heading={t.studio.closingCtaHeading}
+          href="/contact/?type=studio"
+          label={t.studio.closingCtaLabel}
+          variant="secondary"
+        />
       </SectionContainer>
 
     </>

@@ -147,6 +147,7 @@ export default function WorkClient() {
                 <VideoCard
                   title={t.work.titles[work.slug] || work.title}
                   tags={[translateTag(work.industry), translateTag(work.style), translateTag(work.purpose)]}
+                  techTags={work.techTags}
                   duration={work.duration}
                   thumbnailUrl={work.thumbnailUrl}
                   videoUrl={work.videoUrl}
