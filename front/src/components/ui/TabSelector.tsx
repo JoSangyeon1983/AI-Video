@@ -32,7 +32,7 @@ export default function TabSelector<T extends string>({
           onClick={() => onChange(opt.value)}
           className={`flex-1 rounded-md px-4 py-2.5 text-sm font-medium transition-colors ${
             selected === opt.value
-              ? "bg-white text-slate-900"
+              ? "bg-white text-slate-900 shadow-sm dark:bg-white/15 dark:text-white"
               : "text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
           }`}
         >

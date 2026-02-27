@@ -77,7 +77,7 @@ export default function InsightsClient() {
               placeholder={t.insights.searchPlaceholder}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full max-w-md rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 placeholder-slate-400 focus:border-slate-500 focus:outline-none focus:ring-1 focus:ring-slate-500 dark:border-slate-700 dark:bg-slate-900 dark:text-white dark:placeholder-slate-500"
+              className="w-full max-w-md rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 placeholder-slate-400 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500 dark:border-slate-700 dark:bg-slate-900 dark:text-white dark:placeholder-slate-500 dark:focus:border-brand-400 dark:focus:ring-brand-400"
             />
           </motion.div>
 
@@ -94,7 +94,7 @@ export default function InsightsClient() {
                 onClick={() => tag.setFromTranslated(tagLabel)}
                 className={`rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${
                   tag.displayValue === tagLabel
-                    ? "bg-white text-slate-900"
+                    ? "bg-white text-slate-900 shadow-sm dark:bg-white/15 dark:text-white"
                     : "bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-400 dark:hover:bg-slate-700"
                 }`}
               >
@@ -152,7 +152,7 @@ export default function InsightsClient() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: idx * 0.12, ease: EASE_OUT }}
                 >
-                <Link href={`/insights/${article.slug}/`} className="block group cursor-pointer overflow-hidden rounded-xl border border-slate-200 bg-slate-50 transition-all hover:shadow-lg dark:border-slate-800 dark:bg-slate-900">
+                <Link href={`/insights/${article.slug}/`} className="block group cursor-pointer overflow-hidden rounded-xl border border-slate-200 bg-slate-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700">
                   <div className="aspect-video bg-gradient-to-br from-slate-800 to-slate-700" />
                   <div className="p-6">
                     <div className="flex items-center gap-2">
@@ -161,7 +161,7 @@ export default function InsightsClient() {
                         <span className="rounded-full bg-brand-100 px-2.5 py-0.5 text-xs font-semibold text-brand-700 dark:bg-brand-950/40 dark:text-brand-300">{article.techBadge}</span>
                       )}
                     </div>
-                    <h3 className="mt-3 text-xl font-bold text-slate-900 group-hover:text-white dark:text-white">{article.title}</h3>
+                    <h3 className="mt-3 text-xl font-bold text-slate-900 transition-colors dark:text-white dark:group-hover:text-brand-400">{article.title}</h3>
                     <p className="mt-2 text-sm leading-relaxed text-slate-500 dark:text-slate-400">{article.summary}</p>
                     <p className="mt-3 text-xs text-slate-400 dark:text-slate-500">{article.date}</p>
                   </div>
@@ -190,7 +190,7 @@ export default function InsightsClient() {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.4, delay: idx * 0.06, ease: EASE_OUT }}
                 >
-                <Link href={`/insights/${article.slug}/`} className="block group flex cursor-pointer gap-6 rounded-xl border border-slate-200 bg-white p-6 transition-all hover:shadow-md dark:border-slate-800 dark:bg-slate-900">
+                <Link href={`/insights/${article.slug}/`} className="block group flex cursor-pointer gap-6 rounded-xl border border-slate-200 bg-white p-6 transition-all duration-300 hover:shadow-md hover:-translate-y-0.5 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700">
                   <div className="hidden h-24 w-36 shrink-0 rounded-lg bg-gradient-to-br from-slate-700 to-slate-800 sm:block" />
                   <div className="flex-1">
                     <div className="flex items-center gap-2">
@@ -200,7 +200,7 @@ export default function InsightsClient() {
                       )}
                       <span className="text-xs text-slate-400 dark:text-slate-500">{article.date}</span>
                     </div>
-                    <h3 className="mt-2 font-semibold text-slate-900 group-hover:text-white dark:text-white">{article.title}</h3>
+                    <h3 className="mt-2 font-semibold text-slate-900 transition-colors dark:text-white dark:group-hover:text-brand-400">{article.title}</h3>
                     <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">{article.summary}</p>
                   </div>
                 </Link>

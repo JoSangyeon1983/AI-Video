@@ -1,8 +1,7 @@
 ﻿"use client";
 
 import Image from "next/image";
-import Link from "next/link";
-import { useVideoPreview } from "@/hooks";
+import { useVideoPreview, useVideoDuration } from "@/hooks";
 import { IconPlay, IconPlayOutline } from "@/components/ui/Icon";
 import { ensureTrailingSlash } from "@/lib/utils";
 
@@ -28,6 +27,9 @@ export default function VideoCard({ title, tags, techTags, duration, thumbnailUr
     handleMouseLeave,
     handleCanPlay,
   } = useVideoPreview({ videoUrl });
+
+  // 영상 메타데이터에서 실제 재생 시간 추출 (fallback: 하드코딩된 duration)
+  const realDuration = useVideoDuration(videoUrl, duration);
 
   const infoBgStyles =
     variant === "studio"
@@ -75,9 +77,11 @@ export default function VideoCard({ title, tags, techTags, duration, thumbnailUr
             <IconPlay className="h-14 w-14 text-white opacity-0 transition-all group-hover:opacity-100 group-hover:scale-110" />
           </div>
         )}
-        <span className="absolute bottom-2 right-2 rounded bg-black/70 px-2 py-0.5 text-xs font-medium text-white">
-          {duration}
-        </span>
+        {realDuration && (
+          <span className="absolute bottom-2 right-2 rounded bg-black/70 px-2 py-0.5 text-xs font-medium text-white">
+            {realDuration}
+          </span>
+        )}
       </div>
 
       {/* 정보 영역 */}
@@ -113,18 +117,18 @@ export default function VideoCard({ title, tags, techTags, duration, thumbnailUr
     </>
   );
 
-  const sharedClassName = "group cursor-pointer overflow-hidden rounded-xl border border-slate-200 bg-slate-50 transition-all hover:shadow-lg dark:border-slate-800 dark:bg-slate-900";
+  const sharedClassName = "group cursor-pointer overflow-hidden rounded-xl border border-slate-200 bg-slate-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700";
 
   if (href) {
     return (
-      <Link
+      <a
         href={ensureTrailingSlash(href)}
         className={`block ${sharedClassName}`}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
         {cardContent}
-      </Link>
+      </a>
     );
   }
 

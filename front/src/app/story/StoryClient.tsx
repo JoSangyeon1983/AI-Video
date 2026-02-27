@@ -123,7 +123,7 @@ export default function StoryClient() {
       </SectionContainer>
 
       {/* ════════ SECTION 5: CLOSING CTA ════════ */}
-      <SectionContainer className="bg-slate-50 py-20 dark:bg-slate-900">
+      <SectionContainer className="bg-slate-50 py-16 dark:bg-slate-900">
         <DetailCTA
           heading={t.story.closingCtaHeading}
           href="/contact/"

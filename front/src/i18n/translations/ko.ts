@@ -41,6 +41,7 @@ export const ko: Translation = {
     linkTerms: "이용약관",
     linkPrivacy: "개인정보처리방침",
     linkFaq: "FAQ",
+    snsHeading: "소셜 미디어",
   },
 
   home: {
@@ -88,9 +89,9 @@ export const ko: Translation = {
     heading: "AI 영상 제작 포트폴리오: 산업별 하이엔드 레퍼런스",
     sub: "LX Engine 기반 AI 기술로 완성한 포트폴리오. 업종/목적/스타일별로 빠르게 탐색하세요.",
     srHeading: "업종 및 스타일별 맞춤 제작 사례",
-    categoryAll: "All",
-    categoryProduction: "Production",
-    categoryStudio: "Studio",
+    categoryAll: "모두보기",
+    categoryProduction: "영상 제작",
+    categoryStudio: "AI 스튜디오",
     categoryProductionDesc: "전문가 제작 하이엔드 프로젝트",
     categoryStudioDesc: "AI 스튜디오로 생성한 영상",
     filterIndustry: "업종",

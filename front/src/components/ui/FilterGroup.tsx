@@ -19,7 +19,7 @@ export default function FilterGroup({ label, options, selected, onChange }: Filt
             onClick={() => onChange(opt)}
             className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${
               selected === opt
-                ? "bg-white text-slate-900"
+                ? "bg-white text-slate-900 shadow-sm dark:bg-white/15 dark:text-white"
                 : "bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-400 dark:hover:bg-slate-700"
             }`}
           >

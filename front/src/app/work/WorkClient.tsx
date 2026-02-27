@@ -97,7 +97,11 @@ export default function WorkClient() {
                   onClick={() => handleCategoryChange(cat.key)}
                   className={`group relative w-28 rounded-lg px-5 py-2.5 text-sm font-semibold transition-all ${
                     selectedCategory === cat.key
-                      ? "bg-white text-slate-900 shadow-md"
+                      ? cat.key === "studio"
+                        ? "bg-secondary-500/15 text-secondary-300 ring-1 ring-secondary-500/30"
+                        : cat.key === "production"
+                        ? "bg-brand-500/15 text-brand-300 ring-1 ring-brand-500/30"
+                        : "bg-white/15 text-white ring-1 ring-white/30 shadow-sm"
                       : "bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
                   }`}
                   title={cat.desc}
@@ -162,7 +166,7 @@ export default function WorkClient() {
       </section>
 
       {/* ════════ CLOSING CTA ════════ */}
-      <section className="bg-white pb-20 dark:bg-slate-950">
+      <section className="bg-white py-16 dark:bg-slate-950">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <DetailCTA
             heading={t.work.closingCtaHeading}

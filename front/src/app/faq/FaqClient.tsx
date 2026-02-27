@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import SectionContainer from "@/components/ui/SectionContainer";
 import JsonLd from "@/components/JsonLd";
 import { IconChevronDown } from "@/components/ui/Icon";
@@ -59,11 +60,21 @@ export default function FaqClient() {
                   />
                 </button>
                 {openIndex === i && (
-                  <div className="px-5 pb-4">
-                    <p className="text-sm leading-relaxed text-slate-500 dark:text-slate-400">
-                      {faq.a}
-                    </p>
-                  </div>
+                  <AnimatePresence>
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                    className="overflow-hidden"
+                  >
+                    <div className="px-5 pb-4">
+                      <p className="text-sm leading-relaxed text-slate-500 dark:text-slate-400">
+                        {faq.a}
+                      </p>
+                    </div>
+                  </motion.div>
+                  </AnimatePresence>
                 )}
               </div>
             ))}

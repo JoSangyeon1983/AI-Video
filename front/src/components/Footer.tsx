@@ -2,12 +2,19 @@
 
 import { useState, useRef } from "react";
 import Link from "next/link";
-import { BRAND_NAME } from "@/data/brand";
+import { BRAND_NAME, SNS_LINKS } from "@/data/brand";
 import { getNavLabelMap } from "@/data/navigation";
 import { useTranslation } from "@/i18n";
 import { useClickOutside } from "@/hooks";
-import { IconChevronDown } from "@/components/ui/Icon";
+import { IconChevronDown, IconYouTube, IconInstagram, IconLinkedIn, IconX } from "@/components/ui/Icon";
 import { ensureTrailingSlash } from "@/lib/utils";
+
+const SNS_ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
+  youtube: IconYouTube,
+  instagram: IconInstagram,
+  linkedin: IconLinkedIn,
+  x: IconX,
+};
 
 const familySites = [
   { name: "CELLBIG", url: "https://cellbig.com/" },
@@ -65,16 +72,6 @@ export default function Footer() {
               <br />{t.footer.desc2}
             </p>
 
-            {/* Trust Badges */}
-            <div className="mt-4 flex gap-4">
-              {t.footer.trustBadges.map((badge) => (
-                <div key={badge.label} className="text-center">
-                  <span className="text-sm font-bold text-brand-500 dark:text-brand-400">{badge.value}</span>
-                  <p className="text-[10px] text-slate-400 dark:text-slate-500">{badge.label}</p>
-                </div>
-              ))}
-            </div>
-
             <address className="mt-4 space-y-1 text-xs not-italic text-slate-400 dark:text-slate-500">
               <p>{t.footer.address}</p>
               <p>{t.footer.bizNumber}</p>
@@ -93,7 +90,7 @@ export default function Footer() {
                   <li key={link.href + link.label}>
                     <Link
                       href={ensureTrailingSlash(link.href)}
-                      className="text-sm text-slate-500 transition-colors hover:text-white dark:text-slate-400 dark:hover:text-white"
+                      className="text-sm text-slate-500 transition-colors hover:text-brand-400 dark:text-slate-400 dark:hover:text-brand-400"
                     >
                       {link.label}
                     </Link>
@@ -110,6 +107,28 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} CELLBIG. All rights reserved.
           </p>
           <div className="flex items-center gap-4">
+            {/* SNS Links */}
+            <div className="flex items-center gap-1">
+              {SNS_LINKS.map((sns) => {
+                const Icon = SNS_ICON_MAP[sns.key];
+                if (!Icon) return null;
+                return (
+                  <a
+                    key={sns.key}
+                    href={sns.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 transition-colors hover:text-brand-400 dark:text-slate-500 dark:hover:text-brand-400"
+                    aria-label={sns.key}
+                  >
+                    <Icon className="h-4 w-4" />
+                  </a>
+                );
+              })}
+            </div>
+
+            <div className="h-4 w-px bg-slate-300 dark:bg-slate-700" />
+
             {/* Family Site 드롭다운 */}
             <div ref={familyRef} className="relative">
               <button

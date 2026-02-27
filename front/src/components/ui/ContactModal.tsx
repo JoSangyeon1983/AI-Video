@@ -1,6 +1,7 @@
 ﻿"use client";
 
 import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import TabSelector from "@/components/ui/TabSelector";
 import ContactFormFields, { type ContactTab } from "@/components/ui/ContactFormFields";
 import { IconCheck, IconClose, IconSpinner } from "@/components/ui/Icon";
@@ -67,6 +68,7 @@ export default function ContactModal({
   /* ── 성공 화면 ── */
   if (submitState === "success") {
     return (
+      <AnimatePresence>
       <Overlay onClose={onClose} ariaLabel={t.contactModal.ariaLabel}>
         <div className="flex flex-col items-center justify-center px-6 py-16 text-center">
           <div className="flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-900/30">
@@ -86,11 +88,13 @@ export default function ContactModal({
           </button>
         </div>
       </Overlay>
+      </AnimatePresence>
     );
   }
 
   /* ── 폼 화면 ── */
   return (
+    <AnimatePresence>
     <Overlay onClose={onClose} ariaLabel={t.contactModal.ariaLabel}>
       {/* Header */}
       <div className="flex items-center justify-between border-b border-slate-200 px-6 py-4 dark:border-slate-700">
@@ -179,6 +183,7 @@ export default function ContactModal({
         </button>
       </div>
     </Overlay>
+    </AnimatePresence>
   );
 }
 
@@ -193,19 +198,27 @@ function Overlay({
   ariaLabel?: string;
 }) {
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.2 }}
       className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
       aria-label={ariaLabel}
     >
-      <div
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95, y: 10 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.95, y: 10 }}
+        transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
         className="relative mx-4 w-full max-w-2xl overflow-hidden rounded-2xl bg-white shadow-2xl dark:bg-slate-900"
         onClick={(e) => e.stopPropagation()}
       >
         {children}
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }

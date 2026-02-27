@@ -42,6 +42,7 @@ export interface Translation {
     linkTerms: string;
     linkPrivacy: string;
     linkFaq: string;
+    snsHeading: string;
   };
 
   /* ── 홈 ── */

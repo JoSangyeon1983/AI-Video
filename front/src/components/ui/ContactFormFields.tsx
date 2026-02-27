@@ -5,7 +5,7 @@ import { IconUpload } from "@/components/ui/Icon";
 
 /* ── 공유 스타일 상수 ── */
 export const TEXTAREA_CLASS =
-  "mt-1 w-full rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 placeholder-slate-400 focus:border-slate-500 focus:outline-none focus:ring-1 focus:ring-slate-500 dark:border-slate-700 dark:bg-slate-900 dark:text-white";
+  "mt-1 w-full rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 placeholder-slate-400 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500 dark:border-slate-700 dark:bg-slate-900 dark:text-white dark:focus:border-brand-400 dark:focus:ring-brand-400";
 
 /* ── 타입 ── */
 export type ContactTab = "production" | "studio";

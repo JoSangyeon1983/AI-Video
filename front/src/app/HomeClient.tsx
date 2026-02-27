@@ -110,7 +110,7 @@ export default function HomeClient() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.7 }}
-              className="mt-16 grid grid-cols-3 gap-6 sm:gap-10"
+              className="mt-16 flex items-center justify-start gap-6 sm:gap-10"
             >
               {trustItems.map((item, i) => (
                 <motion.div
@@ -118,9 +118,10 @@ export default function HomeClient() {
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5, delay: 0.8 + i * 0.15 }}
+                  className={`${i > 0 ? "border-l border-white/20 pl-6 sm:pl-10" : ""}`}
                 >
-                  <p className="text-3xl font-bold text-white">{item.value}</p>
-                  <p className="mt-1 text-sm text-slate-400">{item.label}</p>
+                  <p className="text-2xl font-bold text-white sm:text-3xl lg:text-4xl">{item.value}</p>
+                  <p className="mt-1 text-xs font-medium uppercase tracking-wider text-slate-400 sm:text-sm">{item.label}</p>
                 </motion.div>
               ))}
             </motion.div>
@@ -140,7 +141,7 @@ export default function HomeClient() {
           <StaggerContainer stagger={0.1} className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {t.home.techEdgeItems.map((item) => (
               <StaggerItem key={item.title}>
-                <div className="group relative rounded-2xl border border-slate-200 bg-white p-8 transition-all hover:shadow-xl dark:border-slate-700 dark:bg-slate-800">
+                <div className="group relative rounded-2xl border border-slate-200 bg-white p-8 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 dark:border-slate-700 dark:bg-slate-800 dark:hover:border-slate-600">
                   <span className="text-4xl">{item.icon}</span>
                   <h3 className="mt-4 text-lg font-bold text-slate-900 dark:text-white">{item.title}</h3>
                   <p className="mt-1 text-sm font-semibold text-brand-600 dark:text-brand-400">{item.stat}</p>
@@ -223,7 +224,7 @@ export default function HomeClient() {
               },
             ]).map((card) => (
               <ScrollReveal key={card.href} direction={card.direction} delay={card.delay}>
-                <div className="rounded-2xl border border-slate-200 bg-white p-8 transition-all hover:shadow-xl dark:border-slate-700 dark:bg-slate-800 lg:p-10">
+                <div className="rounded-2xl border border-slate-200 bg-white p-8 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 dark:border-slate-700 dark:bg-slate-800 dark:hover:border-slate-600 lg:p-10">
                   <div className={`mb-6 inline-flex rounded-xl p-3 text-white ${card.iconBg}`}>
                     {card.icon}
                   </div>
@@ -264,13 +265,13 @@ export default function HomeClient() {
           <StaggerContainer stagger={0.12} className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {previewArticles.map((article, idx) => (
               <StaggerItem key={article.id}>
-                <Link href={`/insights/${article.slug}/`} className="group block overflow-hidden rounded-xl border border-slate-200 bg-slate-50 transition-all hover:shadow-lg dark:border-slate-800 dark:bg-slate-900">
+                <Link href={`/insights/${article.slug}/`} className="group block overflow-hidden rounded-xl border border-slate-200 bg-slate-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700">
                   <div className="aspect-video bg-gradient-to-br from-slate-800 to-slate-700" />
                   <div className="p-6">
                     <span className="rounded-full bg-slate-800 px-2.5 py-0.5 text-xs font-medium text-slate-300">
                       {t.insights.articles[idx]?.tag ?? article.tag}
                     </span>
-                    <h3 className="mt-3 font-semibold text-slate-900 group-hover:text-white dark:text-white">
+                    <h3 className="mt-3 font-semibold text-slate-900 transition-colors dark:text-white dark:group-hover:text-brand-400">
                       {t.insights.articles[idx]?.title ?? article.title}
                     </h3>
                     <p className="mt-2 line-clamp-2 text-sm text-slate-500 dark:text-slate-400">

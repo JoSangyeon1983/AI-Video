@@ -41,6 +41,7 @@ export const ja: Translation = {
     linkTerms: "利用規約",
     linkPrivacy: "個人情報保護方針",
     linkFaq: "FAQ",
+    snsHeading: "ソーシャルメディア",
   },
 
   home: {
@@ -88,9 +89,9 @@ export const ja: Translation = {
     heading: "AI映像制作ポートフォリオ：業種別ハイエンドリファレンス",
     sub: "LX Engineベースの AI技術で完成したポートフォリオ。業種・目的・スタイル別にすばやく検索。",
     srHeading: "業種・スタイル別カスタム制作事例",
-    categoryAll: "All",
-    categoryProduction: "Production",
-    categoryStudio: "Studio",
+    categoryAll: "すべて",
+    categoryProduction: "映像制作",
+    categoryStudio: "AIスタジオ",
     categoryProductionDesc: "専門家制作ハイエンドプロジェクト",
     categoryStudioDesc: "AIスタジオ生成映像",
     filterIndustry: "業種",

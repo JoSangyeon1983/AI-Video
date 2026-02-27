@@ -133,7 +133,7 @@ export default function ProductionClient() {
             {t.production.steps.map((s) => (
               <StaggerItem key={s.step}>
               <div className="rounded-xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-slate-900">
-                <span className="text-2xl font-bold text-brand-300 dark:text-brand-600">{s.step}</span>
+                <span className="text-2xl font-bold text-brand-600 dark:text-brand-400">{s.step}</span>
                 <h3 className="mt-2 font-semibold text-slate-900 dark:text-white">{s.title}</h3>
                 <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">{s.desc}</p>
               </div>

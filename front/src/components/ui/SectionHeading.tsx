@@ -39,9 +39,9 @@ interface SectionHeadingProps {
 }
 
 const HEADING_SIZE = {
-  sm: "text-xl font-bold",
-  md: "text-3xl font-bold tracking-tight",
-  lg: "text-3xl font-bold tracking-tight sm:text-4xl",
+  sm: "text-lg sm:text-xl font-bold",
+  md: "text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight",
+  lg: "text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl",
 } as const;
 
 const HEADING_COLOR = {
@@ -71,7 +71,7 @@ export default function SectionHeading({
   const headingCls = `${HEADING_SIZE[size]} ${HEADING_COLOR[theme]}`;
 
   const subtitleParts = [
-    "mt-3 text-lg",
+    "mt-4 text-lg leading-relaxed",
     SUBTITLE_COLOR[theme],
     centered && subtitleMaxWidth ? `mx-auto ${subtitleMaxWidth}` : subtitleMaxWidth ?? "",
   ].filter(Boolean).join(" ");

@@ -39,8 +39,8 @@ export default function FloatingCTA() {
           }`}
           aria-label={t.floatingCta.productionAria}
         >
-          <IconVideoCamera className="h-4 w-4" strokeWidth={2} />
-          <span className="hidden sm:inline">{t.floatingCta.productionLabel}</span>
+          <IconVideoCamera className="h-5 w-5 shrink-0" strokeWidth={2} />
+          <span className="text-xs sm:text-sm">{t.floatingCta.productionLabel}</span>
         </button>
         <button
           onClick={() => openModal("studio")}
@@ -51,8 +51,8 @@ export default function FloatingCTA() {
           }`}
           aria-label={t.floatingCta.studioAria}
         >
-          <IconFlask className="h-4 w-4" strokeWidth={2} />
-          <span className="hidden sm:inline">{t.floatingCta.studioLabel}</span>
+          <IconFlask className="h-5 w-5 shrink-0" strokeWidth={2} />
+          <span className="text-xs sm:text-sm">{t.floatingCta.studioLabel}</span>
         </button>
       </div>
 

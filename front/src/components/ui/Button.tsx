@@ -61,7 +61,7 @@ export default function Button(props: ButtonProps) {
   } = props;
 
   const base =
-    "inline-flex items-center justify-center rounded-lg font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-60";
+    "inline-flex items-center justify-center rounded-lg font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950";
   const classes = [
     base,
     variantStyles[variant],

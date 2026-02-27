@@ -59,7 +59,7 @@ export default function Header() {
               href={ensureTrailingSlash(item.href)}
               className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
                 isActivePath(pathname, item.href)
-                  ? "bg-white/15 text-white"
+                  ? "bg-brand-500/15 text-brand-400 font-semibold"
                   : "text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white"
               }`}
             >
@@ -72,8 +72,8 @@ export default function Header() {
             href="/contact/"
             className={`ml-4 inline-flex items-center gap-1.5 rounded-lg px-5 py-2 text-sm font-semibold transition-all duration-200 ${
               isActivePath(pathname, "/contact")
-                ? "bg-white text-slate-900 shadow-md"
-                : "bg-white text-slate-900 shadow-sm hover:bg-slate-200 hover:shadow-md active:scale-[0.97]"
+                ? "bg-gradient-to-r from-brand-500 to-secondary-500 text-white shadow-md"
+                : "bg-gradient-to-r from-brand-500 to-secondary-500 text-white shadow-sm hover:from-brand-600 hover:to-secondary-600 hover:shadow-md active:scale-[0.97]"
             }`}
           >
             {t.nav.contact}
@@ -108,7 +108,7 @@ export default function Header() {
               onClick={() => setMobileMenuOpen(false)}
               className={`rounded-lg px-4 py-3 text-lg font-medium transition-colors ${
                 pathname === "/"
-                  ? "bg-white/15 text-white"
+                  ? "bg-brand-500/15 text-brand-400 font-semibold"
                   : "text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800"
               }`}
             >
@@ -122,7 +122,7 @@ export default function Header() {
                 onClick={() => setMobileMenuOpen(false)}
                 className={`rounded-lg px-4 py-3 text-lg font-medium transition-colors ${
                   isActivePath(pathname, item.href)
-                    ? "bg-white/15 text-white"
+                    ? "bg-brand-500/15 text-brand-400 font-semibold"
                     : "text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800"
                 }`}
               >

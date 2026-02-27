@@ -41,6 +41,7 @@ export const en: Translation = {
     linkTerms: "Terms of Service",
     linkPrivacy: "Privacy Policy",
     linkFaq: "FAQ",
+    snsHeading: "Follow Us",
   },
 
   home: {
@@ -89,8 +90,8 @@ export const en: Translation = {
     sub: "Portfolio powered by LX Engine AI technology. Browse by industry, style, and purpose.",
     srHeading: "Customized production cases by industry and style",
     categoryAll: "All",
-    categoryProduction: "Production",
-    categoryStudio: "Studio",
+    categoryProduction: "Video Production",
+    categoryStudio: "AI Studio",
     categoryProductionDesc: "Expert-crafted high-end projects",
     categoryStudioDesc: "AI studio generated videos",
     filterIndustry: "Industry",
