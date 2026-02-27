@@ -31,6 +31,7 @@ export interface Translation {
   footer: {
     desc1: string;
     desc2: string;
+    trustBadges: { value: string; label: string }[];
     address: string;
     bizNumber: string;
     ceo: string;

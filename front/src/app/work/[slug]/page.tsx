@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { works } from "@/data/work";
-import { BRAND_NAME } from "@/data/brand";
+import { BRAND_NAME, BASE_URL } from "@/data/brand";
 import JsonLd from "@/components/JsonLd";
 import WorkDetailClient from "./WorkDetailClient";
 
@@ -42,8 +42,8 @@ export default async function WorkDetailPage({ params }: { params: Promise<{ slu
         "@type": "VideoObject",
         name: work.title,
         description: work.caseDetail?.challenge ?? work.title,
-        thumbnailUrl: work.thumbnailUrl ? `https://loomix.ai${work.thumbnailUrl}` : undefined,
-        contentUrl: work.videoUrl ? `https://loomix.ai${work.videoUrl}` : undefined,
+        thumbnailUrl: work.thumbnailUrl ? `${BASE_URL}${work.thumbnailUrl}` : undefined,
+        contentUrl: work.videoUrl ? `${BASE_URL}${work.videoUrl}` : undefined,
         duration: `PT${work.duration.replace(":", "M")}S`,
         uploadDate: "2026-01-15",
         publisher: { "@type": "Organization", name: BRAND_NAME },

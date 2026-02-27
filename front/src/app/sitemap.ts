@@ -1,10 +1,9 @@
 import type { MetadataRoute } from "next";
 import { works } from "@/data/work";
 import { articles } from "@/data/insights";
+import { BASE_URL } from "@/data/brand";
 
 export const dynamic = "force-static";
-
-const BASE_URL = "https://loomix.ai";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date().toISOString();

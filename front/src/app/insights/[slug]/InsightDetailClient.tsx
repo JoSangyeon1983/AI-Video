@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { articles } from "@/data/insights";
 import { useTranslation } from "@/i18n";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { IconArrowLeft } from "@/components/ui/Icon";
 import { NotFound, DetailCTA } from "@/components/ui/DetailShared";
@@ -41,10 +42,10 @@ export default function InsightDetailClient({ slug }: Props) {
       <div className="bg-gradient-to-b from-slate-900 to-slate-950 pt-24 pb-12">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           {/* 뒤로 가기 */}
-          <a href="/insights/" className="mb-6 inline-flex items-center gap-1 text-sm font-medium text-slate-400 hover:text-white">
+          <Link href="/insights/" className="mb-6 inline-flex items-center gap-1 text-sm font-medium text-slate-400 hover:text-white">
             <IconArrowLeft />
             {t.insights.detailBackToList}
-          </a>
+          </Link>
 
           {/* 태그 & 날짜 */}
           <motion.div
@@ -141,7 +142,7 @@ export default function InsightDetailClient({ slug }: Props) {
                 const rTitle = t.insights.articles[rIdx]?.title ?? r.title;
                 const rTag = t.insights.articles[rIdx]?.tag ?? r.tag;
                 return (
-                  <a
+                  <Link
                     key={r.slug}
                     href={`/insights/${r.slug}/`}
                     className="block group rounded-xl border border-slate-200 bg-white p-5 transition-all hover:shadow-md dark:border-slate-800 dark:bg-slate-900"
@@ -152,7 +153,7 @@ export default function InsightDetailClient({ slug }: Props) {
                     <h4 className="mt-3 font-semibold text-slate-900 group-hover:text-white dark:text-white">
                       {rTitle}
                     </h4>
-                  </a>
+                  </Link>
                 );
               })}
             </div>

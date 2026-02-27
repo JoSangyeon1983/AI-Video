@@ -1,33 +1,31 @@
 ﻿"use client";
 
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import { articles as rawArticles, tags as koTags } from "@/data/insights";
-import Button from "@/components/ui/Button";
+import { DetailCTA } from "@/components/ui/DetailShared";
+import Link from "next/link";
 import { useTranslation } from "@/i18n";
+import { useTranslatedFilter } from "@/hooks";
 import { motion, AnimatePresence } from "framer-motion";
+import { EASE_OUT } from "@/lib/motion";
 
 export default function InsightsClient() {
   const { t } = useTranslation();
-  const trTags = t.insights.tags;
 
-  const [selectedTag, setSelectedTag] = useState<string>(koTags[0]);
+  const tag = useTranslatedFilter(koTags, t.insights.tags);
   const [searchQuery, setSearchQuery] = useState("");
-
-  // Tag mapping: translated → Korean
-  const tagKoMap = useMemo(() => Object.fromEntries(trTags.map((tr, i) => [tr, koTags[i]])), [trTags]);
-  const displayTag = trTags[(koTags as readonly string[]).indexOf(selectedTag)] ?? trTags[0];
 
   // Build translated articles
   const articles = rawArticles.map((a, i) => ({
     ...a,
     title: t.insights.articles[i]?.title ?? a.title,
     summary: t.insights.articles[i]?.summary ?? a.summary,
-    displayTag: trTags[(koTags as readonly string[]).indexOf(a.tag)] ?? a.tag,
+    displayTag: tag.translateTag(a.tag),
     techBadge: a.techBadge,
   }));
 
   const filtered = articles.filter((a) => {
-    if (selectedTag !== koTags[0] && a.tag !== selectedTag) return false;
+    if (tag.selectedKo !== koTags[0] && a.tag !== tag.selectedKo) return false;
     if (searchQuery) {
       const q = searchQuery.toLowerCase();
       const matchTitle = a.title.toLowerCase().includes(q);
@@ -43,7 +41,7 @@ export default function InsightsClient() {
   const rest = filtered.slice(featured.length);
 
   // 필터 변경 시 즉시 animate 되도록 키 생성
-  const filterKey = `${selectedTag}-${searchQuery}`;
+  const filterKey = `${tag.selectedKo}-${searchQuery}`;
 
   return (
     <>
@@ -53,7 +51,7 @@ export default function InsightsClient() {
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+            transition={{ duration: 0.6, ease: EASE_OUT }}
             className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white"
           >
             {t.insights.heading}
@@ -90,17 +88,17 @@ export default function InsightsClient() {
             transition={{ duration: 0.5, delay: 0.25 }}
             className="mt-6 flex flex-wrap gap-2"
           >
-            {trTags.map((tag) => (
+            {t.insights.tags.map((tagLabel) => (
               <button
-                key={tag}
-                onClick={() => setSelectedTag(tagKoMap[tag] ?? koTags[0])}
+                key={tagLabel}
+                onClick={() => tag.setFromTranslated(tagLabel)}
                 className={`rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${
-                  displayTag === tag
+                  tag.displayValue === tagLabel
                     ? "bg-white text-slate-900"
                     : "bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-400 dark:hover:bg-slate-700"
                 }`}
               >
-                {tag}
+                {tagLabel}
               </button>
             ))}
           </motion.div>
@@ -144,7 +142,7 @@ export default function InsightsClient() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
+              transition={{ duration: 0.35, ease: EASE_OUT }}
               className={`mt-8 grid gap-6 ${featured.length >= 2 ? 'lg:grid-cols-2' : 'lg:grid-cols-1 max-w-3xl'}`}
             >
               {featured.map((article, idx) => (
@@ -152,9 +150,9 @@ export default function InsightsClient() {
                   key={article.id}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: idx * 0.12, ease: [0.25, 0.1, 0.25, 1] }}
+                  transition={{ duration: 0.4, delay: idx * 0.12, ease: EASE_OUT }}
                 >
-                <a href={`/insights/${article.slug}/`} className="block group cursor-pointer overflow-hidden rounded-xl border border-slate-200 bg-slate-50 transition-all hover:shadow-lg dark:border-slate-800 dark:bg-slate-900">
+                <Link href={`/insights/${article.slug}/`} className="block group cursor-pointer overflow-hidden rounded-xl border border-slate-200 bg-slate-50 transition-all hover:shadow-lg dark:border-slate-800 dark:bg-slate-900">
                   <div className="aspect-video bg-gradient-to-br from-slate-800 to-slate-700" />
                   <div className="p-6">
                     <div className="flex items-center gap-2">
@@ -167,7 +165,7 @@ export default function InsightsClient() {
                     <p className="mt-2 text-sm leading-relaxed text-slate-500 dark:text-slate-400">{article.summary}</p>
                     <p className="mt-3 text-xs text-slate-400 dark:text-slate-500">{article.date}</p>
                   </div>
-                </a>
+                </Link>
                 </motion.div>
               ))}
             </motion.div>
@@ -190,9 +188,9 @@ export default function InsightsClient() {
                   key={article.id}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.4, delay: idx * 0.06, ease: [0.25, 0.1, 0.25, 1] }}
+                  transition={{ duration: 0.4, delay: idx * 0.06, ease: EASE_OUT }}
                 >
-                <a href={`/insights/${article.slug}/`} className="block group flex cursor-pointer gap-6 rounded-xl border border-slate-200 bg-white p-6 transition-all hover:shadow-md dark:border-slate-800 dark:bg-slate-900">
+                <Link href={`/insights/${article.slug}/`} className="block group flex cursor-pointer gap-6 rounded-xl border border-slate-200 bg-white p-6 transition-all hover:shadow-md dark:border-slate-800 dark:bg-slate-900">
                   <div className="hidden h-24 w-36 shrink-0 rounded-lg bg-gradient-to-br from-slate-700 to-slate-800 sm:block" />
                   <div className="flex-1">
                     <div className="flex items-center gap-2">
@@ -205,7 +203,7 @@ export default function InsightsClient() {
                     <h3 className="mt-2 font-semibold text-slate-900 group-hover:text-white dark:text-white">{article.title}</h3>
                     <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">{article.summary}</p>
                   </div>
-                </a>
+                </Link>
                 </motion.div>
               ))}
             </motion.div>
@@ -216,7 +214,7 @@ export default function InsightsClient() {
             <div className="mt-16 text-center">
               <p className="text-slate-500 dark:text-slate-400">{t.insights.noResults}</p>
               <button
-                onClick={() => { setSelectedTag(koTags[0]); setSearchQuery(""); }}
+                onClick={() => { tag.reset(); setSearchQuery(""); }}
                 className="mt-4 text-sm font-semibold text-slate-400 underline underline-offset-4 hover:text-white"
               >
                 {t.insights.resetFilter}
@@ -225,12 +223,13 @@ export default function InsightsClient() {
           )}
 
           {/* Closing CTA */}
-          <div className="mt-16 rounded-2xl border border-slate-200 bg-slate-50 p-8 text-center dark:border-slate-800 dark:bg-slate-900">
-            <h3 className="text-lg font-bold text-slate-900 dark:text-white">{t.insights.closingCtaHeading}</h3>
-            <Button as="a" href="/contact/" variant="white" className="mt-4">
-              {t.insights.closingCtaLabel}
-            </Button>
-          </div>
+          <DetailCTA
+            heading={t.insights.closingCtaHeading}
+            href="/contact/"
+            label={t.insights.closingCtaLabel}
+            variant="white"
+            className="mt-16"
+          />
         </div>
       </section>
     </>

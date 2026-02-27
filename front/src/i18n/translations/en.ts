@@ -24,8 +24,13 @@ export const en: Translation = {
   },
 
   footer: {
-    desc1: "High-end AI video production agency",
-    desc2: "& AI video generation studio",
+    desc1: "Powered by our in-house AI engine (LX Engine)",
+    desc2: "Video production agency & SaaS solution",
+    trustBadges: [
+      { value: "500+", label: "Projects" },
+      { value: "96%", label: "Brand consistency" },
+      { value: "6 min", label: "30-sec video gen" },
+    ],
     address: "#903, 24, Gasan digital 2-ro, Geumcheon-gu, Seoul, Republic of Korea",
     bizNumber: "Business Reg. No: 110-81-67253",
     ceo: "CEO: Lee Sang-Ro",

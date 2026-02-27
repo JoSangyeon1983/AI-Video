@@ -1,6 +1,7 @@
 ﻿"use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useVideoPreview } from "@/hooks";
 import { IconPlay, IconPlayOutline } from "@/components/ui/Icon";
 import { ensureTrailingSlash } from "@/lib/utils";
@@ -116,14 +117,14 @@ export default function VideoCard({ title, tags, techTags, duration, thumbnailUr
 
   if (href) {
     return (
-      <a
+      <Link
         href={ensureTrailingSlash(href)}
         className={`block ${sharedClassName}`}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
         {cardContent}
-      </a>
+      </Link>
     );
   }
 

@@ -1,5 +1,13 @@
 import type { WorkItem } from "@/types";
 
+/* ── 서비스 판별 상수 ── */
+export const STUDIO_STYLE = "AI 아바타" as const;
+
+/** style 값으로 Production/Studio 서비스 유형 판별 */
+export function getServiceVariant(style: string): "production" | "studio" {
+  return style === STUDIO_STYLE ? "studio" : "production";
+}
+
 /* ── 필터 옵션 ── */
 export const industries = ["전체", "커머스", "뷰티", "IT", "제조", "금융", "패션", "식음료"] as const;
 export const styles = ["전체", "실사", "3D", "모션그래픽", "AI 아바타"] as const;

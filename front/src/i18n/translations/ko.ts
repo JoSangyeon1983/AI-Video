@@ -24,8 +24,13 @@ export const ko: Translation = {
   },
 
   footer: {
-    desc1: "하이엔드 AI 영상 제작 에이전시",
-    desc2: "및 AI 영상 생성 스튜디오",
+    desc1: "자체 AI 엔진(LX Engine) 기반",
+    desc2: "영상 제작 에이전시 및 SaaS 솔루션",
+    trustBadges: [
+      { value: "500+", label: "프로젝트" },
+      { value: "96%", label: "브랜드 일관성" },
+      { value: "6분", label: "30초 영상 생성" },
+    ],
     address: "서울특별시 금천구 가산디지털2로 24 가산YPP아르센타워 903호 셀빅",
     bizNumber: "사업자등록번호: 110-81-67253",
     ceo: "대표: 이상노",

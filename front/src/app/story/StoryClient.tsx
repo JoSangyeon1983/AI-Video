@@ -2,8 +2,9 @@
 
 import SectionContainer from "@/components/ui/SectionContainer";
 import PageHero from "@/components/ui/PageHero";
-import Button from "@/components/ui/Button";
+import { DetailCTA } from "@/components/ui/DetailShared";
 import ScrollReveal, { StaggerContainer, StaggerItem } from "@/components/motion/ScrollReveal";
+import SectionHeading from "@/components/ui/SectionHeading";
 import { useTranslation } from "@/i18n";
 
 export default function StoryClient() {
@@ -19,11 +20,7 @@ export default function StoryClient() {
 
       {/* ════════ SECTION 2: TIMELINE ════════ */}
       <SectionContainer className="bg-slate-50 py-24 dark:bg-slate-900">
-          <ScrollReveal>
-            <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
-              {t.story.timelineHeading}
-            </h2>
-          </ScrollReveal>
+          <SectionHeading title={t.story.timelineHeading} />
 
           <div className="relative mt-12">
             <div className="absolute left-4 top-0 h-full w-0.5 bg-slate-700 sm:left-1/2 sm:-translate-x-px" />
@@ -57,11 +54,7 @@ export default function StoryClient() {
 
       {/* ════════ SECTION 3: TECH CAPABILITIES ════════ */}
       <SectionContainer className="bg-white py-24 dark:bg-slate-950">
-          <ScrollReveal>
-            <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
-              {t.story.techCapHeading}
-            </h2>
-          </ScrollReveal>
+          <SectionHeading title={t.story.techCapHeading} />
 
           {/* Stats */}
           <StaggerContainer stagger={0.08} className="mt-12 grid grid-cols-2 gap-6 sm:grid-cols-4">
@@ -93,11 +86,7 @@ export default function StoryClient() {
 
       {/* ════════ SECTION 4: TEAM & PARTNERS ════════ */}
       <SectionContainer className="bg-white py-24 dark:bg-slate-950">
-          <ScrollReveal>
-            <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
-              {t.story.teamHeading}
-            </h2>
-          </ScrollReveal>
+          <SectionHeading title={t.story.teamHeading} />
 
           <StaggerContainer stagger={0.1} className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {t.story.team.map((member) => (
@@ -135,14 +124,13 @@ export default function StoryClient() {
 
       {/* ════════ SECTION 5: CLOSING CTA ════════ */}
       <SectionContainer className="bg-slate-50 py-20 dark:bg-slate-900">
-        <ScrollReveal>
-          <div className="rounded-2xl border border-slate-200 bg-white p-8 text-center dark:border-slate-800 dark:bg-slate-800">
-            <h3 className="text-lg font-bold text-slate-900 dark:text-white">{t.story.closingCtaHeading}</h3>
-            <Button as="a" href="/contact/" variant="white" className="mt-4">
-              {t.story.closingCtaLabel}
-            </Button>
-          </div>
-        </ScrollReveal>
+        <DetailCTA
+          heading={t.story.closingCtaHeading}
+          href="/contact/"
+          label={t.story.closingCtaLabel}
+          variant="white"
+          className="mt-0"
+        />
       </SectionContainer>
     </>
   );

@@ -5,7 +5,8 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
-import { BRAND_NAME, BRAND_DESCRIPTION } from "@/data/brand";
+import JsonLd from "@/components/JsonLd";
+import { BRAND_NAME, BRAND_DESCRIPTION, BASE_URL } from "@/data/brand";
 import { I18nProvider } from "@/i18n";
 
 const geistSans = Geist({
@@ -19,7 +20,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://loomix.ai"),
+  metadataBase: new URL(BASE_URL),
   title: {
     default: `${BRAND_NAME} | ${BRAND_DESCRIPTION}`,
     template: `%s | ${BRAND_NAME}`,
@@ -30,7 +31,7 @@ export const metadata: Metadata = {
     icon: "/images/favicon.ico",
   },
   alternates: {
-    canonical: "https://loomix.ai",
+    canonical: BASE_URL,
   },
   openGraph: {
     type: "website",
@@ -56,10 +57,68 @@ export default function RootLayout({
     <html lang="ko" className="dark">
       <head>
         {/* hreflang for i18n — 향후 URL 기반 로케일 라우팅 도입 시 href 동적 생성 필요 */}
-        <link rel="alternate" hrefLang="ko" href="https://loomix.ai/" />
-        <link rel="alternate" hrefLang="en" href="https://loomix.ai/" />
-        <link rel="alternate" hrefLang="ja" href="https://loomix.ai/" />
-        <link rel="alternate" hrefLang="x-default" href="https://loomix.ai/" />
+        <link rel="alternate" hrefLang="ko" href={`${BASE_URL}/`} />
+        <link rel="alternate" hrefLang="en" href={`${BASE_URL}/`} />
+        <link rel="alternate" hrefLang="ja" href={`${BASE_URL}/`} />
+        <link rel="alternate" hrefLang="x-default" href={`${BASE_URL}/`} />
+
+        {/* Organization JSON-LD — SEO/AEO/GEO: AI 기술력 + 서비스 구조화 */}
+        <JsonLd
+          data={{
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            name: BRAND_NAME,
+            url: BASE_URL,
+            logo: `${BASE_URL}/images/logo.png`,
+            description:
+              "자체 AI 엔진(LX Engine)을 기반으로 하이엔드 AI 영상 제작 에이전시 서비스와 기업용 AI 영상 생성 SaaS 솔루션을 제공합니다.",
+            knowsAbout: [
+              "AI Video Generation",
+              "LX Engine",
+              "LoRA Fine-Tuning",
+              "AI 영상 제작",
+              "Brand-Tuned AI Video",
+              "Enterprise AI SaaS",
+            ],
+            makesOffer: [
+              {
+                "@type": "Offer",
+                itemOffered: {
+                  "@type": "Service",
+                  name: "Loomix AI Production",
+                  description:
+                    "LX Engine 기반 하이엔드 AI 영상 제작 에이전시 서비스",
+                },
+              },
+              {
+                "@type": "Offer",
+                itemOffered: {
+                  "@type": "SoftwareApplication",
+                  name: "Loomix AI Studio",
+                  applicationCategory: "BusinessApplication",
+                  description:
+                    "기업용 AI 영상 생성 SaaS — LoRA 브랜드 튜닝, 6분 내 30초 영상 생성",
+                },
+              },
+            ],
+            parentOrganization: {
+              "@type": "Organization",
+              name: "CELLBIG",
+              url: "https://www.cellbig.com",
+            },
+            address: {
+              "@type": "PostalAddress",
+              addressLocality: "Seoul",
+              addressCountry: "KR",
+            },
+            contactPoint: {
+              "@type": "ContactPoint",
+              contactType: "sales",
+              url: `${BASE_URL}/contact`,
+              availableLanguage: ["Korean", "English", "Japanese"],
+            },
+          }}
+        />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}

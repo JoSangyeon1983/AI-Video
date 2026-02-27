@@ -1,7 +1,8 @@
 ﻿"use client";
 
-import { works } from "@/data/work";
+import { works, getServiceVariant } from "@/data/work";
 import { useTranslation } from "@/i18n";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { IconArrowLeft } from "@/components/ui/Icon";
 import { NotFound, DetailCTA } from "@/components/ui/DetailShared";
@@ -20,7 +21,7 @@ export default function WorkDetailClient({ slug }: Props) {
   }
 
   const title = t.work.titles[work.slug] || work.title;
-  const ctaType = work.style === "AI 아바타" ? "studio" : "production";
+  const ctaType = getServiceVariant(work.style);
   const caseDetail = t.work.caseDetails?.[work.slug] || work.caseDetail;
 
   return (
@@ -46,10 +47,10 @@ export default function WorkDetailClient({ slug }: Props) {
       {/* ── 콘텐츠 ── */}
       <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
         {/* 뒤로 가기 */}
-        <a href="/work/" className="mb-6 inline-flex items-center gap-1 text-sm font-medium text-slate-400 hover:text-white">
+        <Link href="/work/" className="mb-6 inline-flex items-center gap-1 text-sm font-medium text-slate-400 hover:text-white">
           <IconArrowLeft />
           {t.work.detailBackToList}
-        </a>
+        </Link>
 
         {/* 제목 & 태그 */}
         <motion.h1

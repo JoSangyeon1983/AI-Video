@@ -24,8 +24,13 @@ export const ja: Translation = {
   },
 
   footer: {
-    desc1: "ハイエンドAI映像制作エージェンシー",
-    desc2: "＆AI映像生成スタジオ",
+    desc1: "自社AIエンジン（LX Engine）搭載",
+    desc2: "映像制作エージェンシー＆SaaSソリューション",
+    trustBadges: [
+      { value: "500+", label: "プロジェクト" },
+      { value: "96%", label: "ブランド一貫性" },
+      { value: "6分", label: "30秒映像生成" },
+    ],
     address: "ソウル特別市衿川区加山デジタル2路24 加山YPPアルセンタワー903号 セルビッグ",
     bizNumber: "事業者登録番号: 110-81-67253",
     ceo: "CEO: Lee Sang-Ro",

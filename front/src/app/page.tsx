@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { BRAND_NAME, BRAND_DESCRIPTION } from "@/data/brand";
+import { BRAND_NAME, BRAND_DESCRIPTION, BASE_URL } from "@/data/brand";
 import JsonLd from "@/components/JsonLd";
 import HomeClient from "./HomeClient";
 
 export const metadata: Metadata = {
   title: `${BRAND_NAME} | ${BRAND_DESCRIPTION}`,
   description: "AI를 이용한 하이엔드 영상 제작 에이전시 서비스와 기업용 AI 영상 생성 SaaS 솔루션을 제공합니다.",
-  alternates: { canonical: "https://loomix.ai/" },
+  alternates: { canonical: `${BASE_URL}/` },
   openGraph: {
     title: `${BRAND_NAME} | ${BRAND_DESCRIPTION}`,
     description: "AI 하이엔드 영상 제작 에이전시 & 기업용 AI 영상 생성 솔루션",
@@ -18,7 +18,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: BRAND_NAME,
-  url: "https://loomix.ai",
+  url: BASE_URL,
   description: BRAND_DESCRIPTION,
   sameAs: [],
   contactPoint: {

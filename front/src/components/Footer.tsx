@@ -1,6 +1,7 @@
 ﻿"use client";
 
 import { useState, useRef } from "react";
+import Link from "next/link";
 import { BRAND_NAME } from "@/data/brand";
 import { getNavLabelMap } from "@/data/navigation";
 import { useTranslation } from "@/i18n";
@@ -56,13 +57,24 @@ export default function Footer() {
         <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
           {/* 회사 정보 */}
           <div className="col-span-2 md:col-span-1">
-            <a href="/" className="text-xl font-bold text-slate-900 dark:text-white">
+            <Link href="/" className="text-xl font-bold text-slate-900 dark:text-white">
               {BRAND_NAME}
-            </a>
+            </Link>
             <p className="mt-3 text-sm leading-relaxed text-slate-500 dark:text-slate-400">
               {t.footer.desc1}
               <br />{t.footer.desc2}
             </p>
+
+            {/* Trust Badges */}
+            <div className="mt-4 flex gap-4">
+              {t.footer.trustBadges.map((badge) => (
+                <div key={badge.label} className="text-center">
+                  <span className="text-sm font-bold text-brand-500 dark:text-brand-400">{badge.value}</span>
+                  <p className="text-[10px] text-slate-400 dark:text-slate-500">{badge.label}</p>
+                </div>
+              ))}
+            </div>
+
             <address className="mt-4 space-y-1 text-xs not-italic text-slate-400 dark:text-slate-500">
               <p>{t.footer.address}</p>
               <p>{t.footer.bizNumber}</p>
@@ -79,12 +91,12 @@ export default function Footer() {
               <ul className="mt-3 space-y-2">
                 {group.links.map((link) => (
                   <li key={link.href + link.label}>
-                    <a
+                    <Link
                       href={ensureTrailingSlash(link.href)}
                       className="text-sm text-slate-500 transition-colors hover:text-white dark:text-slate-400 dark:hover:text-white"
                     >
                       {link.label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -124,17 +136,6 @@ export default function Footer() {
                 </div>
               )}
             </div>
-            {/* SNS 링크 플레이스홀더 */}
-            {["YouTube", "Instagram", "LinkedIn"].map((sns) => (
-              <a
-                key={sns}
-                href="#"
-                className="text-xs text-slate-400 transition-colors hover:text-white dark:text-slate-500 dark:hover:text-white"
-                aria-label={sns}
-              >
-                {sns}
-              </a>
-            ))}
           </div>
         </div>
       </div>

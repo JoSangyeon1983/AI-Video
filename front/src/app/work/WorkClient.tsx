@@ -1,12 +1,14 @@
 ﻿"use client";
 
 import { useState, useMemo } from "react";
-import { works, industries as koIndustries, styles as koStyles, purposes as koPurposes } from "@/data/work";
+import { works, industries as koIndustries, styles as koStyles, purposes as koPurposes, STUDIO_STYLE, getServiceVariant } from "@/data/work";
 import VideoCard from "@/components/ui/VideoCard";
 import FilterGroup from "@/components/ui/FilterGroup";
-import Button from "@/components/ui/Button";
+import { DetailCTA } from "@/components/ui/DetailShared";
 import { useTranslation } from "@/i18n";
+import { useTranslatedFilter } from "@/hooks";
 import { motion, AnimatePresence } from "framer-motion";
+import { EASE_OUT } from "@/lib/motion";
 
 type CategoryType = "all" | "production" | "studio";
 
@@ -14,33 +16,20 @@ export default function WorkClient() {
   const { t } = useTranslation();
 
   const [selectedCategory, setSelectedCategory] = useState<CategoryType>("all");
-  const [selectedIndustry, setSelectedIndustry] = useState<string>(koIndustries[0]);
-  const [selectedStyle, setSelectedStyle] = useState<string>(koStyles[0]);
-  const [selectedPurpose, setSelectedPurpose] = useState<string>(koPurposes[0]);
 
-  // Korean → translated display mapping
-  const trIndustries = t.work.industries;
-  const trStyles = t.work.styles;
-  const trPurposes = t.work.purposes;
-
-  const industryKoMap = useMemo(() => Object.fromEntries(trIndustries.map((tr, i) => [tr, koIndustries[i]])), [trIndustries]);
-  const styleKoMap = useMemo(() => Object.fromEntries(trStyles.map((tr, i) => [tr, koStyles[i]])), [trStyles]);
-  const purposeKoMap = useMemo(() => Object.fromEntries(trPurposes.map((tr, i) => [tr, koPurposes[i]])), [trPurposes]);
+  // i18n 필터 매핑 (useTranslatedFilter 훅으로 통합)
+  const industry = useTranslatedFilter(koIndustries, t.work.industries);
+  const style = useTranslatedFilter(koStyles, t.work.styles);
+  const purpose = useTranslatedFilter(koPurposes, t.work.purposes);
 
   // Category translation for card tags
-  const categoryMap = useMemo(() => {
+  const translateTag = useMemo(() => {
     const m = new Map<string, string>();
-    koIndustries.forEach((ko, i) => m.set(ko, trIndustries[i]));
-    koStyles.forEach((ko, i) => m.set(ko, trStyles[i]));
-    koPurposes.forEach((ko, i) => m.set(ko, trPurposes[i]));
-    return m;
-  }, [trIndustries, trStyles, trPurposes]);
-
-  const translateTag = (tag: string) => categoryMap.get(tag) || tag;
-
-  const displayIndustry = trIndustries[(koIndustries as readonly string[]).indexOf(selectedIndustry)] ?? trIndustries[0];
-  const displayStyle = trStyles[(koStyles as readonly string[]).indexOf(selectedStyle)] ?? trStyles[0];
-  const displayPurpose = trPurposes[(koPurposes as readonly string[]).indexOf(selectedPurpose)] ?? trPurposes[0];
+    koIndustries.forEach((ko, i) => m.set(ko, t.work.industries[i]));
+    koStyles.forEach((ko, i) => m.set(ko, t.work.styles[i]));
+    koPurposes.forEach((ko, i) => m.set(ko, t.work.purposes[i]));
+    return (tag: string) => m.get(tag) || tag;
+  }, [t.work.industries, t.work.styles, t.work.purposes]);
 
   // Category filter options
   const categoryOptions: { key: CategoryType; label: string; desc: string }[] = [
@@ -51,22 +40,22 @@ export default function WorkClient() {
 
   const filteredWorks = works.filter((w) => {
     // 1단계: 카테고리 필터 (Service = AI 아바타 제외, Solution = AI 아바타만)
-    if (selectedCategory === "production" && w.style === "AI 아바타") return false;
-    if (selectedCategory === "studio" && w.style !== "AI 아바타") return false;
+    if (selectedCategory === "production" && w.style === STUDIO_STYLE) return false;
+    if (selectedCategory === "studio" && w.style !== STUDIO_STYLE) return false;
 
     // 2단계: 기존 필터
-    if (selectedIndustry !== koIndustries[0] && w.industry !== selectedIndustry) return false;
-    if (selectedStyle !== koStyles[0] && w.style !== selectedStyle) return false;
-    if (selectedPurpose !== koPurposes[0] && w.purpose !== selectedPurpose) return false;
+    if (industry.selectedKo !== koIndustries[0] && w.industry !== industry.selectedKo) return false;
+    if (style.selectedKo !== koStyles[0] && w.style !== style.selectedKo) return false;
+    if (purpose.selectedKo !== koPurposes[0] && w.purpose !== purpose.selectedKo) return false;
     return true;
   });
 
   // 카테고리 변경 시 하위 필터 초기화
   const handleCategoryChange = (cat: CategoryType) => {
     setSelectedCategory(cat);
-    setSelectedIndustry(koIndustries[0]);
-    setSelectedStyle(koStyles[0]);
-    setSelectedPurpose(koPurposes[0]);
+    industry.reset();
+    style.reset();
+    purpose.reset();
   };
 
   return (
@@ -77,7 +66,7 @@ export default function WorkClient() {
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+            transition={{ duration: 0.6, ease: EASE_OUT }}
             className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white"
           >
             {t.work.heading}
@@ -85,7 +74,7 @@ export default function WorkClient() {
           <motion.p
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.15, ease: [0.25, 0.1, 0.25, 1] }}
+            transition={{ duration: 0.6, delay: 0.15, ease: EASE_OUT }}
             className="mt-3 text-lg text-slate-500 dark:text-slate-400"
           >
             {t.work.sub}
@@ -120,9 +109,9 @@ export default function WorkClient() {
 
             {/* 2단계: 세부 필터 (업종 / 스타일 / 목적) */}
             <div className="mt-4 flex flex-wrap gap-6">
-              <FilterGroup label={t.work.filterIndustry} options={trIndustries} selected={displayIndustry} onChange={(v) => setSelectedIndustry(industryKoMap[v] ?? koIndustries[0])} />
-              <FilterGroup label={t.work.filterStyle} options={trStyles} selected={displayStyle} onChange={(v) => setSelectedStyle(styleKoMap[v] ?? koStyles[0])} />
-              <FilterGroup label={t.work.filterPurpose} options={trPurposes} selected={displayPurpose} onChange={(v) => setSelectedPurpose(purposeKoMap[v] ?? koPurposes[0])} />
+              <FilterGroup label={t.work.filterIndustry} options={t.work.industries} selected={industry.displayValue} onChange={industry.setFromTranslated} />
+              <FilterGroup label={t.work.filterStyle} options={t.work.styles} selected={style.displayValue} onChange={style.setFromTranslated} />
+              <FilterGroup label={t.work.filterPurpose} options={t.work.purposes} selected={purpose.displayValue} onChange={purpose.setFromTranslated} />
             </div>
           </div>
 
@@ -130,11 +119,11 @@ export default function WorkClient() {
           {filteredWorks.length > 0 ? (
             <AnimatePresence mode="wait">
             <motion.div
-              key={`grid-${selectedCategory}-${selectedIndustry}-${selectedStyle}-${selectedPurpose}`}
+              key={`grid-${selectedCategory}-${industry.selectedKo}-${style.selectedKo}-${purpose.selectedKo}`}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
+              transition={{ duration: 0.35, ease: EASE_OUT }}
               className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
             >
               {filteredWorks.map((work, idx) => (
@@ -142,7 +131,7 @@ export default function WorkClient() {
                   key={work.id}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: idx * 0.06, ease: [0.25, 0.1, 0.25, 1] }}
+                  transition={{ duration: 0.4, delay: idx * 0.06, ease: EASE_OUT }}
                 >
                 <VideoCard
                   title={t.work.titles[work.slug] || work.title}
@@ -151,7 +140,7 @@ export default function WorkClient() {
                   duration={work.duration}
                   thumbnailUrl={work.thumbnailUrl}
                   videoUrl={work.videoUrl}
-                  variant={work.style === "AI 아바타" ? "studio" : "production"}
+                  variant={getServiceVariant(work.style)}
                   href={`/work/${work.slug}`}
                 />
                 </motion.div>
@@ -162,7 +151,7 @@ export default function WorkClient() {
             <div className="mt-16 text-center">
               <p className="text-slate-500 dark:text-slate-400">{t.work.noResults}</p>
               <button
-                onClick={() => { setSelectedCategory("all"); setSelectedIndustry(koIndustries[0]); setSelectedStyle(koStyles[0]); setSelectedPurpose(koPurposes[0]); }}
+                onClick={() => { setSelectedCategory("all"); industry.reset(); style.reset(); purpose.reset(); }}
                 className="mt-4 text-sm font-semibold text-slate-400 underline underline-offset-4 hover:text-white"
               >
                 {t.work.resetFilter}
@@ -175,12 +164,13 @@ export default function WorkClient() {
       {/* ════════ CLOSING CTA ════════ */}
       <section className="bg-white pb-20 dark:bg-slate-950">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="rounded-2xl border border-slate-200 bg-slate-50 p-8 text-center dark:border-slate-800 dark:bg-slate-900">
-            <h3 className="text-lg font-bold text-slate-900 dark:text-white">{t.work.closingCtaHeading}</h3>
-            <Button as="a" href="/contact/" variant="white" className="mt-4">
-              {t.work.closingCtaLabel}
-            </Button>
-          </div>
+          <DetailCTA
+            heading={t.work.closingCtaHeading}
+            href="/contact/"
+            label={t.work.closingCtaLabel}
+            variant="white"
+            className="mt-0"
+          />
         </div>
       </section>
     </>

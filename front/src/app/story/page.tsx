@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { BRAND_NAME } from "@/data/brand";
+import { BRAND_NAME, BASE_URL } from "@/data/brand";
 import JsonLd from "@/components/JsonLd";
 import StoryClient from "./StoryClient";
 
 export const metadata: Metadata = {
   title: "Story",
   description: `${BRAND_NAME} 스토리: 영상 제작의 새로운 패러다임을 열다. 팀과 비전, 파트너를 소개합니다.`,
-  alternates: { canonical: "https://loomix.ai/story/" },
+  alternates: { canonical: `${BASE_URL}/story/` },
   openGraph: {
     title: `Story | ${BRAND_NAME}`,
     description: `${BRAND_NAME}의 비전, 타임라인, 팀, 파트너를 소개합니다.`,

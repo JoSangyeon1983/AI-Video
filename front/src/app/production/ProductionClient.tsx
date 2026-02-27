@@ -6,15 +6,17 @@ import PageHero from "@/components/ui/PageHero";
 import Button from "@/components/ui/Button";
 import { IconArrowRight } from "@/components/ui/Icon";
 import { DetailCTA } from "@/components/ui/DetailShared";
-import { works } from "@/data/work";
+import Link from "next/link";
+import { works, STUDIO_STYLE } from "@/data/work";
 import { useTranslation } from "@/i18n";
 import ScrollReveal, { StaggerContainer, StaggerItem } from "@/components/motion/ScrollReveal";
+import SectionHeading from "@/components/ui/SectionHeading";
 
 export default function ProductionClient() {
   const { t } = useTranslation();
 
   // 에이전시/하이엔드 작업만 필터링 (AI 아바타 제외)
-  const featuredWorks = works.filter((w) => w.style !== "AI 아바타").slice(0, 6);
+  const featuredWorks = works.filter((w) => w.style !== STUDIO_STYLE).slice(0, 6);
 
   return (
     <>
@@ -31,14 +33,10 @@ export default function ProductionClient() {
 
       {/* ════════ SECTION 2: AI TECH APPLIED ════════ */}
       <SectionContainer className="bg-white py-24 dark:bg-slate-950">
-          <ScrollReveal>
-            <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
-              {t.production.aiTechHeading}
-            </h2>
-            <p className="mt-2 text-lg text-slate-500 dark:text-slate-400">
-              {t.production.aiTechSub}
-            </p>
-          </ScrollReveal>
+          <SectionHeading
+            title={t.production.aiTechHeading}
+            subtitle={t.production.aiTechSub}
+          />
 
           <StaggerContainer stagger={0.1} className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {t.production.aiTechItems.map((item) => (
@@ -58,14 +56,11 @@ export default function ProductionClient() {
 
       {/* ════════ SECTION 3: PARADIGM SHIFT (비교) ════════ */}
       <SectionContainer className="bg-slate-50 py-24 dark:bg-slate-900">
-          <ScrollReveal>
-            <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
-              {t.production.whyChooseHeading(t.brand.name)}
-            </h2>
-            <h3 className="mt-2 text-lg text-slate-500 dark:text-slate-400">
-              {t.production.whyChooseSub}
-            </h3>
-          </ScrollReveal>
+          <SectionHeading
+            title={t.production.whyChooseHeading(t.brand.name)}
+            subtitle={t.production.whyChooseSub}
+            subtitleAs="h3"
+          />
 
           <div className="mt-12 grid gap-6 sm:grid-cols-2">
             {/* 기존 제작 */}
@@ -101,11 +96,7 @@ export default function ProductionClient() {
 
       {/* ════ SECTION 4: FEATURED WORKS ════ */}
       <SectionContainer className="bg-white py-24 dark:bg-slate-950">
-          <ScrollReveal>
-            <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
-              {t.production.featuredWorksHeading}
-            </h2>
-          </ScrollReveal>
+          <SectionHeading title={t.production.featuredWorksHeading} />
 
           <StaggerContainer stagger={0.1} className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {featuredWorks.map((work) => (
@@ -125,21 +116,17 @@ export default function ProductionClient() {
 
           <ScrollReveal delay={0.2}>
           <div className="mt-10 text-center">
-            <a href="/work/?style=agency" className="inline-flex items-center gap-2 text-sm font-semibold text-brand-600 transition-colors hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300">
+            <Link href="/work/?style=agency" className="inline-flex items-center gap-2 text-sm font-semibold text-brand-600 transition-colors hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300">
               {t.production.featuredWorksCta}
               <IconArrowRight />
-            </a>
+            </Link>
           </div>
           </ScrollReveal>
       </SectionContainer>
 
       {/* ════ SECTION 5: PROCESS ════ */}
       <SectionContainer className="bg-slate-50 py-24 dark:bg-slate-900">
-          <ScrollReveal>
-            <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
-              {t.production.processHeading}
-            </h2>
-          </ScrollReveal>
+          <SectionHeading title={t.production.processHeading} />
 
           {/* Process Stepper */}
           <StaggerContainer stagger={0.1} className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
@@ -157,9 +144,7 @@ export default function ProductionClient() {
 
       {/* ════ SECTION 6: EXPERTS ════ */}
       <SectionContainer className="bg-white py-24 dark:bg-slate-950">
-          <ScrollReveal>
-            <h2 className="text-xl font-bold text-slate-900 dark:text-white">{t.production.expertHeading}</h2>
-          </ScrollReveal>
+          <SectionHeading title={t.production.expertHeading} size="sm" />
           <StaggerContainer stagger={0.08} className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
             {t.production.experts.map((e) => (
               <StaggerItem key={e.role}>

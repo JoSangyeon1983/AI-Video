@@ -1,6 +1,7 @@
 ﻿"use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { navItems, getNavLabelMap } from "@/data/navigation";
@@ -39,7 +40,7 @@ export default function Header() {
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* 로고 */}
-        <a href="/" className="flex items-center gap-2 shrink-0">
+        <Link href="/" className="flex items-center gap-2 shrink-0">
           <Image
             src="/images/logo.png"
             alt={BRAND_NAME}
@@ -48,12 +49,12 @@ export default function Header() {
             className="h-8 w-auto dark:brightness-0 dark:invert"
             priority
           />
-        </a>
+        </Link>
 
         {/* 데스크톱 GNB */}
         <nav className="hidden lg:flex lg:items-center lg:gap-1" aria-label={t.nav.mainMenu}>
           {navItems.map((item) => (
-            <a
+            <Link
               key={item.href}
               href={ensureTrailingSlash(item.href)}
               className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
@@ -63,11 +64,11 @@ export default function Header() {
               }`}
             >
               {navLabelMap[item.href] || item.label}
-            </a>
+            </Link>
           ))}
 
           {/* 문의 CTA 버튼 */}
-          <a
+          <Link
             href="/contact/"
             className={`ml-4 inline-flex items-center gap-1.5 rounded-lg px-5 py-2 text-sm font-semibold transition-all duration-200 ${
               isActivePath(pathname, "/contact")
@@ -76,7 +77,7 @@ export default function Header() {
             }`}
           >
             {t.nav.contact}
-          </a>
+          </Link>
 
           {/* 언어 선택 */}
           <LanguageSelector />
@@ -102,7 +103,7 @@ export default function Header() {
       {mobileMenuOpen && (
         <div className="fixed inset-0 top-16 z-40 bg-white dark:bg-slate-950 lg:hidden">
           <nav className="flex flex-col gap-2 px-6 py-8" aria-label={t.nav.mobileMenu}>
-            <a
+            <Link
               href="/"
               onClick={() => setMobileMenuOpen(false)}
               className={`rounded-lg px-4 py-3 text-lg font-medium transition-colors ${
@@ -112,10 +113,10 @@ export default function Header() {
               }`}
             >
               {t.nav.home}
-            </a>
+            </Link>
 
             {navItems.map((item) => (
-              <a
+              <Link
                 key={item.href}
                 href={ensureTrailingSlash(item.href)}
                 onClick={() => setMobileMenuOpen(false)}
@@ -126,25 +127,25 @@ export default function Header() {
                 }`}
               >
                 {navLabelMap[item.href] || item.label}
-              </a>
+              </Link>
             ))}
 
             {/* 모바일 메뉴 하단 CTA */}
             <div className="mt-8 flex flex-col gap-3 border-t border-slate-200 pt-6 dark:border-slate-800">
-              <a
+              <Link
                 href="/contact/?type=production"
                 onClick={() => setMobileMenuOpen(false)}
                 className="flex h-12 items-center justify-center rounded-lg bg-brand-600 text-sm font-semibold text-white transition-colors hover:bg-brand-700 dark:bg-brand-500 dark:text-white dark:hover:bg-brand-600"
               >
                 {t.nav.productionInquiry}
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/contact/?type=studio"
                 onClick={() => setMobileMenuOpen(false)}
                 className="flex h-12 items-center justify-center rounded-lg border-2 border-secondary-600 text-sm font-semibold text-secondary-600 transition-colors hover:bg-secondary-50 dark:border-secondary-400 dark:text-secondary-400 dark:hover:bg-secondary-950"
               >
                 {t.nav.studioInquiry}
-              </a>
+              </Link>
             </div>
           </nav>
         </div>

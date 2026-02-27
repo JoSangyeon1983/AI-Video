@@ -9,6 +9,7 @@ import CheckListItem from "@/components/ui/CheckListItem";
 import { IconCheck, IconChevronRight } from "@/components/ui/Icon";
 import ContactFormFields, { type ContactTab } from "@/components/ui/ContactFormFields";
 import ScrollReveal, { StaggerContainer, StaggerItem } from "@/components/motion/ScrollReveal";
+import SectionHeading from "@/components/ui/SectionHeading";
 import { useTranslation } from "@/i18n";
 
 export default function ContactClient() {
@@ -58,14 +59,15 @@ function ContactContent() {
       {/* ════════ SECTION 1: COMPACT HERO ════════ */}
       <section className="bg-slate-950 pt-28 pb-12 sm:pt-32 sm:pb-14">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-          <ScrollReveal>
-            <h1 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-              {t.contact.heroHeading}
-            </h1>
-            <p className="mx-auto mt-4 max-w-2xl text-base text-slate-400">
-              {t.contact.heroSub}
-            </p>
-          </ScrollReveal>
+          <SectionHeading
+            title={t.contact.heroHeading}
+            subtitle={t.contact.heroSub}
+            as="h1"
+            size="lg"
+            theme="inverted"
+            align="center"
+            subtitleMaxWidth="max-w-2xl"
+          />
 
           {/* Trust Stats Strip */}
           <StaggerContainer stagger={0.08} className="mt-8 flex flex-wrap items-center justify-center gap-6 sm:gap-10">

@@ -1,4 +1,5 @@
 import { type ReactNode, type AnchorHTMLAttributes, type ButtonHTMLAttributes } from "react";
+import Link from "next/link";
 
 /* ============================================
    공용 버튼 컴포넌트
@@ -74,9 +75,9 @@ export default function Button(props: ButtonProps) {
   if (props.as === "a") {
     const { as: _as, variant: _v, size: _s, fullWidth: _fw, className: _c, children: _ch, ...linkRest } = props;
     return (
-      <a className={classes} {...(linkRest as AnchorHTMLAttributes<HTMLAnchorElement>)}>
+      <Link className={classes} {...(linkRest as AnchorHTMLAttributes<HTMLAnchorElement>)} href={linkRest.href}>
         {children}
-      </a>
+      </Link>
     );
   }
 

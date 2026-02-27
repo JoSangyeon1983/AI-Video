@@ -6,15 +6,17 @@ import PageHero from "@/components/ui/PageHero";
 import Button from "@/components/ui/Button";
 import { IconArrowRight, IconImage } from "@/components/ui/Icon";
 import { DetailCTA } from "@/components/ui/DetailShared";
-import { works } from "@/data/work";
+import Link from "next/link";
+import { works, STUDIO_STYLE } from "@/data/work";
 import { useTranslation } from "@/i18n";
 import ScrollReveal, { StaggerContainer, StaggerItem, ScaleReveal } from "@/components/motion/ScrollReveal";
+import SectionHeading from "@/components/ui/SectionHeading";
 
 export default function StudioClient() {
   const { t } = useTranslation();
 
   // AI 아바타/솔루션 작업만 필터링
-  const useCaseWorks = works.filter((w) => w.style === "AI 아바타").slice(0, 6);
+  const useCaseWorks = works.filter((w) => w.style === STUDIO_STYLE).slice(0, 6);
 
   return (
     <>
@@ -61,14 +63,10 @@ export default function StudioClient() {
 
       {/* ════════ SECTION 2: ENGINE ADVANTAGE ════════ */}
       <SectionContainer className="bg-slate-50 py-24 dark:bg-slate-900">
-          <ScrollReveal>
-            <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
-              {t.studio.engineHeading}
-            </h2>
-            <p className="mt-2 text-lg text-slate-500 dark:text-slate-400">
-              {t.studio.engineSub}
-            </p>
-          </ScrollReveal>
+          <SectionHeading
+            title={t.studio.engineHeading}
+            subtitle={t.studio.engineSub}
+          />
 
           <StaggerContainer stagger={0.1} className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {t.studio.engineItems.map((item) => (
@@ -85,11 +83,7 @@ export default function StudioClient() {
 
       {/* ════════ SECTION 3: CORE FEATURES ════════ */}
       <SectionContainer className="bg-white py-24 dark:bg-slate-950">
-          <ScrollReveal>
-            <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
-              {t.studio.featuresHeading}
-            </h2>
-          </ScrollReveal>
+          <SectionHeading title={t.studio.featuresHeading} />
 
           <StaggerContainer stagger={0.08} className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {t.studio.features.map((f) => (
@@ -106,11 +100,7 @@ export default function StudioClient() {
 
       {/* ════════ SECTION 4: BUSINESS IMPACT ════════ */}
       <SectionContainer className="bg-slate-50 py-24 dark:bg-slate-900">
-          <ScrollReveal>
-            <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
-              {t.studio.impactHeading}
-            </h2>
-          </ScrollReveal>
+          <SectionHeading title={t.studio.impactHeading} />
 
           <StaggerContainer stagger={0.12} className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {t.studio.impacts.map((item) => (
@@ -127,11 +117,7 @@ export default function StudioClient() {
 
       {/* ════════ SECTION 5: USE CASES ════════ */}
       <SectionContainer className="bg-slate-50 py-24 dark:bg-slate-900">
-          <ScrollReveal>
-            <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
-              {t.studio.useCasesHeading}
-            </h2>
-          </ScrollReveal>
+          <SectionHeading title={t.studio.useCasesHeading} />
 
           <StaggerContainer stagger={0.1} className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {useCaseWorks.map((work) => (
@@ -151,10 +137,10 @@ export default function StudioClient() {
 
           <ScrollReveal delay={0.2}>
           <div className="mt-10 text-center">
-            <a href="/work/?style=ai-avatar" className="inline-flex items-center gap-2 text-sm font-semibold text-secondary-600 transition-colors hover:text-secondary-700 dark:text-secondary-400 dark:hover:text-secondary-300">
+            <Link href="/work/?style=ai-avatar" className="inline-flex items-center gap-2 text-sm font-semibold text-secondary-600 transition-colors hover:text-secondary-700 dark:text-secondary-400 dark:hover:text-secondary-300">
               {t.studio.useCasesCta}
               <IconArrowRight />
-            </a>
+            </Link>
           </div>
           </ScrollReveal>
       </SectionContainer>

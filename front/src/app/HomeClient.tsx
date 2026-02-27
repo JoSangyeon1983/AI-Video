@@ -2,7 +2,7 @@
 
 import { useRef, useEffect } from "react";
 import { motion } from "framer-motion";
-import { works } from "@/data/work";
+import { works, getServiceVariant } from "@/data/work";
 import { articles as rawArticles } from "@/data/insights";
 import VideoCard from "@/components/ui/VideoCard";
 import SectionContainer from "@/components/ui/SectionContainer";
@@ -10,6 +10,8 @@ import CheckListItem from "@/components/ui/CheckListItem";
 import Button from "@/components/ui/Button";
 import { IconArrowRight, IconVideoCamera, IconFlask } from "@/components/ui/Icon";
 import ScrollReveal, { StaggerContainer, StaggerItem } from "@/components/motion/ScrollReveal";
+import SectionHeading from "@/components/ui/SectionHeading";
+import Link from "next/link";
 import { useTranslation } from "@/i18n";
 import { EASE_OUT } from "@/lib/motion";
 
@@ -128,16 +130,12 @@ export default function HomeClient() {
 
       {/* ════════ SECTION 2: AI TECHNOLOGY EDGE — 기술 차별화 (핵심) ════════ */}
       <SectionContainer className="bg-slate-50 py-24 dark:bg-slate-900">
-          <ScrollReveal>
-            <div className="text-center">
-              <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
-                {t.home.techEdgeHeading}
-              </h2>
-              <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-500 dark:text-slate-400">
-                {t.home.techEdgeSub}
-              </p>
-            </div>
-          </ScrollReveal>
+          <SectionHeading
+            title={t.home.techEdgeHeading}
+            subtitle={t.home.techEdgeSub}
+            align="center"
+            subtitleMaxWidth="max-w-2xl"
+          />
 
           <StaggerContainer stagger={0.1} className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {t.home.techEdgeItems.map((item) => (
@@ -155,16 +153,11 @@ export default function HomeClient() {
 
       {/* ════════ SECTION 3: FEATURED WORK — AI 기술로 완성한 결과물 ════════ */}
       <SectionContainer className="bg-white py-24 dark:bg-slate-950">
-          <ScrollReveal>
-            <div className="text-center">
-              <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
-                {t.home.section2Heading}
-              </h2>
-              <p className="mt-3 text-lg text-slate-500 dark:text-slate-400">
-                {t.home.section2Sub}
-              </p>
-            </div>
-          </ScrollReveal>
+          <SectionHeading
+            title={t.home.section2Heading}
+            subtitle={t.home.section2Sub}
+            align="center"
+          />
 
           <StaggerContainer stagger={0.1} className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {featuredWorks.map((work) => (
@@ -175,7 +168,7 @@ export default function HomeClient() {
                   duration={work.duration}
                   thumbnailUrl={work.thumbnailUrl}
                   videoUrl={work.videoUrl}
-                  variant={work.style === "AI 아바타" ? "studio" : "production"}
+                  variant={getServiceVariant(work.style)}
                   href={`/work/${work.slug}`}
                 />
               </StaggerItem>
@@ -184,26 +177,21 @@ export default function HomeClient() {
 
           <ScrollReveal delay={0.3}>
             <div className="mt-10 text-center">
-              <a href="/work/" className="inline-flex items-center gap-2 text-sm font-semibold text-slate-400 transition-colors hover:text-white">
+              <Link href="/work/" className="inline-flex items-center gap-2 text-sm font-semibold text-slate-400 transition-colors hover:text-white">
                 {t.home.viewAllPortfolio}
                 <IconArrowRight />
-              </a>
+              </Link>
             </div>
           </ScrollReveal>
       </SectionContainer>
 
       {/* ════════ SECTION 4: BUSINESS BIFURCATION ════════ */}
       <SectionContainer className="bg-slate-50 py-24 dark:bg-slate-900">
-          <ScrollReveal>
-            <div className="text-center">
-              <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
-                {t.home.section3Heading}
-              </h2>
-              <p className="mt-3 text-lg text-slate-500 dark:text-slate-400">
-                {t.home.section3Sub}
-              </p>
-            </div>
-          </ScrollReveal>
+          <SectionHeading
+            title={t.home.section3Heading}
+            subtitle={t.home.section3Sub}
+            align="center"
+          />
 
           <div className="mt-14 grid gap-8 lg:grid-cols-2">
             {([
@@ -257,31 +245,26 @@ export default function HomeClient() {
           <ScrollReveal delay={0.3}>
             <div className="mt-10 flex items-center justify-center gap-3 rounded-xl border border-slate-700 bg-slate-800/50 px-6 py-4">
               <span className="text-sm text-slate-300">{t.home.notSure}</span>
-              <a href="/contact/" className="inline-flex items-center gap-1.5 rounded-lg bg-white px-4 py-2 text-sm font-semibold text-slate-900 shadow-sm transition-all hover:shadow-md">
+              <Link href="/contact/" className="inline-flex items-center gap-1.5 rounded-lg bg-white px-4 py-2 text-sm font-semibold text-slate-900 shadow-sm transition-all hover:shadow-md">
                 {t.home.contactUs}
                 <IconArrowRight />
-              </a>
+              </Link>
             </div>
           </ScrollReveal>
       </SectionContainer>
 
       {/* ════════ SECTION 5: INSIGHTS PREVIEW — AI 기술 리더십 ════════ */}
       <SectionContainer className="bg-white py-24 dark:bg-slate-950">
-          <ScrollReveal>
-            <div className="text-center">
-              <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
-                {t.home.insightsPreviewHeading}
-              </h2>
-              <p className="mt-3 text-lg text-slate-500 dark:text-slate-400">
-                {t.home.insightsPreviewSub}
-              </p>
-            </div>
-          </ScrollReveal>
+          <SectionHeading
+            title={t.home.insightsPreviewHeading}
+            subtitle={t.home.insightsPreviewSub}
+            align="center"
+          />
 
           <StaggerContainer stagger={0.12} className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {previewArticles.map((article, idx) => (
               <StaggerItem key={article.id}>
-                <a href={`/insights/${article.slug}/`} className="group block overflow-hidden rounded-xl border border-slate-200 bg-slate-50 transition-all hover:shadow-lg dark:border-slate-800 dark:bg-slate-900">
+                <Link href={`/insights/${article.slug}/`} className="group block overflow-hidden rounded-xl border border-slate-200 bg-slate-50 transition-all hover:shadow-lg dark:border-slate-800 dark:bg-slate-900">
                   <div className="aspect-video bg-gradient-to-br from-slate-800 to-slate-700" />
                   <div className="p-6">
                     <span className="rounded-full bg-slate-800 px-2.5 py-0.5 text-xs font-medium text-slate-300">
@@ -294,17 +277,17 @@ export default function HomeClient() {
                       {t.insights.articles[idx]?.summary ?? article.summary}
                     </p>
                   </div>
-                </a>
+                </Link>
               </StaggerItem>
             ))}
           </StaggerContainer>
 
           <ScrollReveal delay={0.3}>
             <div className="mt-10 text-center">
-              <a href="/insights/" className="inline-flex items-center gap-2 text-sm font-semibold text-slate-400 transition-colors hover:text-white">
+              <Link href="/insights/" className="inline-flex items-center gap-2 text-sm font-semibold text-slate-400 transition-colors hover:text-white">
                 {t.home.insightsPreviewCta}
                 <IconArrowRight />
-              </a>
+              </Link>
             </div>
           </ScrollReveal>
       </SectionContainer>
@@ -313,23 +296,24 @@ export default function HomeClient() {
       <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-brand-950 to-slate-900 py-24">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-brand-600/10 via-transparent to-transparent" />
         <div className="relative mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
-          <ScrollReveal>
-            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-              {t.home.closingCtaHeading}
-            </h2>
-            <p className="mx-auto mt-4 max-w-xl text-lg text-slate-300">
-              {t.home.closingCtaSub}
-            </p>
+          <SectionHeading
+              title={t.home.closingCtaHeading}
+              subtitle={t.home.closingCtaSub}
+              align="center"
+              size="lg"
+              theme="inverted"
+              subtitleMaxWidth="max-w-xl"
+            >
             <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
               <Button as="a" href="/contact/" variant="white" size="lg">
                 {t.home.closingCtaLabel}
               </Button>
-              <a href="/work/" className="inline-flex items-center gap-2 text-sm font-semibold text-slate-300 transition-colors hover:text-white">
+              <Link href="/work/" className="inline-flex items-center gap-2 text-sm font-semibold text-slate-300 transition-colors hover:text-white">
                 {t.home.viewAllPortfolio}
                 <IconArrowRight />
-              </a>
+              </Link>
             </div>
-          </ScrollReveal>
+          </SectionHeading>
         </div>
       </section>
     </>
