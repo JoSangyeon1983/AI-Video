@@ -1,13 +1,11 @@
-﻿"use client";
+"use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
+import Link from "next/link";
 import { articles as rawArticles, tags as koTags } from "@/data/insights";
 import { DetailCTA } from "@/components/ui/DetailShared";
-import Link from "next/link";
 import { useTranslation } from "@/i18n";
 import { useTranslatedFilter } from "@/hooks";
-import { motion, AnimatePresence } from "framer-motion";
-import { EASE_OUT } from "@/lib/motion";
 
 export default function InsightsClient() {
   const { t } = useTranslation();
@@ -16,13 +14,13 @@ export default function InsightsClient() {
   const [searchQuery, setSearchQuery] = useState("");
 
   // Build translated articles
-  const articles = rawArticles.map((a, i) => ({
+  const articles = useMemo(() => rawArticles.map((a, i) => ({
     ...a,
     title: t.insights.articles[i]?.title ?? a.title,
     summary: t.insights.articles[i]?.summary ?? a.summary,
     displayTag: tag.translateTag(a.tag),
     techBadge: a.techBadge,
-  }));
+  })), [t, tag]);
 
   const filtered = articles.filter((a) => {
     if (tag.selectedKo !== koTags[0] && a.tag !== tag.selectedKo) return false;
@@ -40,38 +38,20 @@ export default function InsightsClient() {
   const featured = filtered.slice(0, Math.min(2, filtered.length));
   const rest = filtered.slice(featured.length);
 
-  // 필터 변경 시 즉시 animate 되도록 키 생성
-  const filterKey = `${tag.selectedKo}-${searchQuery}`;
-
   return (
     <>
       {/* ════════ HERO & TAG NAV ════════ */}
       <section className="bg-white pt-24 pb-8 dark:bg-slate-950">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: EASE_OUT }}
-            className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white"
-          >
+          <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white">
             {t.insights.heading}
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.08 }}
-            className="mt-3 text-lg text-slate-500 dark:text-slate-400"
-          >
+          </h1>
+          <p className="mt-3 text-lg text-slate-500 dark:text-slate-400">
             {t.insights.sub}
-          </motion.p>
+          </p>
 
           {/* Search */}
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.15 }}
-            className="mt-6"
-          >
+          <div className="mt-6">
             <input
               type="text"
               placeholder={t.insights.searchPlaceholder}
@@ -79,15 +59,10 @@ export default function InsightsClient() {
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full max-w-md rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 placeholder-slate-400 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500 dark:border-slate-700 dark:bg-slate-900 dark:text-white dark:placeholder-slate-500 dark:focus:border-brand-400 dark:focus:ring-brand-400"
             />
-          </motion.div>
+          </div>
 
           {/* Tag Navigation */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.25 }}
-            className="mt-6 flex flex-wrap gap-2"
-          >
+          <div className="mt-6 flex flex-wrap gap-2">
             {t.insights.tags.map((tagLabel) => (
               <button
                 key={tagLabel}
@@ -101,19 +76,14 @@ export default function InsightsClient() {
                 {tagLabel}
               </button>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* ════════ TECH HIGHLIGHT STRIP ════════ */}
       <section className="bg-white dark:bg-slate-950">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="rounded-xl border border-slate-200 bg-slate-50 p-6 dark:border-slate-800 dark:bg-slate-900"
-          >
+          <div className="rounded-xl border border-slate-200 bg-slate-50 p-6 dark:border-slate-800 dark:bg-slate-900">
             <h3 className="text-sm font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
               {t.insights.techHighlightHeading}
             </h3>
@@ -125,7 +95,7 @@ export default function InsightsClient() {
                 </div>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -135,24 +105,14 @@ export default function InsightsClient() {
           <h2 className="sr-only">{t.insights.srHeading}</h2>
 
           {/* Featured Articles */}
-          <AnimatePresence mode="wait">
           {featured.length > 0 && (
-            <motion.div
-              key={`featured-${filterKey}`}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.35, ease: EASE_OUT }}
-              className={`mt-8 grid gap-6 ${featured.length >= 2 ? 'lg:grid-cols-2' : 'lg:grid-cols-1 max-w-3xl'}`}
-            >
-              {featured.map((article, idx) => (
-                <motion.div
+            <div className={`mt-8 grid gap-6 ${featured.length >= 2 ? 'lg:grid-cols-2' : 'lg:grid-cols-1 max-w-3xl'}`}>
+              {featured.map((article) => (
+                <Link
                   key={article.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: idx * 0.12, ease: EASE_OUT }}
+                  href={`/insights/${article.slug}/`}
+                  className="group block h-full overflow-hidden rounded-xl border border-slate-200 bg-slate-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700"
                 >
-                <Link href={`/insights/${article.slug}/`} className="block group cursor-pointer overflow-hidden rounded-xl border border-slate-200 bg-slate-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700">
                   <div className="aspect-video bg-gradient-to-br from-slate-800 to-slate-700" />
                   <div className="p-6">
                     <div className="flex items-center gap-2">
@@ -166,31 +126,19 @@ export default function InsightsClient() {
                     <p className="mt-3 text-xs text-slate-400 dark:text-slate-500">{article.date}</p>
                   </div>
                 </Link>
-                </motion.div>
               ))}
-            </motion.div>
+            </div>
           )}
-          </AnimatePresence>
 
           {/* Article List */}
-          <AnimatePresence mode="wait">
           {rest.length > 0 && (
-            <motion.div
-              key={`rest-${filterKey}`}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="mt-8 space-y-4"
-            >
-              {rest.map((article, idx) => (
-                <motion.div
+            <div className="mt-8 space-y-4">
+              {rest.map((article) => (
+                <Link
                   key={article.id}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.4, delay: idx * 0.06, ease: EASE_OUT }}
+                  href={`/insights/${article.slug}/`}
+                  className="group flex gap-6 rounded-xl border border-slate-200 bg-white p-6 transition-all duration-300 hover:shadow-md hover:-translate-y-0.5 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700"
                 >
-                <Link href={`/insights/${article.slug}/`} className="block group flex cursor-pointer gap-6 rounded-xl border border-slate-200 bg-white p-6 transition-all duration-300 hover:shadow-md hover:-translate-y-0.5 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700">
                   <div className="hidden h-24 w-36 shrink-0 rounded-lg bg-gradient-to-br from-slate-700 to-slate-800 sm:block" />
                   <div className="flex-1">
                     <div className="flex items-center gap-2">
@@ -204,11 +152,9 @@ export default function InsightsClient() {
                     <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">{article.summary}</p>
                   </div>
                 </Link>
-                </motion.div>
               ))}
-            </motion.div>
+            </div>
           )}
-          </AnimatePresence>
 
           {filtered.length === 0 && (
             <div className="mt-16 text-center">

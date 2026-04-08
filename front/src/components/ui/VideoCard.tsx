@@ -117,7 +117,7 @@ export default function VideoCard({ title, tags, techTags, duration, thumbnailUr
     </>
   );
 
-  const sharedClassName = "group cursor-pointer overflow-hidden rounded-xl border border-slate-200 bg-slate-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700";
+  const sharedClassName = "group h-full cursor-pointer overflow-hidden rounded-xl border border-slate-200 bg-slate-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700";
 
   if (href) {
     return (

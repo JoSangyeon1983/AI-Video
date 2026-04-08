@@ -40,8 +40,8 @@ export default function ProductionClient() {
 
           <StaggerContainer stagger={0.1} className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {t.production.aiTechItems.map((item) => (
-              <StaggerItem key={item.title}>
-                <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6 dark:border-slate-700 dark:bg-slate-900">
+              <StaggerItem key={item.title} className="h-full">
+                <div className="h-full rounded-2xl border border-slate-200 bg-slate-50 p-6 dark:border-slate-700 dark:bg-slate-900">
                   <span className="text-3xl">{item.icon}</span>
                   <h3 className="mt-3 font-semibold text-slate-900 dark:text-white">{item.title}</h3>
                   <span className="mt-1 inline-block rounded-full bg-brand-50 px-3 py-0.5 text-xs font-bold text-brand-600 dark:bg-brand-950 dark:text-brand-400">
@@ -64,8 +64,8 @@ export default function ProductionClient() {
 
           <div className="mt-12 grid gap-6 sm:grid-cols-2">
             {/* 기존 제작 */}
-            <ScrollReveal direction="left" delay={0.1}>
-            <div className="rounded-2xl border border-slate-200 bg-white p-8 dark:border-slate-700 dark:bg-slate-800">
+            <ScrollReveal direction="left" delay={0.1} className="h-full">
+            <div className="h-full rounded-2xl border border-slate-200 bg-white p-8 dark:border-slate-700 dark:bg-slate-800">
               <h4 className="text-sm font-semibold uppercase tracking-wider text-slate-400">{t.production.legacyLabel}</h4>
               <ul className="mt-6 space-y-4">
                 {t.production.compare.map((item) => (
@@ -78,8 +78,8 @@ export default function ProductionClient() {
             </div>
             </ScrollReveal>
             {/* AI Video 제작 */}
-            <ScrollReveal direction="right" delay={0.2}>
-            <div className="rounded-2xl border-2 border-brand-600 bg-white p-8 dark:border-brand-400 dark:bg-slate-800">
+            <ScrollReveal direction="right" delay={0.2} className="h-full">
+            <div className="h-full rounded-2xl border-2 border-brand-600 bg-white p-8 dark:border-brand-400 dark:bg-slate-800">
               <h4 className="text-sm font-semibold uppercase tracking-wider text-brand-600 dark:text-brand-400">{t.production.brandLabel(t.brand.name)}</h4>
               <ul className="mt-6 space-y-4">
                 {t.production.compare.map((item) => (
@@ -100,7 +100,7 @@ export default function ProductionClient() {
 
           <StaggerContainer stagger={0.1} className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {featuredWorks.map((work) => (
-              <StaggerItem key={work.id}>
+              <StaggerItem key={work.id} className="h-full">
               <VideoCard
                 title={t.work.titles[work.slug] || work.title}
                 tags={[work.industry, work.style, work.purpose]}
@@ -131,8 +131,8 @@ export default function ProductionClient() {
           {/* Process Stepper */}
           <StaggerContainer stagger={0.1} className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
             {t.production.steps.map((s) => (
-              <StaggerItem key={s.step}>
-              <div className="rounded-xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-slate-900">
+              <StaggerItem key={s.step} className="h-full">
+              <div className="h-full rounded-xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-slate-900">
                 <span className="text-2xl font-bold text-brand-600 dark:text-brand-400">{s.step}</span>
                 <h3 className="mt-2 font-semibold text-slate-900 dark:text-white">{s.title}</h3>
                 <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">{s.desc}</p>
@@ -147,8 +147,8 @@ export default function ProductionClient() {
           <SectionHeading title={t.production.expertHeading} size="sm" />
           <StaggerContainer stagger={0.08} className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
             {t.production.experts.map((e) => (
-              <StaggerItem key={e.role}>
-              <div className="rounded-xl border border-slate-200 bg-white p-6 text-center dark:border-slate-800 dark:bg-slate-900">
+              <StaggerItem key={e.role} className="h-full">
+              <div className="h-full rounded-xl border border-slate-200 bg-white p-6 text-center dark:border-slate-800 dark:bg-slate-900">
                 <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-brand-50 dark:bg-brand-950">
                   <span className="text-lg font-bold text-brand-500 dark:text-brand-400">{e.role[0]}</span>
                 </div>

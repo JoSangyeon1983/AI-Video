@@ -6,13 +6,13 @@ import type { Locale } from "@/i18n";
 import { useClickOutside } from "@/hooks";
 import { IconGlobe, IconChevronDown } from "@/components/ui/Icon";
 
-const localeLabels: Record<Locale, string> = {
+export const localeLabels: Record<Locale, string> = {
   ko: "한국어",
   en: "English",
   ja: "日本語",
 };
 
-const localeList: Locale[] = ["ko", "en", "ja"];
+export const localeList: Locale[] = ["ko", "en", "ja"];
 
 export default function LanguageSelector() {
   const { locale, setLocale } = useTranslation();

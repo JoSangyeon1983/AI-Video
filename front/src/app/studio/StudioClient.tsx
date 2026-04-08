@@ -70,8 +70,8 @@ export default function StudioClient() {
 
           <StaggerContainer stagger={0.1} className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {t.studio.engineItems.map((item) => (
-              <StaggerItem key={item.title}>
-                <div className="rounded-2xl border border-slate-200 bg-white p-6 dark:border-slate-700 dark:bg-slate-800">
+              <StaggerItem key={item.title} className="h-full">
+                <div className="h-full rounded-2xl border border-slate-200 bg-white p-6 dark:border-slate-700 dark:bg-slate-800">
                   <span className="text-3xl">{item.icon}</span>
                   <h3 className="mt-3 font-semibold text-slate-900 dark:text-white">{item.title}</h3>
                   <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">{item.desc}</p>
@@ -87,8 +87,8 @@ export default function StudioClient() {
 
           <StaggerContainer stagger={0.08} className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {t.studio.features.map((f) => (
-              <StaggerItem key={f.title}>
-              <div className="group rounded-xl border border-slate-200 bg-white p-6 transition-all hover:shadow-lg dark:border-slate-700 dark:bg-slate-800">
+              <StaggerItem key={f.title} className="h-full">
+              <div className="group h-full rounded-xl border border-slate-200 bg-white p-6 transition-all hover:shadow-lg dark:border-slate-700 dark:bg-slate-800">
                 <span className="text-3xl">{f.icon}</span>
                 <h3 className="mt-4 font-semibold text-slate-900 dark:text-white">{f.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-slate-500 dark:text-slate-400">{f.desc}</p>
@@ -104,8 +104,8 @@ export default function StudioClient() {
 
           <StaggerContainer stagger={0.12} className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {t.studio.impacts.map((item) => (
-              <StaggerItem key={item.label}>
-              <div className="rounded-xl border border-slate-200 bg-white p-6 text-center dark:border-slate-800 dark:bg-slate-900">
+              <StaggerItem key={item.label} className="h-full">
+              <div className="h-full rounded-xl border border-slate-200 bg-white p-6 text-center dark:border-slate-800 dark:bg-slate-900">
                 <p className="text-4xl font-bold text-secondary-600 dark:text-secondary-400">{item.value}</p>
                 <h3 className="mt-2 font-semibold text-slate-900 dark:text-white">{item.label}</h3>
                 <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">{item.desc}</p>
@@ -121,7 +121,7 @@ export default function StudioClient() {
 
           <StaggerContainer stagger={0.1} className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {useCaseWorks.map((work) => (
-              <StaggerItem key={work.id}>
+              <StaggerItem key={work.id} className="h-full">
               <VideoCard
                 title={t.work.titles[work.slug] || work.title}
                 tags={[work.industry, work.style, work.purpose]}

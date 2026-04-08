@@ -8,13 +8,13 @@ import { navItems, getNavLabelMap } from "@/data/navigation";
 import { BRAND_NAME } from "@/data/brand";
 import { useTranslation } from "@/i18n";
 import { useBodyScrollLock } from "@/hooks";
-import LanguageSelector from "@/components/LanguageSelector";
-import { IconClose, IconMenu } from "@/components/ui/Icon";
+import LanguageSelector, { localeLabels, localeList } from "@/components/LanguageSelector";
+import { IconClose, IconGlobe, IconMenu } from "@/components/ui/Icon";
 import { ensureTrailingSlash, isActivePath } from "@/lib/utils";
 
 export default function Header() {
   const pathname = usePathname();
-  const { t } = useTranslation();
+  const { t, locale, setLocale } = useTranslation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -101,7 +101,7 @@ export default function Header() {
 
       {/* 모바일 풀스크린 메뉴 */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 top-16 z-40 bg-white dark:bg-slate-950 lg:hidden">
+        <div className="fixed inset-0 top-16 z-40 overflow-y-auto bg-white dark:bg-slate-950 lg:hidden">
           <nav className="flex flex-col gap-2 px-6 py-8" aria-label={t.nav.mobileMenu}>
             <Link
               href="/"
@@ -129,6 +129,24 @@ export default function Header() {
                 {navLabelMap[item.href] || item.label}
               </Link>
             ))}
+
+            {/* 언어 선택 */}
+            <div className="mt-6 flex items-center gap-2 px-4">
+              <IconGlobe className="h-5 w-5 text-slate-400" />
+              {localeList.map((l) => (
+                <button
+                  key={l}
+                  onClick={() => setLocale(l)}
+                  className={`rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
+                    locale === l
+                      ? "bg-brand-500/15 text-brand-400 font-semibold"
+                      : "text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800"
+                  }`}
+                >
+                  {localeLabels[l]}
+                </button>
+              ))}
+            </div>
 
             {/* 모바일 메뉴 하단 CTA */}
             <div className="mt-8 flex flex-col gap-3 border-t border-slate-200 pt-6 dark:border-slate-800">

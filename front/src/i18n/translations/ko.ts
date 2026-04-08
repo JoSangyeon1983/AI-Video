@@ -126,7 +126,7 @@ export const ko: Translation = {
       "ai-avatar-finance": { challenge: "금융 상품 설명 영상을 규제 변경에 맞춰 신속히 업데이트해야 했으나, 매번 촬영 및 편집에 과도한 시간과 비용이 소요되었습니다.", approach: "AI 아바타 프레젠터를 활용하여 스크립트 수정만으로 영상을 즉시 재생성할 수 있는 시스템을 구축했습니다. 컴플라이언스 팀과의 승인 프로세스도 자동화했습니다.", result: "규제 변경 대응 시간 85% 단축, 연간 영상 제작비 60% 절감. 고객 이해도 설문 점수 22% 향상." },
     },
     closingCtaHeading: "포트폴리오에서 영감을 얻으셨나요?",
-    closingCtaLabel: "유사 스타일로 제작 문의",
+    closingCtaLabel: "문의하기",
   },
 
   production: {

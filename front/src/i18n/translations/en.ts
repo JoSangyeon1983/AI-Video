@@ -126,7 +126,7 @@ export const en: Translation = {
       "ai-avatar-finance": { challenge: "Financial product explainer videos needed rapid updates for regulatory changes, but each round of filming and editing consumed excessive time and cost.", approach: "Built a system using AI avatar presenters that instantly regenerates videos from script modifications. Compliance team approval workflows were also automated.", result: "85% reduction in regulatory response time, 60% annual production cost savings. 22% improvement in customer comprehension survey scores." },
     },
     closingCtaHeading: "Impressed by our portfolio?",
-    closingCtaLabel: "Inquire about similar style",
+    closingCtaLabel: "Contact Us",
   },
 
   production: {

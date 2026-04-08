@@ -59,8 +59,8 @@ export default function StoryClient() {
           {/* Stats */}
           <StaggerContainer stagger={0.08} className="mt-12 grid grid-cols-2 gap-6 sm:grid-cols-4">
             {t.story.techCapStats.map((stat) => (
-              <StaggerItem key={stat.label}>
-                <div className="rounded-xl border border-slate-200 bg-slate-50 p-6 text-center dark:border-slate-800 dark:bg-slate-900">
+              <StaggerItem key={stat.label} className="h-full">
+                <div className="h-full rounded-xl border border-slate-200 bg-slate-50 p-6 text-center dark:border-slate-800 dark:bg-slate-900">
                   <span className="text-3xl font-bold text-brand-600 dark:text-brand-400 sm:text-4xl">{stat.value}</span>
                   <p className="mt-2 text-sm font-medium text-slate-500 dark:text-slate-400">{stat.label}</p>
                 </div>
@@ -71,8 +71,8 @@ export default function StoryClient() {
           {/* Tech Items */}
           <StaggerContainer stagger={0.1} className="mt-10 grid gap-5 sm:grid-cols-2">
             {t.story.techCapItems.map((item) => (
-              <StaggerItem key={item.title}>
-                <div className="flex gap-4 rounded-xl border border-slate-200 bg-slate-50 p-5 dark:border-slate-800 dark:bg-slate-900">
+              <StaggerItem key={item.title} className="h-full">
+                <div className="flex h-full gap-4 rounded-xl border border-slate-200 bg-slate-50 p-5 dark:border-slate-800 dark:bg-slate-900">
                   <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brand-100 text-lg dark:bg-brand-950/40">{item.icon}</span>
                   <div>
                     <h3 className="font-semibold text-slate-900 dark:text-white">{item.title}</h3>
@@ -90,8 +90,8 @@ export default function StoryClient() {
 
           <StaggerContainer stagger={0.1} className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {t.story.team.map((member) => (
-              <StaggerItem key={member.name}>
-              <div className="rounded-xl border border-slate-200 bg-slate-50 p-6 dark:border-slate-800 dark:bg-slate-900">
+              <StaggerItem key={member.name} className="h-full">
+              <div className="h-full rounded-xl border border-slate-200 bg-slate-50 p-6 dark:border-slate-800 dark:bg-slate-900">
                 <div className="flex h-16 w-16 items-center justify-center rounded-full bg-slate-800">
                   <span className="text-xl font-bold text-slate-300">{member.name[0]}</span>
                 </div>

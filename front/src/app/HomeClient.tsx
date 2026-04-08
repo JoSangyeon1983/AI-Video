@@ -140,8 +140,8 @@ export default function HomeClient() {
 
           <StaggerContainer stagger={0.1} className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {t.home.techEdgeItems.map((item) => (
-              <StaggerItem key={item.title}>
-                <div className="group relative rounded-2xl border border-slate-200 bg-white p-8 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 dark:border-slate-700 dark:bg-slate-800 dark:hover:border-slate-600">
+              <StaggerItem key={item.title} className="h-full">
+                <div className="group relative h-full rounded-2xl border border-slate-200 bg-white p-8 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 dark:border-slate-700 dark:bg-slate-800 dark:hover:border-slate-600">
                   <span className="text-4xl">{item.icon}</span>
                   <h3 className="mt-4 text-lg font-bold text-slate-900 dark:text-white">{item.title}</h3>
                   <p className="mt-1 text-sm font-semibold text-brand-600 dark:text-brand-400">{item.stat}</p>
@@ -223,8 +223,8 @@ export default function HomeClient() {
                 delay: 0.2,
               },
             ]).map((card) => (
-              <ScrollReveal key={card.href} direction={card.direction} delay={card.delay}>
-                <div className="rounded-2xl border border-slate-200 bg-white p-8 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 dark:border-slate-700 dark:bg-slate-800 dark:hover:border-slate-600 lg:p-10">
+              <ScrollReveal key={card.href} direction={card.direction} delay={card.delay} className="h-full">
+                <div className="h-full rounded-2xl border border-slate-200 bg-white p-8 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 dark:border-slate-700 dark:bg-slate-800 dark:hover:border-slate-600 lg:p-10">
                   <div className={`mb-6 inline-flex rounded-xl p-3 text-white ${card.iconBg}`}>
                     {card.icon}
                   </div>
@@ -264,8 +264,8 @@ export default function HomeClient() {
 
           <StaggerContainer stagger={0.12} className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {previewArticles.map((article, idx) => (
-              <StaggerItem key={article.id}>
-                <Link href={`/insights/${article.slug}/`} className="group block overflow-hidden rounded-xl border border-slate-200 bg-slate-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700">
+              <StaggerItem key={article.id} className="h-full">
+                <Link href={`/insights/${article.slug}/`} className="group block h-full overflow-hidden rounded-xl border border-slate-200 bg-slate-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700">
                   <div className="aspect-video bg-gradient-to-br from-slate-800 to-slate-700" />
                   <div className="p-6">
                     <span className="rounded-full bg-slate-800 px-2.5 py-0.5 text-xs font-medium text-slate-300">
