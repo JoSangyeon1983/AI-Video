@@ -24,7 +24,9 @@ export default function ProductionClient() {
       <PageHero
         heading={t.production.heading}
         headingSub={t.production.headingSub}
-        description={<>{t.production.desc1} {t.production.desc2}</>}
+        description={<>{t.production.desc1}<br />{t.production.desc2}</>}
+        videoBg="/video/production-hero-bg.webm"
+        videoPoster="/images/thumbnails/production-hero-bg.webp"
       >
         <Button as="a" href="/contact/?type=production">
           {t.production.projectInquiry}
@@ -145,15 +147,13 @@ export default function ProductionClient() {
       {/* ════ SECTION 6: EXPERTS ════ */}
       <SectionContainer className="bg-white py-24 dark:bg-slate-950">
           <SectionHeading title={t.production.expertHeading} size="sm" />
-          <StaggerContainer stagger={0.08} className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
+          <StaggerContainer stagger={0.08} className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {t.production.experts.map((e) => (
-              <StaggerItem key={e.role} className="h-full">
-              <div className="h-full rounded-xl border border-slate-200 bg-white p-6 text-center dark:border-slate-800 dark:bg-slate-900">
-                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-brand-50 dark:bg-brand-950">
-                  <span className="text-lg font-bold text-brand-500 dark:text-brand-400">{e.role[0]}</span>
-                </div>
-                <h4 className="mt-3 font-semibold text-slate-900 dark:text-white">{e.role}</h4>
-                <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">{e.desc}</p>
+              <StaggerItem key={e.name} className="h-full">
+              <div className="h-full rounded-xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-slate-900">
+                <h4 className="text-lg font-bold text-slate-900 dark:text-white">{e.name}</h4>
+                <p className="mt-1 text-sm font-semibold text-brand-600 dark:text-brand-400">{e.role}</p>
+                <p className="mt-3 text-sm leading-relaxed text-slate-500 dark:text-slate-400">{e.desc}</p>
               </div>
               </StaggerItem>
             ))}

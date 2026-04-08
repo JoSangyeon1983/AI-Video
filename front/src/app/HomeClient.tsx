@@ -1,133 +1,49 @@
 ﻿"use client";
 
-import { useRef, useEffect } from "react";
-import { motion } from "framer-motion";
 import { works, getServiceVariant } from "@/data/work";
 import { articles as rawArticles } from "@/data/insights";
 import VideoCard from "@/components/ui/VideoCard";
 import SectionContainer from "@/components/ui/SectionContainer";
 import CheckListItem from "@/components/ui/CheckListItem";
 import Button from "@/components/ui/Button";
+import PageHero from "@/components/ui/PageHero";
 import { IconArrowRight, IconVideoCamera, IconFlask } from "@/components/ui/Icon";
 import ScrollReveal, { StaggerContainer, StaggerItem } from "@/components/motion/ScrollReveal";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Link from "next/link";
 import { useTranslation } from "@/i18n";
-import { EASE_OUT } from "@/lib/motion";
 
 export default function HomeClient() {
   const { t } = useTranslation();
   const featuredWorks = works.slice(0, 6);
   const previewArticles = rawArticles.slice(0, 3);
 
-  const trustItems = [
-    { value: "500+", label: t.home.trustProjectsDone },
-    { value: "98%", label: t.home.trustSatisfaction },
-    { value: "3x", label: t.home.trustSpeedUp },
-  ];
-
-  /* ── CTA 버튼 너비 동기화 ── */
-  const btnARef = useRef<HTMLAnchorElement>(null);
-  const btnBRef = useRef<HTMLAnchorElement>(null);
-  const label1 = t.home.projectInquiry;
-  const label2 = t.home.viewPortfolio;
-
-  useEffect(() => {
-    const a = btnARef.current;
-    const b = btnBRef.current;
-    if (!a || !b) return;
-    a.style.width = "auto";
-    b.style.width = "auto";
-    a.style.minWidth = "0";
-    b.style.minWidth = "0";
-    const maxW = Math.max(a.offsetWidth, b.offsetWidth);
-    a.style.minWidth = `${maxW}px`;
-    b.style.minWidth = `${maxW}px`;
-  }, [label1, label2]);
-
   return (
     <>
       {/* ════════ SECTION 1: HERO — AI 기술 중심 가치 제안 ════════ */}
-      <section className="relative flex min-h-screen items-center overflow-hidden bg-slate-950">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          poster="/images/thumbnails/hero-bg.webp"
-          className="absolute inset-0 h-full w-full object-cover"
+      <PageHero
+        heading={<>{t.brand.name}</>}
+        headingSub={t.brand.description}
+        description={t.brand.slogan}
+        videoBg="/video/hero-bg.webm"
+        videoPoster="/images/thumbnails/hero-bg.webp"
+        overlayClassName="absolute inset-0 bg-gradient-to-br from-slate-950/80 via-brand-950/60 to-slate-900/65"
+        align="center"
+        syncButtonWidth
+      >
+        <a
+          href="/contact/"
+          className="inline-flex h-12 items-center justify-center rounded-lg bg-white px-8 text-sm font-semibold text-slate-900 transition-colors hover:bg-slate-200"
         >
-          <source src="/video/hero-bg.webm" type="video/webm" />
-        </video>
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-950/80 via-brand-950/60 to-slate-900/65" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-brand-600/15 via-secondary-900/10 to-transparent" />
-
-        <div className="relative mx-auto max-w-7xl px-4 py-32 sm:px-6 lg:px-8">
-          <div className="max-w-3xl">
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: EASE_OUT }}
-              className="text-4xl font-bold leading-tight tracking-tight text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)] sm:text-5xl lg:text-6xl"
-            >
-              {t.brand.name}
-              <span className="mt-2 block text-slate-200">
-                {t.brand.description}
-              </span>
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2, ease: EASE_OUT }}
-              className="mt-6 max-w-xl text-lg leading-relaxed text-slate-200 drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]"
-            >
-              {t.brand.slogan}
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.4, ease: EASE_OUT }}
-              className="mt-10 flex flex-col gap-4 sm:flex-row"
-            >
-              <a
-                ref={btnARef}
-                href="/contact/"
-                className="inline-flex h-12 items-center justify-center rounded-lg bg-white px-8 text-sm font-semibold text-slate-900 transition-colors hover:bg-slate-200"
-              >
-                {t.home.projectInquiry}
-              </a>
-              <a
-                ref={btnBRef}
-                href="/work/"
-                className="inline-flex h-12 items-center justify-center rounded-lg border-2 border-slate-500/40 px-8 text-sm font-semibold text-white transition-colors hover:border-slate-300 hover:bg-white/10"
-              >
-                {t.home.viewPortfolio}
-              </a>
-            </motion.div>
-
-            {/* <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.7 }}
-              className="mt-16 flex items-center justify-start gap-6 sm:gap-10"
-            >
-              {trustItems.map((item, i) => (
-                <motion.div
-                  key={item.label}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: 0.8 + i * 0.15 }}
-                  className={`${i > 0 ? "border-l border-white/20 pl-6 sm:pl-10" : ""}`}
-                >
-                  <p className="text-2xl font-bold text-white sm:text-3xl lg:text-4xl">{item.value}</p>
-                  <p className="mt-1 text-xs font-medium uppercase tracking-wider text-slate-400 sm:text-sm">{item.label}</p>
-                </motion.div>
-              ))}
-            </motion.div> */}
-          </div>
-        </div>
-      </section>
+          {t.home.projectInquiry}
+        </a>
+        <a
+          href="/work/"
+          className="inline-flex h-12 items-center justify-center rounded-lg border-2 border-slate-500/40 px-8 text-sm font-semibold text-white transition-colors hover:border-slate-300 hover:bg-white/10"
+        >
+          {t.home.viewPortfolio}
+        </a>
+      </PageHero>
 
       {/* ════════ SECTION 2: AI TECHNOLOGY EDGE — 기술 차별화 (핵심) ════════ */}
       <SectionContainer className="bg-slate-50 py-24 dark:bg-slate-900">

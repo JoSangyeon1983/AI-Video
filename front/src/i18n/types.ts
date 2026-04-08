@@ -139,7 +139,7 @@ export interface Translation {
     expertHeading: string;
     steps: { step: string; title: string; desc: string }[];
     compare: { label: string; before: string; after: string }[];
-    experts: { role: string; desc: string }[];
+    experts: { name: string; role: string; desc: string }[];
     featuredWorksHeading: string;
     featuredWorksCta: string;
     /* 하단 CTA */
