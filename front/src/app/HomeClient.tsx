@@ -106,7 +106,7 @@ export default function HomeClient() {
               </a>
             </motion.div>
 
-            <motion.div
+            {/* <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.7 }}
@@ -124,7 +124,7 @@ export default function HomeClient() {
                   <p className="mt-1 text-xs font-medium uppercase tracking-wider text-slate-400 sm:text-sm">{item.label}</p>
                 </motion.div>
               ))}
-            </motion.div>
+            </motion.div> */}
           </div>
         </div>
       </section>
